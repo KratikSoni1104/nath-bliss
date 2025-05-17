@@ -1,10 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Cinzel, Inter, Playfair_Display } from "next/font/google";
-import { Navbar } from "@/components/navbar";
+
 import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
