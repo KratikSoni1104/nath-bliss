@@ -5,13 +5,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function Intro() {
-  // Animation variants for staggered text
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, delay: i * 0.2, ease: "easeOut" },
+      transition: { duration: 0.8, delay: i * 0.3, ease: [0.19, 1, 0.22, 1] },
     }),
   };
 
@@ -19,41 +18,34 @@ export default function Intro() {
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className="relative py-20 sm:py-32 px-6 sm:px-10 md:px-16 bg-ivory-100"
-      style={{ backgroundColor: "#f8f1e9" }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1.2, ease: "easeOut" }}
+      className="relative py-28 px-6 sm:px-10 bg-[#faf6f0]"
     >
-      {/* Subtle Gold Sheen */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#f8f1e9] to-[#f8f1e9]/90 opacity-50" />
-
-      <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
-        {/* Left - Image */}
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        {/* Image Section */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.98, x: -30 }}
-          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          whileHover={{ scale: 1.02, rotate: 0.3 }}
-          className="md:w-2/5"
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative h-[500px] rounded-[3rem] overflow-hidden shadow-lg"
         >
-          <div className="relative overflow-hidden rounded-xl shadow-xl">
-            <img
-              src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              alt="Personalized guest room at Nath Bliss Hotels with Rajasthan-inspired decor"
-              className="w-full h-[300px] sm:h-[400px] md:h-[450px] object-cover transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-          </div>
+          <img
+            src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
+            alt="Nath Bliss Hotels"
+            className="w-full h-full object-cover transform scale-[1.01]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/25" />
         </motion.div>
 
-        {/* Right - Text */}
+        {/* Text Content */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="md:w-3/5 flex flex-col items-center md:items-start text-center md:text-left space-y-6"
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          className="space-y-8"
         >
           <motion.h1
             custom={0}
@@ -61,75 +53,64 @@ export default function Intro() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={textVariants}
-            className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold leading-tight text-gray-900"
+            className="text-4xl md:text-5xl font-medium leading-tight text-[#2a2418] font-playfair"
           >
-            Nath Bliss Hotels — India’s First Hyper-Personalized Hotel Chain
+            <span className="block mb-4 text-lg font-sans font-semibold text-[#7f6d54] tracking-widest">
+              Nath Bliss Hotels
+            </span>
+            India’s First Hyper-Personalized Hotel Chain
           </motion.h1>
 
-          <motion.p
-            custom={1}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={textVariants}
-            className="text-base sm:text-lg md:text-xl text-gray-700 max-w-xl font-sans"
-          >
-            Starting at just{" "}
-            <motion.span
-              initial={{ scale: 1 }}
-              animate={{
-                scale: [1, 1.05, 1],
-                boxShadow: [
-                  "0 0 0 rgba(35, 214, 246, 0)",
-                  "0 0 8px rgba(35, 214, 246, 0.3)",
-                  "0 0 0 rgba(35, 214, 246, 0)",
-                ],
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="inline-block bg-[#23d6f6] text-white font-semibold px-3 py-1 rounded-md shadow-sm"
+          <motion.div className="space-y-6">
+            <motion.p
+              custom={1}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={textVariants}
+              className="text-lg text-[#4a453d] leading-relaxed font-light font-sans"
             >
-              ₹849
-            </motion.span>
-            , we offer world-class hospitality tailored to you. Whether you’re
-            visiting Shrinathji for devotion or seeking comfort, every stay is
-            crafted for <span className="font-semibold">you</span>.
-          </motion.p>
+              Starting at just{" "}
+              <span className="inline-block bg-[#ede8e0] text-[#6b5d48] px-3 py-1 rounded-lg font-medium border border-[#d4ccc0]">
+                ₹849
+              </span>
+              , we offer world-class hospitality tailored to you. Whether you're
+              visiting Shrinathji for devotion or seeking comfort, every stay is
+              crafted for{" "}
+              <span className="font-medium text-[#6b5d48]">you</span>.
+            </motion.p>
 
-          <motion.p
-            custom={2}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={textVariants}
-            className="text-base sm:text-lg md:text-xl italic text-gray-600 font-sans"
-          >
-            We don’t just give you a room — we give you{" "}
-            <span className="underline decoration-[#32ffde] decoration-2">
-              your
-            </span>{" "}
-            room.
-          </motion.p>
-
-          <motion.div
-            custom={3}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={textVariants}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button
-              size="lg"
-              className="bg-[#3a9bfc] font-sans text-white px-8 py-3 rounded-md shadow-md hover:shadow-lg hover:bg-[#2b8aec] transition-all duration-300"
-              asChild
+            <motion.p
+              custom={2}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={textVariants}
+              className="text-[#6b5d48] italic text-lg border-l-4 border-[#d4ccc0] pl-4 py-2"
             >
-              <Link href="/hotels">Book Now</Link>
-            </Button>
+              We don’t just give you a room — we give you{" "}
+              <span className="font-medium">your</span> room.
+            </motion.p>
+
+            <motion.div
+              custom={3}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={textVariants}
+            >
+              <Button
+                asChild
+                className="bg-transparent hover:bg-[#6b5d48]/10 text-[#6b5d48] border-2 border-[#6b5d48] px-8 py-6 rounded-xl font-medium text-lg transition-all duration-500 hover:scale-[1.02] shadow-none"
+              >
+                <Link href="/hotels">
+                  <span className="relative z-10">Book Now</span>
+                </Link>
+              </Button>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
     </motion.section>
   );
 }
- 

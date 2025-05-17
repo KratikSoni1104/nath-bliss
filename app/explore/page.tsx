@@ -58,6 +58,18 @@ const attractions = [
         image:
           "https://images.pexels.com/photos/5432782/pexels-photo-5432782.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
+      {
+        name: "Statue of Belief (Shiv Murti)",
+        distance: "3 km",
+        description: "World's tallest Shiva statue, a spiritual marvel.",
+        image: "https://www.statueofbelief.com/images/banner.jpg",
+      },
+      {
+        name: "Shreenathji Gaushala",
+        distance: "1.5 km",
+        description: "Sacred cow shelter near Shreenathji Temple.",
+        image: "https://www.statueofbelief.com/images/banner.jpg",
+      },
     ],
   },
   {
@@ -89,8 +101,8 @@ const attractions = [
         distance: "55 km",
         description: "Offers stunning sunset views.",
         image:
-        //   "https://images.unsplash.com/photo-1603267681386-cb674dfbabab?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        "/images/sajjan-garh.jpg"
+          //   "https://images.unsplash.com/photo-1603267681386-cb674dfbabab?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          "/images/sajjan-garh.jpg",
       },
     ],
   },
@@ -150,35 +162,45 @@ export default function ExploreNathdwara() {
     : attractions;
 
   return (
-    <main className="min-h-screen py-12 px-4 sm:px-6 md:px-8">
+    <main className="min-h-screen py-12 px-4 sm:px-6 md:px-8 bg-[#faf6f0]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
         className="max-w-7xl mx-auto"
       >
         {/* Header */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4">
-          Explore Nathdwara & Beyond
-        </h1>
-        <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-muted-foreground text-center mb-12">
-          Discover spiritual, cultural, and natural wonders near Nath Bliss
-          Hotels, perfect for day trips or extended adventures.
-        </p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-4xl md:text-5xl font-medium text-[#2a2418] font-playfair">
+            <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+              Discover Divine Rajasthan
+            </span>
+            Explore Nathdwara & Beyond
+          </h1>
+          <p className="text-[#4a453d] font-sans font-light max-w-3xl mx-auto text-lg">
+            Discover spiritual, cultural, and natural wonders near Nath Bliss
+            Hotels
+          </p>
+        </motion.div>
 
         {/* Filter Bar */}
-        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-4 mb-8">
+        <div className="sticky top-0 z-10 bg-white/70 backdrop-blur-sm py-4 mb-8 border-b border-[#e6ded4]">
           <Select
             value={selectedCategory || "All"}
             onValueChange={(value) =>
               setSelectedCategory(value === "All" ? null : value)
             }
           >
-            <SelectTrigger className="w-full sm:w-64 mx-auto">
+            <SelectTrigger className="w-full sm:w-64 mx-auto border-[#e6ded4] focus:ring-[#7f6d54]">
               <SelectValue placeholder="Filter by Category" />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="All">All Attractions</SelectItem>
+            <SelectContent className="border-[#e6ded4]">
+              <SelectItem value="All" className="focus:bg-[#faf6f0]">
+                All Attractions
+              </SelectItem>
               {attractions.map((cat) => (
                 <SelectItem key={cat.category} value={cat.category}>
                   {cat.category}
@@ -192,38 +214,48 @@ export default function ExploreNathdwara() {
         {filteredAttractions.map((category, catIndex) => (
           <motion.section
             key={category.category}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: catIndex * 0.2 }}
-            className="mb-12"
+            transition={{ delay: catIndex * 0.15 }}
+            className="mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl font-semibold mb-6">
+            <h2 className="font-cinzel font-semibold text-2xl text-[#7f6d54] mb-8">
               {category.category}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {category.places.map((place, placeIndex) => (
                 <motion.div
                   key={place.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: placeIndex * 0.1 }}
+                  transition={{ delay: placeIndex * 0.1 }}
                 >
-                  <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-                    <div className="aspect-[4/3] relative overflow-hidden">
+                  <Card className="bg-white/70 backdrop-blur-sm overflow-hidden border-[#e6ded4] hover:shadow-md transition-shadow">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      className="aspect-[4/3] relative overflow-hidden"
+                    >
                       <img
                         src={place.image}
                         alt={place.name}
-                        className="object-cover w-full h-full transform hover:scale-110 transition-transform duration-500"
+                        className="object-cover w-full h-full"
                       />
-                    </div>
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-transparent" />
+                    </motion.div>
                     <CardHeader>
-                      <CardTitle className="text-xl">{place.name}</CardTitle>
-                      <CardDescription>{place.distance}</CardDescription>
+                      <CardTitle className="font-playfair text-[#2a2418]">
+                        {place.name}
+                      </CardTitle>
+                      <CardDescription className="text-[#7f6d54]">
+                        {place.distance} from Nath Bliss
+                      </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p>{place.description}</p>
+                      <p className="text-[#4a453d] font-sans font-light">
+                        {place.description}
+                      </p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -234,41 +266,37 @@ export default function ExploreNathdwara() {
 
         {/* Map Embed */}
         <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center">
-            Find These Attractions
+          <h2 className="font-cinzel font-semibold text-2xl text-[#7f6d54] text-center mb-8">
+            Locate These Wonders
           </h2>
-          <div className="relative aspect-[4/3] sm:aspect-video rounded-lg overflow-hidden">
+          <div className="relative aspect-[4/3] sm:aspect-video rounded-xl overflow-hidden border border-[#e6ded4]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d366.0429001482041!2d73.81710727038114!3d24.92824949165648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39680d15bd5e90af%3A0x83f460a09e37b91d!2sHotel%20Sudarshan!5e0!3m2!1sen!2sus!4v1746255087090!5m2!1sen!2sus"
               className="absolute inset-0 w-full h-full"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-            ></iframe>
+            />
           </div>
         </motion.section>
 
         {/* CTA */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <motion.div
+          initial={{ scale: 0.95 }}
+          whileInView={{ scale: 1 }}
           className="text-center"
         >
-          <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
-            Plan Your Visit with Nath Bliss
-          </h2>
-          <Button size="lg" asChild>
-            <Link href="/hotels">Book Your Stay</Link>
+          <Button
+            asChild
+            className="bg-[#6b5d48] hover:bg-[#5d5040] text-white px-12 py-6 rounded-xl font-cinzel text-lg"
+          >
+            <Link href="/hotels">Book Your Spiritual Retreat</Link>
           </Button>
-        </motion.section>
+        </motion.div>
       </motion.div>
     </main>
   );

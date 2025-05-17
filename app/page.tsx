@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/carousel";
 import Explore from "@/components/Explore";
 import Intro from "@/components/Intro";
+import HeroSection from "@/components/Hero";
 
 const hotels = [
   {
@@ -83,6 +84,13 @@ const testimonials = [
   },
 ];
 
+const features = [
+  "Guest Profile Memory: Return guests are remembered and preferences auto-applied",
+  "Flexible Add-ons: Flowers, décor, spiritual requests, family needs",
+  "Pre-Arrival Connect: WhatsApp or Call survey 24 hrs before check-in",
+  "Real-Time Requests: In-room QR or App to request anything, instantly",
+];
+
 const roomTypes = [
   {
     name: "Budget Bliss Rooms",
@@ -111,44 +119,10 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="relative h-[80vh] flex items-center justify-center"
-        style={{
-          backgroundImage:
-            "url(https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="absolute inset-0 bg-black/40" />
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="relative text-center text-white space-y-6 px-4"
-        >
-          <h1 className="text-4xl md:text-6xl font-bold ">
-            Discover Bliss with NathBliss
-          </h1>
-          <p className="text-xl md:text-2xl max-w-2xl mx-auto font-playfair">
-            Experience unparalleled luxury and comfort at our exclusive
-            properties
-          </p>
-          <Button
-            size="lg"
-            asChild
-            className="bg-white text-black hover:bg-white/90"
-          >
-            <Link href="/hotels">Book Now</Link>
-          </Button>
-        </motion.div>
-      </motion.section>
+      <HeroSection />
 
       {/* Quick Booking Form */}
-      <motion.section
+      {/* <motion.section
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.8 }}
@@ -193,269 +167,434 @@ export default function Home() {
             </Button>
           </div>
         </Card>
-      </motion.section>
+      </motion.section> */}
 
       {/* Intro Section */}
       <Intro />
 
       {/* Personalization Service Section */}
       <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="container mx-auto py-20 px-4 bg-muted"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="relative py-16 px-4 sm:px-6 bg-white" // Changed to white background
       >
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Personalization Service – Included in Every Booking
-          </h2>
-          <p className="text-lg">
-            Most hotels treat customization as a luxury.
-          </p>
-          <p className="text-xl font-bold">
-            We treat it as a basic human need.
-          </p>
-          <div className="grid md:grid-cols-2 gap-6 text-left">
-            {[
-              "Guest Profile Memory: Return guests are remembered and preferences auto-applied",
-              "Flexible Add-ons: Flowers, décor, spiritual requests, family needs",
-              "Pre-Arrival Connect: WhatsApp or Call survey 24 hrs before check-in",
-              "Real-Time Requests: In-room QR or App to request anything, instantly",
-            ].map((item, index) => (
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+            {/* Text Content */}
+            <div className="lg:w-1/2 space-y-8 px-4">
               <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="flex items-start space-x-3 p-4 bg-background rounded-lg shadow-sm"
+                transition={{ duration: 0.8 }}
+                className="space-y-6"
               >
-                <span className="text-primary">•</span>
-                <p>{item}</p>
+                <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
+                  <span className="block text-lg font-sans font-semibold text-[#7f6d54] tracking-widest mb-4">
+                    Included in Every Stay
+                  </span>
+                  Hyper-Personalized Service
+                </h2>
+
+                <p className="text-lg text-[#4a453d] font-light leading-relaxed">
+                  While others treat customization as luxury,
+                  <br className="hidden sm:block" /> we consider it fundamental.
+                </p>
+
+                <div className="space-y-1">
+                  <p className="text-xl font-medium text-[#6b5d48]">
+                    Your Needs, Our Standard
+                  </p>
+                  <div className="h-[2px] bg-[#e6ded4] w-24 mt-2" />
+                </div>
               </motion.div>
-            ))}
+            </div>
+
+            {/* Features Grid */}
+            <div className="lg:w-1/2 space-y-6">
+              <div className="grid gap-4 sm:gap-5">
+                {features.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 + 0.3 }}
+                    className="p-5 bg-[#faf6f0] rounded-xl border border-[#e6ded4] shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 mt-1">
+                        <div className="w-6 h-6 rounded-full bg-[#ede8e0] flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full bg-[#7f6d54]" />
+                        </div>
+                      </div>
+                      <p className="text-[#4a453d] leading-relaxed font-light font-sans">
+                        {item}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-center space-y-6 mt-8"
+              >
+                <p className="text-lg text-[#6b5d48] font-medium">
+                  Experience personalized hospitality
+                  <br />
+                  <span className="text-[#4a453d] font-light">
+                    starting at just ₹849/night
+                  </span>
+                </p>
+                <Button
+                  asChild
+                  className="bg-[#6b5d48] hover:bg-[#5d5040] text-white px-8 py-6 rounded-xl font-medium text-lg transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl"
+                >
+                  <Link href="/hotels">Customize My Stay</Link>
+                </Button>
+              </motion.div>
+            </div>
           </div>
-          <p className="text-lg mt-8">
-            And all this, starting at just ₹849 per night.
-          </p>
-          <Button size="lg" asChild>
-            <Link href="/hotels">Customize My Stay</Link>
-          </Button>
         </div>
       </motion.section>
 
       {/* Services Section */}
       <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="container mx-auto py-20 px-4"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="relative py-16 px-4 sm:px-6 bg-[#faf6f0]" // Alternating background
       >
-        <div className="max-w-6xl mx-auto space-y-12">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <div className="max-w-7xl mx-auto space-y-16">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center space-y-4"
+          >
+            <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
+              <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+                Curated Experiences
+              </span>
               Our Services
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-[#4a453d] font-light max-w-2xl mx-auto font-sans">
               Experience comfort and luxury tailored to your needs
             </p>
-          </div>
+          </motion.div>
 
           {/* Room Types */}
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {roomTypes.map((room, index) => (
               <motion.div
                 key={room.name}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
+                transition={{ delay: index * 0.15 }}
               >
-                <Card className="overflow-hidden">
+                <Card className="h-full overflow-hidden border-[#e6ded4] bg-white/50 backdrop-blur-sm hover:shadow-lg transition-shadow">
                   <div className="aspect-video relative overflow-hidden">
                     <img
                       src={room.image}
                       alt={room.name}
-                      className="object-cover w-full h-full transform hover:scale-110 transition-transform duration-500"
+                      className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <CardHeader>
-                    <CardTitle>{room.name}</CardTitle>
-                    <CardDescription>Starting at {room.price}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p>{room.description}</p>
-                  </CardContent>
+                  <div className="p-6 space-y-4">
+                    <h3 className="text-xl font-semibold text-[#2a2418] font-playfair">
+                      {room.name}
+                    </h3>
+                    <p className="text-[#7f6d54] font-medium">{room.price}</p>
+                    <p className="text-[#4a453d] font-light font-sans leading-relaxed">
+                      {room.description}
+                    </p>
+                  </div>
                 </Card>
               </motion.div>
             ))}
           </div>
 
           {/* Travel Services */}
-          <div className="text-center space-y-8">
-            <h3 className="text-2xl font-bold">Travel & Spiritual Services</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="p-6">
-                <h4 className="text-xl font-semibold mb-2">Taxi Service</h4>
-                <p className="text-muted-foreground">
-                  Reliable transportation at your convenience
-                </p>
-              </Card>
-              <Card className="p-6">
-                <h4 className="text-xl font-semibold mb-2">Temple Guide</h4>
-                <p className="text-muted-foreground">
-                  Expert guidance for Shreenathiji Temple visits
-                </p>
-              </Card>
-              <Card className="p-6">
-                <h4 className="text-xl font-semibold mb-2">Spiritual Tours</h4>
-                <p className="text-muted-foreground">
-                  Visit sacred sites including Udaipur, Kumbhalgarh, and more
-                </p>
-              </Card>
-            </div>
-            <Button size="lg" asChild>
-              <Link href="/services">View All Services</Link>
-            </Button>
+          <div className="space-y-12">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              className="text-center space-y-4"
+            >
+              <h3 className="text-2xl font-medium text-[#2a2418] font-playfair">
+                Spiritual & Travel Services
+              </h3>
+              <div className="grid md:grid-cols-3 gap-5">
+                {[
+                  {
+                    title: "Taxi Service",
+                    description: "Reliable transportation at your convenience",
+                  },
+                  {
+                    title: "Temple Guide",
+                    description:
+                      "Expert guidance for Shreenathiji Temple visits",
+                  },
+                  {
+                    title: "Spiritual Tours",
+                    description:
+                      "Visit sacred sites including Udaipur, Kumbhalgarh, and more",
+                  },
+                ].map((service, index) => (
+                  <motion.div
+                    key={service.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Card className="p-6 bg-white/70 backdrop-blur-sm border-[#e6ded4] hover:shadow-md transition-shadow h-full">
+                      <h4 className="text-lg font-cinzel font-semibold text-[#7f6d54] mb-3">
+                        {service.title}
+                      </h4>
+                      <p className="text-[#4a453d] font-light font-sans leading-relaxed">
+                        {service.description}
+                      </p>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ scale: 0.98 }}
+              whileInView={{ scale: 1 }}
+              className="text-center"
+            >
+              <Button
+                asChild
+                className="bg-[#6b5d48] hover:bg-[#5d5040] text-white px-8 py-6 rounded-xl font-medium text-lg transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl font-sans"
+              >
+                <Link href="/services">View All Services</Link>
+              </Button>
+            </motion.div>
           </div>
         </div>
       </motion.section>
 
       {/* Featured Hotels */}
-      <section className="container mx-auto py-20 px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center mb-12"
-        >
-          Our Luxury Properties
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {hotels.map((hotel, index) => (
-            <motion.div
-              key={hotel.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-            >
-              <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-video relative overflow-hidden">
-                  <img
-                    src={hotel.image}
-                    alt={hotel.name}
-                    className="object-cover w-full h-full transform hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <CardHeader>
-                  <CardTitle>{hotel.name}</CardTitle>
-                  <CardDescription>{hotel.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button asChild variant="outline" className="w-full">
-                    <Link
-                      href={`/hotels?property=${encodeURIComponent(
-                        hotel.name
-                      )}`}
-                    >
-                      View Rooms
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="bg-muted py-20">
-        <div className="container mx-auto px-4">
-          <motion.h2
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="relative py-16 px-4 sm:px-6 bg-white"
+      >
+        <div className="max-w-7xl mx-auto">
+          {" "}
+          {/* Consistent max width with intro */}
+          {/* Section Header */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-center mb-12"
+            className="text-center space-y-4 mb-14"
           >
-            What Our Guests Say
-          </motion.h2>
-          <Carousel className="max-w-4xl mx-auto">
-            <CarouselContent>
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index}>
-                  <Card className="border-none bg-transparent">
-                    <CardContent className="flex flex-col items-center text-center p-6">
-                      <div className="w-20 h-20 rounded-full overflow-hidden mb-4">
-                        <img
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <p className="text-lg mb-4">{testimonial.content}</p>
-                      <h3 className="font-semibold">{testimonial.name}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.role}
+            <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
+              <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+                Exclusive Collection
+              </span>
+              Our Luxury Properties
+            </h2>
+          </motion.div>
+          {/* Hotels Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {hotels.map((hotel, index) => (
+              <motion.div
+                key={hotel.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 }}
+              >
+                <Card className="h-full overflow-hidden border-[#e6ded4] hover:shadow-lg transition-shadow group">
+                  {/* Image Container with Enhanced Hover */}
+                  <div className="aspect-video relative overflow-hidden">
+                    <motion.img
+                      src={hotel.image}
+                      alt={hotel.name}
+                      className="object-cover w-full h-full transform origin-center"
+                      whileHover={{
+                        scale: 1.05,
+                        transition: { duration: 0.4, ease: "easeOut" },
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/20" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 space-y-5">
+                    <div>
+                      <h3 className="text-xl font-semibold text-[#2a2418] font-playfair mb-2">
+                        {hotel.name}
+                      </h3>
+                      <p className="text-[#4a453d] font-light font-sans leading-relaxed">
+                        {hotel.description}
                       </p>
-                    </CardContent>
-                  </Card>
+                    </div>
+
+                    {/* Updated Button Style */}
+                    <Button
+                      asChild
+                      className="w-full bg-transparent hover:bg-[#6b5d48]/10 text-[#6b5d48] border-2 border-[#6b5d48] px-8 py-5 rounded-xl font-medium text-base transition-all duration-300 hover:scale-[1.02] shadow-none font-sans"
+                    >
+                      <Link
+                        href={`/hotels?property=${encodeURIComponent(
+                          hotel.name
+                        )}`}
+                      >
+                        View Rooms
+                      </Link>
+                    </Button>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Testimonials */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="relative py-16 px-4 sm:px-6 bg-[#faf6f0]"
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-center space-y-4 mb-14"
+          >
+            <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
+              <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+                Voices of Experience
+              </span>
+              What Our Guests Say
+            </h2>
+          </motion.div>
+
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="max-w-6xl mx-auto"
+          >
+            <CarouselContent className="-ml-2">
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem
+                  key={index}
+                  className="pl-2 md:basis-1/2 lg:basis-1/3"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                  >
+                    <Card className="border-[#e6ded4] bg-white/70 backdrop-blur-sm h-full overflow-hidden group hover:shadow-lg transition-shadow">
+                      <div className="p-8 space-y-6">
+                        <div className="relative">
+                          <div className="absolute -left-4 -top-4 w-16 h-16 bg-[#7f6d54] opacity-10 rounded-full" />
+                          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#e6ded4]">
+                            <img
+                              src={testimonial.image}
+                              alt={testimonial.name}
+                              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                            />
+                          </div>
+                        </div>
+
+                        <blockquote className="text-[#4a453d] font-light font-sans leading-relaxed italic text-lg">
+                          "{testimonial.content}"
+                        </blockquote>
+
+                        <div className="space-y-1">
+                          <h3 className="font-cinzel font-semibold text-[#7f6d54]">
+                            {testimonial.name}
+                          </h3>
+                          <p className="text-sm text-[#4a453d]/80 font-sans">
+                            {testimonial.role}
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
+                  </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+
+            {/* Custom Navigation Arrows */}
+            <div className="hidden md:flex justify-center gap-4 mt-8">
+              <CarouselPrevious className="static translate-x-0 translate-y-0 border-[#e6ded4] text-[#7f6d54] hover:bg-[#faf6f0] hover:text-[#5d5040]" />
+              <CarouselNext className="static translate-x-0 translate-y-0 border-[#e6ded4] text-[#7f6d54] hover:bg-[#faf6f0] hover:text-[#5d5040]" />
+            </div>
           </Carousel>
         </div>
-      </section>
+      </motion.section>
 
       {/* Teaser Section for Explore Nathdwara */}
       <Explore />
 
       {/* Features */}
-      <section className="container mx-auto py-20 px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <Building2 className="w-12 h-12 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Prime Locations</h3>
-            <p className="text-muted-foreground">
-              Situated in the most sought-after destinations for your
-              convenience
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-center"
-          >
-            <Users className="w-12 h-12 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Exceptional Service</h3>
-            <p className="text-muted-foreground">
-              Dedicated staff available 24/7 to ensure your comfort
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-center"
-          >
-            <Calendar className="w-12 h-12 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Easy Booking</h3>
-            <p className="text-muted-foreground">
-              Simple and secure reservation process at your fingertips
-            </p>
-          </motion.div>
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="relative py-16 px-4 sm:px-6 bg-white"
+      >
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              {
+                icon: Building2,
+                title: "Prime Locations",
+                text: "Situated in the most sought-after destinations for your convenience",
+              },
+              {
+                icon: Users,
+                title: "Exceptional Service",
+                text: "Dedicated staff available 24/7 to ensure your comfort",
+              },
+              {
+                icon: Calendar,
+                title: "Easy Booking",
+                text: "Simple and secure reservation process at your fingertips",
+              },
+            ].map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 }}
+                className="group p-8 bg-[#faf6f0] rounded-2xl border border-[#e6ded4] hover:shadow-lg transition-shadow"
+              >
+                <div className="text-center space-y-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#7f6d54] text-[#e6ded4] mb-4">
+                    <feature.icon className="w-8 h-8" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-2xl font-medium text-[#2a2418] font-playfair">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#4a453d] font-light font-sans leading-relaxed">
+                    {feature.text}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }
