@@ -25,7 +25,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-white/80 backdrop-blur-lg supports-[backdrop-filter]:bg-white/60">
-      <nav className="container flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav className="flex h-16 items-center justify-between pr-4 sm:pr-6 lg:pr-8">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <Image
@@ -33,7 +33,7 @@ export default function Navbar() {
             alt="Logo"
             width={160}
             height={40}
-            className="w-32 sm:w-40"
+            className="w-60 sm:w-64 sm:-ml-10 -ml-8"
             priority
           />
         </Link>

@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${cinzel.variable} ${playfair.variable}`}
+        className={`${inter.variable} ${cinzel.variable} ${playfair.variable} overflow-x-hidden`}
       >
         <ThemeProvider
           attribute="class"
