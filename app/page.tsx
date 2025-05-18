@@ -387,7 +387,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="relative py-16 px-4 sm:px-6 bg-white"
+        className="relative py-16 px-4 sm:px-6 !bg-white"
       >
         <div className="max-w-7xl mx-auto">
           {" "}
