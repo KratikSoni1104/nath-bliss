@@ -63,7 +63,7 @@ export default function ContactPage() {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   required
-                  className="h-14 text-base border-[#e6ded4] focus:border-[#7f6d54] rounded-xl"
+                  className="h-14 text-base bg-white border-[#e6ded4] focus:border-[#7f6d54] focus:ring-0 rounded-xl shadow-sm transition-colors"
                 />
               </motion.div>
 
@@ -76,7 +76,7 @@ export default function ContactPage() {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   required
-                  className="h-14 text-base border-[#e6ded4] focus:border-[#7f6d54] rounded-xl"
+                  className="h-14 text-base bg-white border-[#e6ded4] focus:border-[#7f6d54] focus:ring-0 rounded-xl shadow-sm transition-colors"
                 />
               </motion.div>
 
@@ -88,13 +88,13 @@ export default function ContactPage() {
                     setFormData({ ...formData, message: e.target.value })
                   }
                   required
-                  className="min-h-[150px] text-base border-[#e6ded4] focus:border-[#7f6d54] rounded-xl"
+                  className="min-h-[150px] text-base bg-white border-[#e6ded4] focus:border-[#7f6d54] focus:ring-0 rounded-xl shadow-sm transition-colors"
                 />
               </motion.div>
 
               <Button
                 type="submit"
-                className="w-full bg-[#6b5d48] hover:bg-[#5d5040] h-14 text-lg rounded-xl font-cinzel"
+                className="w-full bg-transparent hover:bg-[#7f6d54]/10 text-[#7f6d54] border-2 border-[#7f6d54] h-14 text-lg rounded-xl font-cinzel font-medium transition-all hover:scale-[1.02] shadow-none"
               >
                 <Send className="mr-2 h-5 w-5" />
                 Send Message
