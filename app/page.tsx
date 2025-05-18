@@ -416,7 +416,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
               >
-                <Card className="h-full overflow-hidden border-[#e6ded4] hover:shadow-lg transition-shadow group">
+                <Card className="h-full overflow-hidden border-[#e6ded4] hover:shadow-lg transition-shadow group bg-white">
                   {/* Image Container with Enhanced Hover */}
                   <div className="aspect-video relative overflow-hidden">
                     <motion.img
