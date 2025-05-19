@@ -34,41 +34,43 @@ const attractions = [
         name: "Charbhuja Temple",
         distance: "28 km",
         description: "Ancient temple of Lord Vishnu.",
-        image:
-          "https://images.pexels.com/photos/6172771/pexels-photo-6172771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/charbhuja-mewar.jpg",
+        // "https://images.pexels.com/photos/6172771/pexels-photo-6172771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
       {
         name: "Eklingji Temple",
         distance: "30 km",
         description: "A famous temple dedicated to Lord Shiva.",
-        image:
-          "https://images.unsplash.com/photo-1618151313441-bd5d8ac42a31?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/eklingji-temple.jpg",
+        // "https://images.unsplash.com/photo-1618151313441-bd5d8ac42a31?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
       {
         name: "Ranakpur Jain Temple",
         distance: "90 km",
         description: "Renowned for intricate marble architecture.",
-        image:
-          "https://images.pexels.com/photos/5273644/pexels-photo-5273644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/r-j-t.jpg",
+        // "https://images.pexels.com/photos/5273644/pexels-photo-5273644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
       {
         name: "Dwarkadhish Temple, Kankroli",
         distance: "18 km",
         description: "Located on the banks of Rajsamand Lake.",
-        image:
-          "https://images.pexels.com/photos/5432782/pexels-photo-5432782.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/kankroli-2.jpg",
+        // "https://images.pexels.com/photos/5432782/pexels-photo-5432782.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
       {
         name: "Statue of Belief (Shiv Murti)",
         distance: "3 km",
         description: "World's tallest Shiva statue, a spiritual marvel.",
-        image: "https://www.statueofbelief.com/images/banner.jpg",
+        image: "/images/explore/s-b.jpeg",
+        // "https://www.statueofbelief.com/images/banner.jpg",
       },
       {
         name: "Shreenathji Gaushala",
         distance: "1.5 km",
         description: "Sacred cow shelter near Shreenathji Temple.",
-        image: "https://www.statueofbelief.com/images/banner.jpg",
+        image: "/images/explore/gaushala.jpg",
+        // "https://www.statueofbelief.com/images/banner.jpg",
       },
     ],
   },
@@ -79,22 +81,22 @@ const attractions = [
         name: "Rajsamand Lake",
         distance: "17 km",
         description: "Serene lake with a marble dam and boating.",
-        image:
-          "https://images.pexels.com/photos/3581368/pexels-photo-3581368.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/raj-lake.jpg",
+        // "https://images.pexels.com/photos/3581368/pexels-photo-3581368.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
       {
         name: "Pichola Lake, Udaipur",
         distance: "45 km",
         description: "Iconic lake with views of palaces.",
-        image:
-          "https://images.unsplash.com/photo-1588593380038-1b3576e171f3?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/pichola.jpg",
+        // "https://images.unsplash.com/photo-1588593380038-1b3576e171f3?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
       {
         name: "Fateh Sagar Lake, Udaipur",
         distance: "50 km",
         description: "Surrounded by hills and gardens.",
-        image:
-          "https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/fateh-sagar-lake.jpg",
+        // "https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
       {
         name: "Sajjangarh (Monsoon Palace)",
@@ -103,6 +105,14 @@ const attractions = [
         image:
           //   "https://images.unsplash.com/photo-1603267681386-cb674dfbabab?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
           "/images/sajjan-garh.jpg",
+      },
+      {
+        name: "BahuBali Hill",
+        distance: "60 km",
+        description: "Stunning sunset views.",
+        image:
+          //   "https://images.unsplash.com/photo-1603267681386-cb674dfbabab?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          "/images/explore/bahubali-hill.jpg",
       },
     ],
   },
@@ -114,22 +124,22 @@ const attractions = [
         distance: "65 km",
         description:
           "UNESCO World Heritage site with massive walls and scenic views.",
-        image:
-          "https://images.pexels.com/photos/1704090/pexels-photo-1704090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/kumbhalgarh-fort.jpg",
+        // "https://images.pexels.com/photos/1704090/pexels-photo-1704090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
       {
         name: "Chittorgarh Fort",
         distance: "110 km",
         description: "Largest fort in India with historical significance.",
-        image:
-          "https://images.unsplash.com/photo-1618151313550-508c39e61808?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/chittorgarh-fort.jpg",
+        // "https://images.unsplash.com/photo-1618151313550-508c39e61808?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
       {
         name: "Haldighati",
         distance: "40 km",
         description: "Famous battlefield of Maharana Pratap, with a museum.",
-        image:
-          "https://images.pexels.com/photos/614494/pexels-photo-614494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/haldi-ghati.png",
+        // "https://images.pexels.com/photos/614494/pexels-photo-614494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
     ],
   },
@@ -140,15 +150,15 @@ const attractions = [
         name: "Iswal Mahadev Waterfall",
         distance: "35 km",
         description: "A hidden gem for a short trek or picnic.",
-        image:
-          "https://images.pexels.com/photos/207048/pexels-photo-207048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/iswal-mahadev-waterfall.jpg",
+        // "https://images.pexels.com/photos/207048/pexels-photo-207048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
       {
         name: "Jaisamand Lake",
         distance: "90 km",
-        description: "One of Asia’s largest artificial lakes.",
-        image:
-          "https://images.unsplash.com/photo-1593693396933-7ca98e3c61af?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        description: "One of Asia;s largest artificial lakes.",
+        image: "/images/explore/jaisamand-lake.jpg",
+        // "https://images.unsplash.com/photo-1593693396933-7ca98e3c61af?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
     ],
   },
