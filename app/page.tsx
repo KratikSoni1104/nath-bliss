@@ -50,7 +50,7 @@ const hotels = [
   {
     name: "Shreeji Dhaam",
     description:
-      "A boutique experience combining modern comfort with traditional hospitality, perfect for both business and leisure.",
+      "Your sanctuary of peace and luxury in budget, offering an unforgettable stay with personalized service and elegant accommodations.",
     image:
       // "https://images.pexels.com/photos/2869215/pexels-photo-2869215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "/images/shreeji-dhaam-room-1.jpeg",

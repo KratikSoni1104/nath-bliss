@@ -53,7 +53,7 @@ export default function HeroSection() {
   const handleDotClick = (index: number) => setCurrentSlide(index);
 
   return (
-    <section className="relative h-screen w-full bg-[#2a2418] overflow-hidden">
+    <section className="relative h-[80vh] sm:h-screen w-full bg-[#2a2418] overflow-hidden">
       {/* Background Images */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -178,7 +178,7 @@ export default function HeroSection() {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden sm:block"
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
         >
