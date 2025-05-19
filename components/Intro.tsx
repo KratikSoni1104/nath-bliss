@@ -32,7 +32,8 @@ export default function Intro() {
           className="relative aspect-[4/3] sm:aspect-[16/9] rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-lg"
         >
           <img
-            src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
+            src="/images/intro-img.jpeg"
+            // src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
             alt="Nath Bliss Hotels"
             className="w-full h-full object-cover transform scale-[1.01]"
           />
@@ -58,7 +59,7 @@ export default function Intro() {
             <span className="block mb-3 text-base sm:text-lg font-sans font-semibold text-[#7f6d54] tracking-widest">
               Nath Bliss Hotels
             </span>
-            India’s First Hyper-Personalized Hotel Chain
+            India's First Hyper-Personalized Hotel Chain
           </motion.h1>
 
           <motion.div className="space-y-4 sm:space-y-6">
