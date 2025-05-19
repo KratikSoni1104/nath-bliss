@@ -10,7 +10,6 @@ import {
   Wifi,
   Bed,
   Utensils,
-  MapPin,
 } from "lucide-react";
 import {
   Card,
@@ -48,7 +47,7 @@ const amenities = [
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen py-16 px-4 md:px-8 bg-[#faf6f0]">
+    <main className="min-h-screen py-12 px-4 sm:px-6 md:px-8 bg-[#faf6f0]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -58,10 +57,10 @@ export default function ServicesPage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-medium text-[#2a2418] font-playfair">
-            <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#2a2418] font-playfair">
+            <span className="block text-base sm:text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
               Beyond Accommodation
             </span>
             Our Services & Amenities
@@ -69,8 +68,8 @@ export default function ServicesPage() {
         </motion.div>
 
         {/* Room Types */}
-        <section className="mb-20">
-          <div className="grid md:grid-cols-3 gap-8">
+        <section className="mb-16 sm:mb-20">
+          <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
             {[
               {
                 title: "Budget Bliss Rooms",
@@ -78,21 +77,24 @@ export default function ServicesPage() {
                 description:
                   "Minimalist and peaceful, designed for personalization",
                 image:
-                  "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                 "/images/s-d-bliss-room.jpeg",
+                  // "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
               },
               {
                 title: "Comfort Bliss Rooms",
                 price: "₹1299+",
                 description: "Enhanced comfort with tailored amenities",
                 image:
-                  "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "/images/sudarshan-comfort-bliss.jpeg",
+                  // "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
               },
               {
                 title: "Premium Suites",
                 price: "₹1799+",
                 description: "Luxury suites with fully customized experiences",
                 image:
-                  "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                   "/images/s-in-premium-bliss-room.jpeg",
+                  // "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
               },
             ].map((room, index) => (
               <motion.div
@@ -101,25 +103,42 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className="bg-white/70 backdrop-blur-sm rounded-2xl border border-[#e6ded4] overflow-hidden hover:shadow-md transition-shadow"
+                className="bg-white/70 backdrop-blur-sm rounded-2xl border border-[#e6ded4] overflow-hidden hover:shadow-md transition-shadow group"
               >
-                <div className="aspect-video relative overflow-hidden">
-                  <img
+                <div className="aspect-[4/3] sm:aspect-video relative overflow-hidden">
+                  <motion.img
                     src={room.image}
                     alt={room.title}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full transform origin-center"
+                    whileHover={{
+                      scale: 1.1, // Increased for visibility
+                      transition: { duration: 0.4, ease: "easeOut" },
+                    }}
+                    // Fallback CSS for static exports
+                    style={{ transition: "transform 0.4s ease-out" }}
+                    initial={{ scale: 1 }}
+                    animate={{ scale: 1 }}
+                    // CSS hover fallback
+                    // extraClassName="group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/25" />
                 </div>
-                <div className="p-6 space-y-4">
-                  <h2 className="text-xl font-playfair text-[#2a2418]">
+                <div className="p-4 sm:p-6 space-y-4">
+                  <h2 className="text-lg sm:text-xl font-cinzel font-semibold text-[#2a2418]">
                     {room.title}
                   </h2>
                   <p className="text-[#7f6d54] font-sans font-medium">
                     {room.price}
                   </p>
-                  <p className="text-[#4a453d] font-sans font-light leading-relaxed">
+                  <p className="text-[#4a453d] font-sans font-light text-sm sm:text-base leading-relaxed">
                     {room.description}
                   </p>
+                  <Button
+                    asChild
+                    className="w-full bg-transparent hover:bg-[#7f6d54]/10 text-[#7f6d54] border-2 border-[#7f6d54] px-6 py-4 rounded-xl font-medium text-base transition-all duration-300 hover:scale-[1.02] shadow-none"
+                  >
+                    <Link href="/hotels">Book Now</Link>
+                  </Button>
                 </div>
               </motion.div>
             ))}
@@ -127,16 +146,16 @@ export default function ServicesPage() {
         </section>
 
         {/* Amenities */}
-        <section className="mb-20">
+        <section className="mb-16 sm:mb-20">
           <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-2xl font-cinzel font-semibold text-[#7f6d54] text-center mb-12"
+            className="text-xl sm:text-2xl font-cinzel font-semibold text-[#7f6d54] text-center mb-8 sm:mb-12"
           >
             Hotel Amenities
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {amenities.map((amenity, index) => (
               <motion.div
                 key={amenity.name}
@@ -144,15 +163,15 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white/70 backdrop-blur-sm p-6 rounded-xl border border-[#e6ded4] text-center hover:shadow-md transition-shadow"
+                className="bg-white/70 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-[#e6ded4] text-center hover:shadow-md transition-shadow"
               >
-                <div className="flex justify-center mb-4">
-                  <amenity.icon className="w-8 h-8 text-[#7f6d54]" />
+                <div className="flex justify-center mb-3 sm:mb-4">
+                  <amenity.icon className="w-6 sm:w-8 h-6 sm:h-8 text-[#7f6d54]" />
                 </div>
-                <h3 className="font-cinzel font-semibold text-[#2a2418] mb-2">
+                <h3 className="font-cinzel font-semibold text-[#2a2418] text-base sm:text-lg mb-2">
                   {amenity.name}
                 </h3>
-                <p className="text-[#4a453d] font-sans font-light text-sm">
+                <p className="text-[#4a453d] font-sans font-light text-xs sm:text-sm">
                   {amenity.description}
                 </p>
               </motion.div>
@@ -161,13 +180,13 @@ export default function ServicesPage() {
         </section>
 
         {/* Explore CTA */}
-        {/* <motion.div
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
           <Explore />
-        </motion.div> */}
+        </motion.div>
       </motion.div>
     </main>
   );
