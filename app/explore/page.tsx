@@ -18,17 +18,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Link from "next/link";
-
+// -> /images/explore/
 const attractions = [
   {
     category: "Religious & Cultural Spots",
     places: [
       {
         name: "Shreenathji Temple",
-        distance: "Nathdwara",
+        distance: "2 mins",
         description: "The main attraction, devoted to Lord Krishna.",
-        image:
-          "https://images.pexels.com/photos/5432783/pexels-photo-5432783.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        image: "/images/explore/Shrinathji_Temple-Nathdwara_Rajsaman11.jpg",
+        // "https://images.pexels.com/photos/5432783/pexels-photo-5432783.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       },
       {
         name: "Charbhuja Temple",

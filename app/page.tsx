@@ -34,7 +34,7 @@ const hotels = [
   {
     name: "Sudarshan Hotel",
     description:
-      "Your sanctuary of peace and luxury, offering an unforgettable stay with personalized service and elegant accommodations.",
+      "A boutique experience combining modern comfort with traditional hospitality, perfect for both business and leisure.",
     image:
       // "https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "/images/sudarshan-room-1.jpeg",
@@ -96,22 +96,23 @@ const roomTypes = [
     name: "Budget Bliss Rooms",
     price: "₹849+",
     description: "Minimalist and peaceful, designed for personalization.",
-    image:
-      "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/images/s-d-bliss-room.jpeg",
+    // "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     name: "Comfort Bliss Rooms",
     price: "₹1299+",
     description: "Enhanced comfort with tailored amenities.",
-    image:
-      "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/images/sudarshan-comfort-bliss.jpeg",
+    // "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     name: "Premium Personalized Suites",
     price: "₹1799+",
     description: "Luxury suites with fully customized experiences.",
     image:
-      "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "/images/s-in-premium-bliss-room.jpeg",
+      // "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
 ];
 
