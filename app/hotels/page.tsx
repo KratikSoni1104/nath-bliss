@@ -27,35 +27,41 @@ const hotels = [
     name: "Sudarshan Hotel",
     location: "Downtown Business District",
     description:
-      "Experience luxury at its finest with our signature property featuring panoramic city views and world-class amenities.",
+      "A boutique experience combining modern comfort with traditional hospitality, perfect for both business and leisure.",
     image:
       "https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     rooms: [
       {
         id: "deluxe-1",
-        type: "Deluxe Room",
-        price: 299,
-        description:
-          "Spacious room with city view, king-size bed, and modern amenities",
+        type: "Comfort Bliss Room",
+        price: 1499,
+        description: "Personalized comfortable room with essential amenities",
         image:
-          "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        amenities: ["Free Wi-Fi", "Mini Bar", "Room Service", "Smart TV"],
+          // "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          "/images/sudarshan-comfort-bliss.jpeg",
+        amenities: ["Free Wi-Fi", "Room Service", "Smart TV"],
       },
       {
         id: "suite-1",
-        type: "Executive Suite",
-        price: 499,
+        type: "Premium Bliss Room",
+        price: 1999,
         description:
-          "Luxury suite with separate living area and premium services",
+          "Personalized room with Italic wooden furnitures, king-size bed, and modern amenities",
         image:
-          "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        amenities: [
-          "Free Wi-Fi",
-          "Mini Bar",
-          "Room Service",
-          "Smart TV",
-          "Jacuzzi",
-        ],
+          // "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          "/images/sudarshan-premium-bliss.jpeg",
+        amenities: ["Free Wi-Fi", "Room Service", "Smart TV"],
+      },
+      {
+        id: "suite-2",
+        type: "Bliss's Family Room",
+        price: 2499,
+        description:
+          "Spacious room with 2 king size-beds, with extra spacious washroom, and modern amenities.",
+        image:
+          // "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          "/images/sudarshan-family-bliss.jpeg",
+        amenities: ["Free Wi-Fi", "Room Service", "Smart TV"],
       },
     ],
   },
@@ -64,27 +70,37 @@ const hotels = [
     name: "Sudarshan INN",
     location: "Historic District",
     description:
-      "A boutique experience combining modern comfort with traditional hospitality, perfect for both business and leisure.",
+      "Experience luxury at its finest with our signature property featuring panoramic city views and world-class amenities.",
     image:
       "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     rooms: [
       {
         id: "standard-1",
-        type: "Standard Room",
-        price: 199,
-        description: "Comfortable room with essential amenities",
-        image:
-          "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        type: "Comfort Bliss Room",
+        price: 1999,
+        description: "Personalized Comfortable room with essential amenities.",
+        image: "/images/s-in-comfort-bliss.jpeg",
         amenities: ["Free Wi-Fi", "Room Service", "Smart TV"],
       },
       {
         id: "deluxe-2",
-        type: "Deluxe Room",
-        price: 299,
-        description: "Spacious room with premium furnishings",
-        image:
-          "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        amenities: ["Free Wi-Fi", "Mini Bar", "Room Service", "Smart TV"],
+        type: "Premium Bliss Room",
+        price: 2499,
+        description:
+          "SPersonalized Spacious room with city view, king-size bed, and modern amenities",
+        image: "/images/s-in-premium-bliss-room.jpeg",
+        // "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        amenities: ["Free Wi-Fi", "Room Service", "Smart TV"],
+      },
+      {
+        id: "deluxe-3",
+        type: "Bliss's Family Room",
+        price: 2999,
+        description:
+          "Personalized Spacious room with one king size bed accompanying single bed with premium furnishings.",
+        image: "/images/s-in-family-bliss.jpeg",
+        // "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        amenities: ["Free Wi-Fi", "Room Service", "Smart TV"],
       },
     ],
   },
@@ -93,34 +109,35 @@ const hotels = [
     name: "Shreeji Dhaam",
     location: "Riverside Area",
     description:
-      "Your sanctuary of peace and luxury, offering an unforgettable stay with personalized service and elegant accommodations.",
+      "Your sanctuary of peace and luxury in budget, offering an unforgettable stay with personalized service and elegant accommodations.",
     image:
       "https://images.pexels.com/photos/2869215/pexels-photo-2869215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     rooms: [
       {
         id: "deluxe-3",
-        type: "Deluxe Room",
-        price: 249,
-        description: "Well-appointed room with river view",
-        image:
-          "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        type: "Personalized Bliss Room",
+        price: 849,
+        description:
+          "Personalized Spacious room with city view, open balcony, and modern amenities.",
+        image: "/images/s-d-bliss-room.jpeg",
+        // "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         amenities: ["Free Wi-Fi", "Room Service", "Smart TV"],
       },
-      {
-        id: "suite-2",
-        type: "Luxury Suite",
-        price: 449,
-        description: "Premium suite with panoramic river views",
-        image:
-          "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        amenities: [
-          "Free Wi-Fi",
-          "Mini Bar",
-          "Room Service",
-          "Smart TV",
-          "Jacuzzi",
-        ],
-      },
+      // {
+      //   id: "suite-2",
+      //   type: "Luxury Suite",
+      //   price: 449,
+      //   description: "Premium suite with panoramic river views",
+      //   image:
+      //     "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      //   amenities: [
+      //     "Free Wi-Fi",
+      //     "Mini Bar",
+      //     "Room Service",
+      //     "Smart TV",
+      //     "Jacuzzi",
+      //   ],
+      // },
     ],
   },
 ];
@@ -192,7 +209,7 @@ export default function HotelsPage() {
         </motion.div> */}
 
         {/* Other filter */}
-          {/* Filters */}
+        {/* Filters */}
         {/* <div className="mb-12 bg-card p-6 rounded-lg shadow-md">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="space-y-2">
