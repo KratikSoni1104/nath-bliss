@@ -42,7 +42,11 @@ const amenities = [
   { icon: Coffee, name: "Room Service", description: "24-hour in-room dining" },
   { icon: Wifi, name: "Free Wi-Fi", description: "High-speed internet access" },
   { icon: Bed, name: "Housekeeping", description: "Daily cleaning service" },
-  { icon: Utensils, name: "Restaurant", description: "Multi-cuisine dining" },
+  {
+    icon: Utensils,
+    name: "In Room Breakfast",
+    description: "Multi-cuisine dining",
+  },
 ];
 
 export default function ServicesPage() {
@@ -76,25 +80,22 @@ export default function ServicesPage() {
                 price: "₹849+",
                 description:
                   "Minimalist and peaceful, designed for personalization",
-                image:
-                 "/images/s-d-bliss-room.jpeg",
-                  // "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                image: "/images/s-d-bliss-room.jpeg",
+                // "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
               },
               {
                 title: "Comfort Bliss Rooms",
                 price: "₹1299+",
                 description: "Enhanced comfort with tailored amenities",
-                image:
-                "/images/sudarshan-comfort-bliss.jpeg",
-                  // "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                image: "/images/sudarshan-comfort-bliss.jpeg",
+                // "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
               },
               {
                 title: "Premium Suites",
                 price: "₹1799+",
                 description: "Luxury suites with fully customized experiences",
-                image:
-                   "/images/s-in-premium-bliss-room.jpeg",
-                  // "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                image: "/images/s-in-premium-bliss-room.jpeg",
+                // "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
               },
             ].map((room, index) => (
               <motion.div
@@ -103,39 +104,41 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className="bg-white/70 backdrop-blur-sm rounded-2xl border border-[#e6ded4] overflow-hidden hover:shadow-md transition-shadow group"
+                className="bg-white/70 group backdrop-blur-sm rounded-2xl border border-[#e6ded4] overflow-hidden hover:shadow-md transition-shadow group flex flex-col"
               >
                 <div className="aspect-[4/3] sm:aspect-video relative overflow-hidden">
-                  <motion.img
+                  <img
                     src={room.image}
                     alt={room.title}
-                    className="object-cover w-full h-full transform origin-center"
-                    whileHover={{
-                      scale: 1.1, // Increased for visibility
-                      transition: { duration: 0.4, ease: "easeOut" },
-                    }}
-                    // Fallback CSS for static exports
-                    style={{ transition: "transform 0.4s ease-out" }}
-                    initial={{ scale: 1 }}
-                    animate={{ scale: 1 }}
-                    // CSS hover fallback
-                    // extraClassName="group-hover:scale-110"
+                    className="object-cover group-hover:scale-110 transition-all duration-300 w-full h-full transform origin-center"
+                    // whileHover={{
+                    //   scale: 1.1,
+                    //   transition: { duration: 0.4, ease: "easeOut" },
+                    // }}
+                    // style={{ transition: "transform 0.4s ease-out" }}
+                    // initial={{ scale: 1 }}
+                    // animate={{ scale: 1 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/25" />
                 </div>
-                <div className="p-4 sm:p-6 space-y-4">
-                  <h2 className="text-lg sm:text-xl font-cinzel font-semibold text-[#2a2418]">
-                    {room.title}
-                  </h2>
-                  <p className="text-[#7f6d54] font-sans font-medium">
-                    {room.price}
-                  </p>
-                  <p className="text-[#4a453d] font-sans font-light text-sm sm:text-base leading-relaxed">
-                    {room.description}
-                  </p>
+                <div className="p-4 sm:p-6 space-y-4 flex flex-col flex-grow">
+                  <div className="space-y-4">
+                    <h2 className="text-lg sm:text-xl font-cinzel font-semibold text-[#2a2418]">
+                      {room.title}
+                    </h2>
+                    <p className="text-[#7f6d54] font-sans font-medium">
+                      {room.price}
+                    </p>
+                    <p
+                      className="text-[#4a453d] font-sans font-light text-sm sm:text-base leading-relaxed min-h-[4rem]"
+                      style={{ flexGrow: 1 }}
+                    >
+                      {room.description}
+                    </p>
+                  </div>
                   <Button
                     asChild
-                    className="w-full bg-transparent hover:bg-[#7f6d54]/10 text-[#7f6d54] border-2 border-[#7f6d54] px-6 py-4 rounded-xl font-medium text-base transition-all duration-300 hover:scale-[1.02] shadow-none"
+                    className="w-full cursor-pointer bg-transparent hover:bg-[#7f6d54]/10 text-[#7f6d54] border-2 border-[#7f6d54] px-6 py-4 rounded-xl font-medium text-base transition-all duration-300 hover:scale-[1.02] shadow-none mt-auto"
                   >
                     <Link href="/hotels">Book Now</Link>
                   </Button>
