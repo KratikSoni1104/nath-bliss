@@ -197,28 +197,57 @@ export default function ExploreNathdwara() {
         </motion.div>
 
         {/* Filter Bar */}
-        <div className="sticky top-0 z-10 bg-white/70 backdrop-blur-sm py-4 mb-8 border-b border-[#e6ded4]">
-          <Select
-            value={selectedCategory || "All"}
-            onValueChange={(value) =>
-              setSelectedCategory(value === "All" ? null : value)
-            }
-          >
-            <SelectTrigger className="w-full sm:w-64 mx-auto border-[#e6ded4] focus:ring-[#7f6d54]">
-              <SelectValue placeholder="Filter by Category" />
-            </SelectTrigger>
-            <SelectContent className="border-[#e6ded4]">
-              <SelectItem value="All" className="focus:bg-[#faf6f0]">
-                All Attractions
-              </SelectItem>
-              {attractions.map((cat) => (
-                <SelectItem key={cat.category} value={cat.category}>
-                  {cat.category}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="sticky top-0 z-10 bg-white/80 backdrop-blur-md py-6 mb-8 border-b border-[#e6ded4] shadow-sm"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <h2 className="font-playfair text-xl sm:text-2xl text-[#2a2418] font-semibold">
+              Explore Nathdwara Attractions
+            </h2>
+            <div className="w-full sm:w-auto flex items-center gap-4">
+              <label
+                htmlFor="category-filter"
+                className="text-sm sm:text-base text-[#4a453d] font-sans font-medium hidden sm:block"
+              >
+                Filter by:
+              </label>
+              <Select
+                value={selectedCategory || "All"}
+                onValueChange={(value) =>
+                  setSelectedCategory(value === "All" ? null : value)
+                }
+              >
+                <SelectTrigger
+                  id="category-filter"
+                  className="w-full sm:w-72 bg-white border-[#e6ded4] focus:ring-[#7f6d54] rounded-xl text-[#2a2418] font-sans text-sm sm:text-base py-3 px-4 shadow-sm hover:bg-[#faf6f0] transition-colors duration-300"
+                  aria-label="Filter attractions by category"
+                >
+                  <SelectValue placeholder="Select a category" />
+                </SelectTrigger>
+                <SelectContent className="bg-white border-[#e6ded4] rounded-xl shadow-lg">
+                  <SelectItem
+                    value="All"
+                    className="text-[#2a2418] font-sans text-sm sm:text-base focus:bg-[#faf6f0] focus:text-[#2a2418]"
+                  >
+                    All Attractions
+                  </SelectItem>
+                  {attractions.map((cat) => (
+                    <SelectItem
+                      key={cat.category}
+                      value={cat.category}
+                      className="text-[#2a2418] font-sans text-sm sm:text-base focus:bg-[#faf6f0] focus:text-[#2a2418]"
+                    >
+                      {cat.category}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Attractions */}
         {filteredAttractions.map((category, catIndex) => (
@@ -241,33 +270,42 @@ export default function ExploreNathdwara() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: placeIndex * 0.1 }}
+                  className="flex flex-col group bg-white/70 backdrop-blur-sm rounded-2xl border border-[#e6ded4] overflow-hidden hover:shadow-md transition-shadow"
                 >
-                  <Card className="bg-white/70 backdrop-blur-sm overflow-hidden border-[#e6ded4] hover:shadow-md transition-shadow">
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      className="aspect-[4/3] relative overflow-hidden"
-                    >
-                      <img
-                        src={place.image}
-                        alt={place.name}
-                        className="object-cover w-full h-full"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-transparent" />
-                    </motion.div>
-                    <CardHeader>
-                      <CardTitle className="font-playfair text-[#2a2418]">
+                  <div className="relative aspect-[4/3] sm:aspect-[16/9] overflow-hidden">
+                    <img
+                      src={place.image}
+                      alt={place.name}
+                      className="object-cover w-full h-full group-hover:scale-110 transition-all duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/25" />
+                  </div>
+                  <div className="p-4 sm:p-6 flex flex-col flex-grow space-y-4">
+                    <div className="space-y-2">
+                      <h3 className="font-playfair text-lg sm:text-xl text-[#2a2418] font-semibold">
                         {place.name}
-                      </CardTitle>
-                      <CardDescription className="text-[#7f6d54]">
-                        {place.distance} from Nath Bliss
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-[#4a453d] font-sans font-light">
+                      </h3>
+                      <p className="text-[#7f6d54] text-sm sm:text-base font-sans font-medium">
+                        {place.distance} from NathBliss
+                      </p>
+                      <p className="text-[#4a453d] font-sans font-light text-sm sm:text-base leading-relaxed min-h-[4rem]">
                         {place.description}
                       </p>
-                    </CardContent>
-                  </Card>
+                    </div>
+                    {/* <Button
+                      asChild
+                      className="w-full bg-transparent hover:bg-[#7f6d54]/10 text-[#7f6d54] border-2 border-[#7f6d54] px-6 py-3 rounded-xl font-sans font-medium text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] shadow-none mt-auto"
+                      aria-label={`Learn more about ${place.name}`}
+                    >
+                      <Link
+                        href={`/nathdwara/${place.name
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
+                      >
+                        Learn More
+                      </Link>
+                    </Button> */}
+                  </div>
                 </motion.div>
               ))}
             </div>
