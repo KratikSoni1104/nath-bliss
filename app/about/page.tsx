@@ -81,7 +81,8 @@ const tabContent = [
         </div>
         <div className="relative rounded-xl overflow-hidden border border-[#e6ded4]">
           <img
-            src="https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg"
+            src="/images/intro-img.jpeg"
+            // src="https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg"
             alt="Hotel Lobby"
             className="w-full h-64 sm:h-80 object-cover"
           />
@@ -129,7 +130,8 @@ const tabContent = [
         </Card>
         <div className="relative rounded-xl overflow-hidden border border-[#e6ded4]">
           <img
-            src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
+            src="/images/s-in-family-bliss.jpeg"
+            // "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
             alt="Luxury Room"
             className="w-full h-64 sm:h-80 object-cover"
           />
@@ -260,11 +262,19 @@ export default function AboutPage() {
           transition={{ duration: 0.5 }}
           className="relative h-80 sm:h-[500px] rounded-2xl overflow-hidden mb-12 sm:mb-16 border border-[#e6ded4]"
         >
-          <img
+          {/* <img
             src="https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg"
             alt="Luxury Hotel Interior"
             className="w-full h-full object-cover"
             loading="lazy"
+          /> */}
+          <video
+            src="/videos/about-video.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/20 flex items-end p-6 sm:p-8">
             <div className="text-left text-white">

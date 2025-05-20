@@ -93,26 +93,25 @@ const features = [
 
 const roomTypes = [
   {
-    name: "Budget Bliss Rooms",
+    title: "Budget Bliss Rooms",
     price: "₹849+",
     description: "Minimalist and peaceful, designed for personalization.",
     image: "/images/s-d-bliss-room.jpeg",
     // "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
-    name: "Comfort Bliss Rooms",
+    title: "Comfort Bliss Rooms",
     price: "₹1299+",
     description: "Enhanced comfort with tailored amenities.",
     image: "/images/sudarshan-comfort-bliss.jpeg",
     // "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
-    name: "Premium Personalized Suites",
+    title: "Premium Personalized Suites",
     price: "₹1799+",
     description: "Luxury suites with fully customized experiences.",
-    image:
-    "/images/s-in-premium-bliss-room.jpeg",
-      // "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/images/s-in-premium-bliss-room.jpeg",
+    // "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
 ];
 
@@ -293,30 +292,50 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             {roomTypes.map((room, index) => (
               <motion.div
-                key={room.name}
+                key={room.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
+                className="bg-white/70 group backdrop-blur-sm rounded-2xl border border-[#e6ded4] overflow-hidden hover:shadow-md transition-shadow group flex flex-col"
               >
-                <Card className="h-full overflow-hidden border-[#e6ded4] bg-white/50 backdrop-blur-sm hover:shadow-lg transition-shadow">
-                  <div className="aspect-video relative overflow-hidden">
-                    <img
-                      src={room.image}
-                      alt={room.name}
-                      className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <h3 className="text-xl font-semibold text-[#2a2418] font-playfair">
-                      {room.name}
-                    </h3>
-                    <p className="text-[#7f6d54] font-medium">{room.price}</p>
-                    <p className="text-[#4a453d] font-light font-sans leading-relaxed">
+                <div className="aspect-[4/3] sm:aspect-video relative overflow-hidden">
+                  <img
+                    src={room.image}
+                    alt={room.title}
+                    className="object-cover group-hover:scale-110 transition-all duration-300 w-full h-full transform origin-center"
+                    // whileHover={{
+                    //   scale: 1.1,
+                    //   transition: { duration: 0.4, ease: "easeOut" },
+                    // }}
+                    // style={{ transition: "transform 0.4s ease-out" }}
+                    // initial={{ scale: 1 }}
+                    // animate={{ scale: 1 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/25" />
+                </div>
+                <div className="p-4 sm:p-6 space-y-4 flex flex-col flex-grow">
+                  <div className="space-y-4">
+                    <h2 className="text-lg sm:text-xl font-cinzel font-semibold text-[#2a2418]">
+                      {room.title}
+                    </h2>
+                    <p className="text-[#7f6d54] font-sans font-medium">
+                      {room.price}
+                    </p>
+                    <p
+                      className="text-[#4a453d] font-sans font-light text-sm sm:text-base leading-relaxed min-h-[4rem]"
+                      style={{ flexGrow: 1 }}
+                    >
                       {room.description}
                     </p>
                   </div>
-                </Card>
+                  <Button
+                    asChild
+                    className="w-full cursor-pointer bg-transparent hover:bg-[#7f6d54]/10 text-[#7f6d54] border-2 border-[#7f6d54] px-6 py-4 rounded-xl font-medium text-base transition-all duration-300 hover:scale-[1.02] shadow-none mt-auto"
+                  >
+                    <Link href="/hotels">Book Now</Link>
+                  </Button>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -423,11 +442,11 @@ export default function Home() {
                     <motion.img
                       src={hotel.image}
                       alt={hotel.name}
-                      className="object-cover w-full h-full transform origin-center"
-                      whileHover={{
-                        scale: 1.05,
-                        transition: { duration: 0.4, ease: "easeOut" },
-                      }}
+                      className="object-cover w-full h-full group-hover:scale-105 transition-all duration-300  transform origin-center"
+                      // whileHover={{
+                      //   scale: 1.05,
+                      //   transition: { duration: 0.4, ease: "easeOut" },
+                      // }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/20" />
                   </div>
