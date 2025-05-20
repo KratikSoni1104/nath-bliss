@@ -120,7 +120,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium">Call Us</p>
-                    <p>+91 2942 123 456</p>
+                    <p>+91 93523 85552</p>
                     <p className="text-sm mt-1">24/7 Support</p>
                   </div>
                 </div>

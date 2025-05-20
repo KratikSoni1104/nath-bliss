@@ -52,7 +52,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-[#7f6d54]" />
-                <span>+91 2942 123 456</span>
+                <span>+91 93523 85552</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-[#7f6d54]" />
@@ -78,7 +78,7 @@ export function Footer() {
               >
                 About Us
               </Link>
-              <Link
+              {/* <Link
                 href="/careers"
                 className="hover:text-[#7f6d54] transition-colors"
               >
@@ -95,7 +95,7 @@ export function Footer() {
                 className="hover:text-[#7f6d54] transition-colors"
               >
                 FAQ
-              </Link>
+              </Link> */}
             </nav>
           </motion.div>
 
