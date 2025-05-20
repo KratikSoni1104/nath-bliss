@@ -28,8 +28,8 @@ const hotels = [
     location: "Downtown Business District",
     description:
       "A boutique experience combining modern comfort with traditional hospitality, perfect for both business and leisure.",
-    image:
-      "https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/images/sudarshan-hotel.jpeg",
+    // "https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     rooms: [
       {
         id: "deluxe-1",
@@ -71,8 +71,8 @@ const hotels = [
     location: "Historic District",
     description:
       "Experience luxury at its finest with our signature property featuring panoramic city views and world-class amenities.",
-    image:
-      "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/images/sudarshan-inn-hotel.jpeg",
+    // "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     rooms: [
       {
         id: "standard-1",
@@ -110,8 +110,8 @@ const hotels = [
     location: "Riverside Area",
     description:
       "Your sanctuary of peace and luxury in budget, offering an unforgettable stay with personalized service and elegant accommodations.",
-    image:
-      "https://images.pexels.com/photos/2869215/pexels-photo-2869215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/images/shreejee-dham.jpeg",
+    // "https://images.pexels.com/photos/2869215/pexels-photo-2869215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     rooms: [
       {
         id: "deluxe-3",

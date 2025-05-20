@@ -37,13 +37,13 @@ const hotels = [
       "A boutique experience combining modern comfort with traditional hospitality, perfect for both business and leisure.",
     image:
       // "https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "/images/sudarshan-room-1.jpeg",
+      "/images/sudarshan-hotel.jpeg",
   },
   {
     name: "Sudarshan INN",
     description:
       "Experience luxury at its finest with our signature property featuring panoramic city views and world-class amenities.",
-    image: "/images/sudarshan-inn-room-1.jpeg",
+    image: "/images/sudarshan-inn-hotel.jpeg",
     // image:
     //   "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
@@ -53,7 +53,7 @@ const hotels = [
       "Your sanctuary of peace and luxury in budget, offering an unforgettable stay with personalized service and elegant accommodations.",
     image:
       // "https://images.pexels.com/photos/2869215/pexels-photo-2869215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "/images/shreeji-dhaam-room-1.jpeg",
+      "/images/shreejee-dham.jpeg",
   },
 ];
 
