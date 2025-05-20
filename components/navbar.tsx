@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { phoneNumber } from "@/utils/data";
 
 // Navigation routes
 const routes = [
@@ -22,6 +23,12 @@ const routes = [
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+
+ const message = encodeURIComponent(
+   "Jai Shree Krishna! I'd like to book a room at NathBliss. Please provide details on availability and pricing. Thank you!"
+ );
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-white/80 backdrop-blur-lg supports-[backdrop-filter]:bg-white/60">
@@ -61,9 +68,18 @@ export default function Navbar() {
           ))}
           <Button
             asChild
-            className="font-cinzel bg-transparent hover:bg-[#7f6d54]/10 text-[#6b5d48] border-2 border-[#6b5d48] px-6 py-2 rounded-lg hover:scale-105 transition-all shadow-none"
+            className="w-full font-cinzel text-base bg-transparent hover:bg-[#7f6d54]/10 text-[#6b5d48] border-2 border-[#6b5d48] py-4 rounded-lg hover:scale-105 transition-all"
+            aria-label="Book a room via WhatsApp"
           >
-            <Link href="/hotels">Book Now</Link>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-max h-10"
+              onClick={() => setIsOpen(false)}
+            >
+              Book Now
+            </a>
           </Button>
         </div>
 
@@ -113,11 +129,17 @@ export default function Navbar() {
             <div className="p-6 border-t border-[#7f6d54]/20">
               <Button
                 asChild
-                className="w-full font-cinzel text-lg bg-transparent hover:bg-[#7f6d54]/10 text-[#6b5d48] border-2 border-[#6b5d48] py-6 rounded-lg hover:scale-105 transition-all"
+                className="w-full font-cinzel text-lg bg-transparent hover:bg-[#7f6d54]/10 text-[#6b5d48] border-2 border-[#6b5d48] py-6 rounded-lg transition-all"
+                aria-label="Book a room via WhatsApp"
               >
-                <Link href="/hotels" onClick={() => setIsOpen(false)}>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                >
                   Book Now
-                </Link>
+                </a>
               </Button>
             </div>
           </div>
