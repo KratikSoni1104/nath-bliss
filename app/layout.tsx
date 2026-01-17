@@ -18,6 +18,10 @@ const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel" });
 export const metadata: Metadata = {
   title: "NathBliss - Luxury Hotel Booking",
   description: "Experience luxury and comfort with NathBliss hotels",
+  metadataBase: new URL("https://www.nathbliss.in"),
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({

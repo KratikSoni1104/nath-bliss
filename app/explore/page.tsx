@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     "Discover spiritual temples, historic forts, serene lakes, and natural wonders near NathBliss Hotels. Explore Shreenathji Temple, Kumbhalgarh Fort, Pichola Lake, and more attractions in and around Nathdwara, Rajasthan.",
   keywords:
     "Nathdwara attractions, Shreenathji Temple, places to visit Nathdwara, Rajasthan tourism, Kumbhalgarh Fort, Udaipur lakes, spiritual tours, religious sites Rajasthan",
+  alternates: {
+    canonical: "/explore",
+  },
 };
 
 export default function Explore() {

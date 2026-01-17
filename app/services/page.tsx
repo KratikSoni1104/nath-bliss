@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     "Explore the comprehensive services and amenities at NathBliss Hotels including 24/7 taxi service, temple guides, room service, free Wi-Fi, and more. Choose from Budget Bliss Rooms (₹849+), Comfort Bliss Rooms (₹1299+), or Premium Suites (₹1799+).",
   keywords:
     "hotel amenities Nathdwara, NathBliss services, taxi service, temple guide, room types, hotel facilities, budget rooms, premium suites",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 export default function Services() {

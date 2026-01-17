@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     "Browse our luxury hotels in Nathdwara: Sudarshan Hotel, Sudarshan INN, and Shreeji Dhaam. Choose from Comfort Bliss Rooms (₹1499+), Premium Bliss Rooms (₹1999+), and Family Rooms (₹2499+). View amenities and book online.",
   keywords:
     "NathBliss hotels, book hotel Nathdwara, hotel rooms Nathdwara, Sudarshan Hotel, Sudarshan INN, Shreeji Dhaam, luxury accommodation, budget rooms",
+  alternates: {
+    canonical: "/hotels",
+  },
 };
 
 export default function Hotels() {

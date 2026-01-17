@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
   },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function Home() {
