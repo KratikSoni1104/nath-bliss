@@ -23,6 +23,16 @@ export const metadata: Metadata = {
     title: "NathBliss Hotels - Hyper-Personalized Luxury in Nathdwara",
     description:
       "Discover NathBliss Hotels offering personalized comfort from ₹849/night. Experience luxury, spiritual tours, and exceptional service in Nathdwara.",
+    url: "https://www.nathbliss.in",
+    siteName: "NathBliss",
+    images: [
+      {
+        url: "https://www.nathbliss.in/images/nath-bliss-logo.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "NathBliss Hotels - Experience personalized luxury hospitality in Nathdwara",
+      },
+    ],
     type: "website",
     locale: "en_IN",
   },

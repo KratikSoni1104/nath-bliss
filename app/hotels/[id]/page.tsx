@@ -43,7 +43,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     openGraph: {
       title: `${hotel.name} - NathBliss Hotels`,
-      description: `Book your stay at ${hotel.name}, ${hotel.location}. Experience personalized luxury in Nathdwara.`,
+      description: "Experience personalized luxury hospitality in Nathdwara",
+      url: `https://www.nathbliss.in/hotels/${hotelId}`,
+      siteName: "NathBliss",
+      images: [
+        {
+          url: "https://www.nathbliss.in/images/nath-bliss-logo.jpeg",
+          width: 1200,
+          height: 630,
+          alt: "NathBliss Hotels - Experience personalized luxury hospitality in Nathdwara",
+        },
+      ],
       type: "website",
       locale: "en_IN",
     },
