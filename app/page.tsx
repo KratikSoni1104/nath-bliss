@@ -8,6 +8,17 @@ export const metadata: Metadata = {
     "Experience personalized luxury at NathBliss Hotels in Nathdwara. Choose from Budget Bliss Rooms starting at ₹849, Comfort Bliss Rooms, and Premium Personalized Suites. Enjoy hyper-personalized service, spiritual tours, and world-class amenities.",
   keywords:
     "NathBliss Hotels, Nathdwara hotels, luxury hotels Nathdwara, personalized hospitality, Budget Bliss Rooms, Comfort Bliss Rooms, Premium Suites, Shreenathiji Temple, spiritual tours, Rajasthan hotels",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "NathBliss Hotels - Hyper-Personalized Luxury in Nathdwara",
     description:

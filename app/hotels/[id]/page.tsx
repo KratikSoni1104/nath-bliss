@@ -34,6 +34,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${hotel.name} - Book Rooms | NathBliss Hotels Nathdwara`,
     description: `Book your stay at ${hotel.name}, ${hotel.location}. Explore luxury rooms, amenities, and personalized hospitality at NathBliss Hotels in Nathdwara.`,
     keywords: `${hotel.name}, book ${hotel.name}, ${hotel.location} hotel, NathBliss hotels, Nathdwara accommodation`,
+    robots: {
+      index: true,
+      follow: true,
+    },
     alternates: {
       canonical: `/hotels/${hotelId}`,
     },
