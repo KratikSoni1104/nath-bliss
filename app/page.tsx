@@ -1,5 +1,6 @@
 import HomePage from "@/components/pages/home/HomePage";
 import type { Metadata } from "next";
+import { getOrganizationSchema, getWebsiteSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title:
@@ -42,7 +43,26 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  // This is now a Server Component
-  // All client-side logic is in HomePage component
-  return <HomePage />;
+  const organizationSchema = getOrganizationSchema();
+  const websiteSchema = getWebsiteSchema();
+
+  return (
+    <>
+      {/* Organization Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationSchema),
+        }}
+      />
+      {/* Website Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema),
+        }}
+      />
+      <HomePage />
+    </>
+  );
 }

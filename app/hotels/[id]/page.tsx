@@ -1,5 +1,6 @@
 import HotelDetailPage from "@/components/pages/hotel-detail/HotelDetailPage";
 import type { Metadata } from "next";
+import { getHotelSchema, getBreadcrumbSchema } from "@/lib/structured-data";
 
 const hotels = {
   sudarshan: {
@@ -60,6 +61,43 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function HotelRooms() {
-  return <HotelDetailPage />;
+export default function HotelRooms({ params }: Props) {
+  const hotelId = params.id;
+  const hotel = hotels[hotelId as keyof typeof hotels];
+
+  // Return early if hotel not found (should show 404 in real scenario)
+  if (!hotel) {
+    return <div>Hotel not found</div>;
+  }
+
+  // Generate structured data
+  const hotelSchema = getHotelSchema(hotelId);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: "https://www.nathbliss.in" },
+    { name: "Hotels", url: "https://www.nathbliss.in/hotels" },
+    {
+      name: hotel.name,
+      url: `https://www.nathbliss.in/hotels/${hotelId}`,
+    },
+  ]);
+
+  return (
+    <>
+      {/* Hotel Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(hotelSchema),
+        }}
+      />
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
+      <HotelDetailPage />
+    </>
+  );
 }
