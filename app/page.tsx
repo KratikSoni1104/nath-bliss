@@ -49,19 +49,19 @@ export default function Home() {
   return (
     <>
       {/* Organization Schema */}
-      <script
+      {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(organizationSchema),
         }}
-      />
+      /> */}
       {/* Website Schema */}
-      <script
+      {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(websiteSchema),
         }}
-      />
+      /> */}
       <HomePage />
     </>
   );

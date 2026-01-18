@@ -84,19 +84,19 @@ export default function HotelRooms({ params }: Props) {
   return (
     <>
       {/* Hotel Schema */}
-      <script
+      {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(hotelSchema),
         }}
-      />
+      /> */}
       {/* Breadcrumb Schema */}
-      <script
+      {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
-      />
+      /> */}
       <HotelDetailPage />
     </>
   );
