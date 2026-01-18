@@ -192,7 +192,7 @@ export default function HomePage() {
               >
                 <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
                   <span className="block text-lg font-sans font-semibold text-[#7f6d54] tracking-widest mb-4">
-                    Included in Each Stay
+                    Included in Every Stay
                   </span>
                   Hyper-Personalized Service
                 </h2>
