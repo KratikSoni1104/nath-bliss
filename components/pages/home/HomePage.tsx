@@ -484,7 +484,7 @@ export default function HomePage() {
       </motion.section>
 
       {/* Testimonials */}
-      <motion.section
+      {/* <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -553,14 +553,14 @@ export default function HomePage() {
               ))}
             </CarouselContent>
 
-            {/* Custom Navigation Arrows */}
+
             <div className="hidden md:flex justify-center gap-4 mt-8">
               <CarouselPrevious className="static translate-x-0 translate-y-0 border-[#e6ded4] text-[#7f6d54] hover:bg-[#faf6f0] hover:text-[#5d5040]" />
               <CarouselNext className="static translate-x-0 translate-y-0 border-[#e6ded4] text-[#7f6d54] hover:bg-[#faf6f0] hover:text-[#5d5040]" />
             </div>
           </Carousel>
         </div>
-      </motion.section>
+      </motion.section> */}
 
       {/* Teaser Section for Explore Nathdwara */}
       <Explore />
