@@ -1,19 +1,28 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Cinzel, Inter, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 
 import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: "700",
-  variable: "--font-playfair",
+const inter = localFont({
+  src: "../public/fonts/inter-latin.woff2",
+  variable: "--font-inter",
+  display: "swap",
 });
-const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel" });
+const playfair = localFont({
+  src: "../public/fonts/playfair-display-700-latin.woff2",
+  variable: "--font-playfair",
+  weight: "700",
+  display: "swap",
+});
+const cinzel = localFont({
+  src: "../public/fonts/cinzel-latin.woff2",
+  variable: "--font-cinzel",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "NathBliss - Luxury Hotel Booking",
