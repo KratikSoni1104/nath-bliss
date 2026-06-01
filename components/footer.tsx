@@ -133,7 +133,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-[#e6ded4]/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
           <div className="font-sans font-light">
-            © 2024 NathBliss Hotels. All rights reserved.
+            © {new Date().getFullYear()} NathBliss Hotels. All rights reserved.
           </div>
           <div className="flex gap-6">
             <Link

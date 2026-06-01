@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { MapPin } from "lucide-react";
+import { phoneNumber } from "@/utils/data";
 
 const hotels = [
   {
@@ -363,9 +364,17 @@ export default function HotelsPage() {
                               </div>
                               <Button
                                 asChild
-                                className="w-full bg-[#6b5d48] hover:bg-[#5d5040] text-white py-6 rounded-xl font-medium transition-all"
+                                className="w-full bg-[#6b5d48] hover:bg-[#5d5040] text-white py-6 rounded-xl font-medium transition-all cursor-pointer"
                               >
-                                <Link href="/booking">Book Now</Link>
+                                <a
+                                  href={`https://wa.me/${phoneNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
+                                    `Hi Nath Bliss, I want to book the ${room.type} at ${hotel.name}. Please share availability and today’s direct booking price.`
+                                  )}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Book Now
+                                </a>
                               </Button>
                             </CardContent>
                           </Card>

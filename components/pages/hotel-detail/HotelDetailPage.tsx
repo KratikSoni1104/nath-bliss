@@ -29,6 +29,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import { phoneNumber } from "@/utils/data";
 
 const hotels = {
   sudarshan: {
@@ -148,8 +149,25 @@ export default function HotelRoomsPage() {
     return null;
   }
 
-  const handleBooking = () => {
-    toast.success("Booking confirmed! Check your email for details.");
+  const handleBooking = (roomType: string) => {
+    const formattedCheckIn = bookingData.checkIn ? `Check-in: ${bookingData.checkIn}` : "";
+    const formattedCheckOut = bookingData.checkOut ? `Check-out: ${bookingData.checkOut}` : "";
+    const formattedGuests = bookingData.guests ? `Guests: ${bookingData.guests}` : "";
+    
+    const parts = [
+      `Hi Nath Bliss, I want to book the ${roomType} at ${hotel.name}.`,
+      formattedCheckIn,
+      formattedCheckOut,
+      formattedGuests,
+      "Please share availability and today's direct booking price."
+    ].filter(Boolean);
+    
+    const message = encodeURIComponent(parts.join("\n"));
+    const cleanNumber = phoneNumber.replace(/[^0-9]/g, "");
+    const whatsappUrl = `https://wa.me/${cleanNumber}?text=${message}`;
+    
+    window.open(whatsappUrl, "_blank");
+    toast.success("Redirecting to WhatsApp to complete your booking!");
   };
 
   return (
@@ -287,7 +305,7 @@ export default function HotelRoomsPage() {
                             </SelectContent>
                           </Select>
                         </div>
-                        <Button className="w-full" onClick={handleBooking}>
+                        <Button className="w-full" onClick={() => handleBooking(room.type)}>
                           Confirm Booking
                         </Button>
                       </div>

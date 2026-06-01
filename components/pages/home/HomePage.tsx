@@ -1,17 +1,12 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Calendar, Users, Building2, MapPin } from "lucide-react";
+import { Calendar as CalendarIcon, Users, Building2, MapPin, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { phoneNumber } from "@/utils/data";
+import { Card } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -19,6 +14,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 import {
   Carousel,
   CarouselContent,
@@ -116,58 +119,179 @@ const roomTypes = [
 ];
 
 export default function HomePage() {
+  const [checkIn, setCheckIn] = useState<Date | undefined>(undefined);
+  const [checkOut, setCheckOut] = useState<Date | undefined>(undefined);
+  const [guests, setGuests] = useState("2 Adults");
+  const [roomNeed, setRoomNeed] = useState("Family Room");
+
+  const bookingMessage = useMemo(() => {
+    const formattedCheckIn = checkIn ? `Check-in: ${format(checkIn, "yyyy-MM-dd")}.` : "";
+    const formattedCheckOut = checkOut ? `Check-out: ${format(checkOut, "yyyy-MM-dd")}.` : "";
+    return `Hi Nath Bliss, I want a stay in Nathdwara.${formattedCheckIn ? ` ${formattedCheckIn}` : ""}${formattedCheckOut ? ` ${formattedCheckOut}` : ""} Guests: ${guests}. Need: ${roomNeed}. Please share best rooms and today’s direct booking price.`;
+  }, [checkIn, checkOut, guests, roomNeed]);
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Quick Booking Form */}
-      {/* <motion.section
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="container mx-auto -mt-16 px-4 relative z-10"
+      {/* Quick Booking Form / Direct Booking Assistant Section */}
+      <section
+        id="booking-assistant"
+        className="py-12 px-4 sm:px-6 bg-[#faf6f0] border-b border-[#e6ded4] scroll-mt-20"
       >
-        <Card className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Check-in Date</label>
-              <div className="flex items-center space-x-2">
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-                <Input type="date" className="flex-1" />
-              </div>
+        <Card className="p-6 bg-white border-[#e6ded4] shadow-md rounded-2xl max-w-5xl mx-auto text-[#2a2418]">
+          <div className="mb-6">
+            <h3 className="text-sm font-cinzel font-semibold text-[#7f6d54] tracking-widest uppercase mb-1">
+              Direct Booking Assistant
+            </h3>
+            <p className="text-xs text-[#4a453d] font-sans">
+              Choose your dates and room details to get a custom recommendation on WhatsApp
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+            {/* Check-in Date */}
+            <div className="space-y-2 flex flex-col">
+              <label className="text-xs font-semibold text-[#2a2418] flex items-center gap-1.5">
+                <CalendarIcon className="h-3.5 w-3.5 text-[#7f6d54]" /> Check-in
+              </label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full border-[#e6ded4] focus:ring-[#7f6d54] h-11 bg-white text-stone-900 justify-start text-left font-normal rounded-xl px-3 hover:bg-[#faf6f0] transition-colors",
+                      !checkIn && "text-stone-400"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4 text-[#7f6d54] shrink-0" />
+                    {checkIn ? format(checkIn, "PPP") : <span>Pick date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0 border-[#e6ded4] bg-white z-50 text-stone-950" align="start">
+                  <div className="bg-white text-stone-950 rounded-md">
+                    <Calendar
+                      mode="single"
+                      selected={checkIn}
+                      onSelect={(date) => {
+                        setCheckIn(date);
+                        // If check-out is selected and is before or equal to the new check-in date, reset check-out
+                        if (date && checkOut && checkOut <= date) {
+                          setCheckOut(undefined);
+                        }
+                      }}
+                      disabled={(date) => {
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        return date < today;
+                      }}
+                      initialFocus
+                      className="bg-white text-stone-950"
+                    />
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Check-out Date</label>
-              <div className="flex items-center space-x-2">
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-                <Input type="date" className="flex-1" />
-              </div>
+            
+            {/* Check-out Date */}
+            <div className="space-y-2 flex flex-col">
+              <label className="text-xs font-semibold text-[#2a2418] flex items-center gap-1.5">
+                <CalendarIcon className="h-3.5 w-3.5 text-[#7f6d54]" /> Check-out
+              </label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full border-[#e6ded4] focus:ring-[#7f6d54] h-11 bg-white text-stone-900 justify-start text-left font-normal rounded-xl px-3 hover:bg-[#faf6f0] transition-colors",
+                      !checkOut && "text-stone-400"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4 text-[#7f6d54] shrink-0" />
+                    {checkOut ? format(checkOut, "PPP") : <span>Pick date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0 border-[#e6ded4] bg-white z-50 text-stone-950" align="start">
+                  <div className="bg-white text-stone-950 rounded-md">
+                    <Calendar
+                      mode="single"
+                      selected={checkOut}
+                      onSelect={setCheckOut}
+                      disabled={(date) => {
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        // Checkout must be at least the day after check-in, or today if check-in is not selected yet
+                        const minDate = checkIn ? new Date(checkIn.getTime() + 24 * 60 * 60 * 1000) : today;
+                        minDate.setHours(0, 0, 0, 0);
+                        return date < minDate;
+                      }}
+                      initialFocus
+                      className="bg-white text-stone-950"
+                    />
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
+            
+            {/* Guests Selection */}
             <div className="space-y-2">
-              <label className="text-sm font-medium">Guests</label>
-              <div className="flex items-center space-x-2">
-                <Users className="h-4 w-4 text-muted-foreground" />
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select guests" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {[1, 2, 3, 4].map((num) => (
-                      <SelectItem key={num} value={num.toString()}>
-                        {num} {num === 1 ? "Guest" : "Guests"}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              <label className="text-xs font-semibold text-[#2a2418] flex items-center gap-1.5">
+                <Users className="h-3.5 w-3.5 text-[#7f6d54]" /> Guests
+              </label>
+              <Select value={guests} onValueChange={setGuests}>
+                <SelectTrigger className="border-[#e6ded4] focus:ring-[#7f6d54] h-11 bg-white text-stone-950 font-medium">
+                  <SelectValue placeholder="Select guests" />
+                </SelectTrigger>
+                <SelectContent className="border-[#e6ded4] bg-white text-stone-950">
+                  <SelectItem value="2 Adults" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">2 Adults</SelectItem>
+                  <SelectItem value="2 Adults + 1 Child" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">2 Adults + 1 Child</SelectItem>
+                  <SelectItem value="Family 4+" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Family 4+</SelectItem>
+                  <SelectItem value="Group / Event" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Group / Event</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-            <Button size="lg" asChild className="self-end">
-              <Link href="/hotels">Search Rooms</Link>
-            </Button>
+            
+            {/* Room Need Selection */}
+            <div className="space-y-2">
+              <label className="text-xs font-semibold text-[#2a2418] flex items-center gap-1.5">
+                <Building2 className="h-3.5 w-3.5 text-[#7f6d54]" /> Room Need
+              </label>
+              <Select value={roomNeed} onValueChange={setRoomNeed}>
+                <SelectTrigger className="border-[#e6ded4] focus:ring-[#7f6d54] h-11 bg-white text-stone-950 font-medium">
+                  <SelectValue placeholder="Select room need" />
+                </SelectTrigger>
+                <SelectContent className="border-[#e6ded4] bg-white text-stone-950">
+                  <SelectItem value="Family Room" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Family Room</SelectItem>
+                  <SelectItem value="Budget Room" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Budget Room</SelectItem>
+                  <SelectItem value="Premium Room" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Premium Room</SelectItem>
+                  <SelectItem value="Hall + Rooms" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Hall + Rooms</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          
+          <div className="mt-6 pt-4 border-t border-[#e6ded4] flex flex-col sm:flex-row gap-4 items-center justify-between">
+            <p className="text-xs text-[#7f6d54] font-medium text-center sm:text-left">
+              ★ Direct support · Instant confirmation · Family-first services
+            </p>
+            <div className="flex gap-2 w-full sm:w-auto">
+              <Button
+                asChild
+                className="flex-1 sm:flex-none bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+              >
+                <a
+                  href={`https://wa.me/${phoneNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(bookingMessage)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="h-4 w-4" /> Get best room on WhatsApp
+                </a>
+              </Button>
+            </div>
           </div>
         </Card>
-      </motion.section> */}
+      </section>
 
       {/* Intro Section */}
       <Intro />
@@ -586,7 +710,7 @@ export default function HomePage() {
                 text: "Dedicated staff available 24/7 to ensure your comfort",
               },
               {
-                icon: Calendar,
+                icon: CalendarIcon,
                 title: "Easy Booking",
                 text: "Simple and secure reservation process at your fingertips",
               },

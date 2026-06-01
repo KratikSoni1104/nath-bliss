@@ -68,18 +68,16 @@ export default function Navbar() {
           ))}
           <Button
             asChild
-            className="w-full font-cinzel text-base bg-transparent hover:bg-[#7f6d54]/10 text-[#6b5d48] border-2 border-[#6b5d48] py-4 rounded-lg hover:scale-105 transition-all"
-            aria-label="Book a room via WhatsApp"
+            className="w-full font-cinzel text-base bg-transparent hover:bg-[#7f6d54]/10 text-[#6b5d48] border-2 border-[#6b5d48] py-4 rounded-lg hover:scale-105 transition-all cursor-pointer"
+            aria-label="Book a room via Direct Booking Assistant"
           >
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-max h-10"
+            <Link
+              href="/#booking-assistant"
+              className="w-max h-10 flex items-center justify-center"
               onClick={() => setIsOpen(false)}
             >
               Book Now
-            </a>
+            </Link>
           </Button>
         </div>
 
@@ -129,17 +127,15 @@ export default function Navbar() {
             <div className="p-6 border-t border-[#7f6d54]/20">
               <Button
                 asChild
-                className="w-full font-cinzel text-lg bg-transparent hover:bg-[#7f6d54]/10 text-[#6b5d48] border-2 border-[#6b5d48] py-6 rounded-lg transition-all"
-                aria-label="Book a room via WhatsApp"
+                className="w-full font-cinzel text-lg bg-transparent hover:bg-[#7f6d54]/10 text-[#6b5d48] border-2 border-[#6b5d48] py-6 rounded-lg transition-all cursor-pointer"
+                aria-label="Book a room via Direct Booking Assistant"
               >
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/#booking-assistant"
                   onClick={() => setIsOpen(false)}
                 >
                   Book Now
-                </a>
+                </Link>
               </Button>
             </div>
           </div>

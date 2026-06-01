@@ -81,4 +81,8 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 
