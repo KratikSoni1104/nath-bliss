@@ -9,7 +9,7 @@ const hotels = {
   },
   inn: {
     name: "Sudarshan INN",
-    location: "Historic District",
+    location: "Near Shrinathji Temple",
   },
   shree: {
     name: "Shreeji Dhaam",

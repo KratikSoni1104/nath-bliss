@@ -88,8 +88,8 @@ export const hotelsData = {
     name: "Sudarshan INN",
     description:
       "Experience luxury at its finest with our signature property featuring panoramic city views and world-class amenities in Nathdwara.",
-    location: "Historic District",
-    address: "Historic District, Nathdwara, Rajasthan 313301, India",
+    location: "Near Shrinathji Temple",
+    address: "Near Shrinathji Temple, Nathdwara, Rajasthan 313301, India",
     priceRange: "₹₹₹",
     starRating: 4.5,
     checkinTime: "14:00",

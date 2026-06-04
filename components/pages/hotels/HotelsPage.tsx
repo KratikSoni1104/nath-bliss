@@ -52,7 +52,7 @@ const hotels = [
     id: "inn",
     name: "Sudarshan INN",
     tagline: "LUXURY RETREAT",
-    location: "Historic District, Near Shrinathji Temple, Nathdwara",
+    location: "Near Shrinathji Temple, Nathdwara",
     googleMapsUrl: "https://maps.google.com/?q=Hotel+Sudarshan+Inn+Nathdwara",
     description:
       "Our premier signature property offering panoramic views of the city, premium suites, and state-of-the-art facilities designed for spiritual and business travelers.",
