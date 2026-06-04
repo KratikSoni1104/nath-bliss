@@ -54,8 +54,8 @@ export const hotelsData = {
     address: "Downtown Business District, Nathdwara, Rajasthan 313301, India",
     priceRange: "₹₹",
     starRating: 4,
-    checkinTime: "14:00",
-    checkoutTime: "11:00",
+    checkinTime: "10:00",
+    checkoutTime: "09:00",
     image: "https://www.nathbliss.in/images/sudarshan-hotel.jpeg",
     rooms: [
       {
@@ -92,8 +92,8 @@ export const hotelsData = {
     address: "Near Shrinathji Temple, Nathdwara, Rajasthan 313301, India",
     priceRange: "₹₹₹",
     starRating: 4.5,
-    checkinTime: "14:00",
-    checkoutTime: "11:00",
+    checkinTime: "10:00",
+    checkoutTime: "09:00",
     image: "https://www.nathbliss.in/images/sudarshan-inn-hotel.jpeg",
     rooms: [
       {
@@ -130,8 +130,8 @@ export const hotelsData = {
     address: "Riverside Area, Nathdwara, Rajasthan 313301, India",
     priceRange: "₹",
     starRating: 3.5,
-    checkinTime: "14:00",
-    checkoutTime: "11:00",
+    checkinTime: "10:00",
+    checkoutTime: "09:00",
     image: "https://www.nathbliss.in/images/shreejee-dham.jpeg",
     rooms: [
       {

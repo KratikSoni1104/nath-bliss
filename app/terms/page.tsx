@@ -41,8 +41,8 @@ export default function TermsPage() {
               2. Standard Check-In & Check-Out
             </h2>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong>Check-in Time:</strong> 14:00 (2:00 PM)</li>
-              <li><strong>Check-out Time:</strong> 11:00 (11:00 AM)</li>
+              <li><strong>Check-in Time:</strong> 10:00 (10:00 AM)</li>
+              <li><strong>Check-out Time:</strong> 09:00 (9:00 AM)</li>
               <li>Requests for early check-in or late check-out depend on room availability and must be requested in advance.</li>
             </ul>
           </div>
