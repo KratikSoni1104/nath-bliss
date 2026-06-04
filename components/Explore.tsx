@@ -30,7 +30,7 @@ function Explore() {
         >
           <source src="/videos/udaipur-explore.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2a2418]/80 to-[#7f6d54]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/60 to-charcoal/10" />
       </motion.div>
 
       {/* Content */}
@@ -52,7 +52,7 @@ function Explore() {
             variants={{ hidden: { y: 30 }, visible: { y: 0 } }}
             className="text-4xl sm:text-5xl md:text-6xl font-medium text-white font-playfair"
           >
-            <span className="block text-lg font-cinzel font-semibold text-[#e6ded4] tracking-widest mb-4">
+            <span className="block text-base sm:text-lg font-sans font-semibold text-gold tracking-widest mb-4 uppercase">
               Beyond Your Stay
             </span>
             Explore Nathdwara's Wonders
@@ -60,7 +60,7 @@ function Explore() {
 
           <motion.p
             variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-            className="text-lg md:text-xl text-[#e6ded4] max-w-2xl mx-auto font-sans leading-relaxed"
+            className="text-lg md:text-xl text-alabaster/90 max-w-2xl mx-auto font-sans font-light leading-relaxed"
           >
             From the sacred Shreenathji Temple to the majestic Kumbhalgarh Fort,
             discover unforgettable experiences curated by our local experts.
@@ -73,7 +73,9 @@ function Explore() {
           >
             <Button
               asChild
-              className="bg-transparent hover:bg-[#7f6d54]/20 text-[#e6ded4] border-2 border-[#e6ded4] px-8 py-6 rounded-xl font-medium text-lg backdrop-blur-sm hover:shadow-lg transition-all"
+              variant="custom"
+              size="custom"
+              className="btn-outline-white"
             >
               <Link href="/explore" className="flex items-center gap-2">
                 <MapPin className="h-5 w-5" />

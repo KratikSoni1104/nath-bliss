@@ -299,7 +299,9 @@ export default function HotelsPage() {
                     onClick={() =>
                       setShowRooms(showRooms === hotel.id ? null : hotel.id)
                     }
-                    className="bg-transparent hover:bg-[#7f6d54]/10 text-[#6b5d48] border-2 border-[#6b5d48] px-8 py-6 rounded-xl font-medium hover:scale-[1.02] transition-all"
+                    variant="custom"
+                    size="custom"
+                    className="btn-secondary px-8 py-6"
                   >
                     {showRooms === hotel.id ? "Hide Rooms" : "View Rooms"}
                   </Button>
@@ -364,7 +366,9 @@ export default function HotelsPage() {
                               </div>
                               <Button
                                 asChild
-                                className="w-full bg-[#6b5d48] hover:bg-[#5d5040] text-white py-6 rounded-xl font-medium transition-all cursor-pointer"
+                                variant="custom"
+                                size="custom"
+                                className="w-full btn-primary py-6 cursor-pointer"
                               >
                                 <a
                                   href={`https://wa.me/${phoneNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(

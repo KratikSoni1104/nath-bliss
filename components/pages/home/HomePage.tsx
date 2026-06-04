@@ -138,14 +138,14 @@ export default function HomePage() {
       {/* Quick Booking Form / Direct Booking Assistant Section */}
       <section
         id="booking-assistant"
-        className="py-12 px-4 sm:px-6 bg-[#faf6f0] border-b border-[#e6ded4] scroll-mt-20"
+        className="py-12 px-4 sm:px-6 bg-sand border-b border-alabaster scroll-mt-20"
       >
-        <Card className="p-6 bg-white border-[#e6ded4] shadow-md rounded-2xl max-w-5xl mx-auto text-[#2a2418]">
+        <Card className="p-6 bg-white/95 border-alabaster shadow-lg rounded-3xl max-w-5xl mx-auto text-charcoal">
           <div className="mb-6">
-            <h3 className="text-sm font-cinzel font-semibold text-[#7f6d54] tracking-widest uppercase mb-1">
+            <h3 className="text-sm font-sans font-bold text-gold tracking-widest uppercase mb-1">
               Direct Booking Assistant
             </h3>
-            <p className="text-xs text-[#4a453d] font-sans">
+            <p className="text-xs text-charcoal/70 font-sans">
               Choose your dates and room details to get a custom recommendation on WhatsApp
             </p>
           </div>
@@ -153,23 +153,23 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
             {/* Check-in Date */}
             <div className="space-y-2 flex flex-col">
-              <label className="text-xs font-semibold text-[#2a2418] flex items-center gap-1.5">
-                <CalendarIcon className="h-3.5 w-3.5 text-[#7f6d54]" /> Check-in
+              <label className="text-xs font-semibold text-charcoal/80 flex items-center gap-1.5">
+                <CalendarIcon className="h-3.5 w-3.5 text-gold" /> Check-in
               </label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full border-[#e6ded4] focus:ring-[#7f6d54] h-11 bg-white text-stone-900 justify-start text-left font-normal rounded-xl px-3 hover:bg-[#faf6f0] transition-colors",
-                      !checkIn && "text-stone-400"
+                      "w-full border-alabaster focus:ring-gold h-11 bg-white text-charcoal justify-start text-left font-normal rounded-xl px-3 hover:!bg-sand hover:!text-charcoal transition-colors",
+                      !checkIn && "text-stone-400 hover:!text-charcoal/70"
                     )}
                   >
-                    <CalendarIcon className="mr-2 h-4 w-4 text-[#7f6d54] shrink-0" />
+                    <CalendarIcon className="mr-2 h-4 w-4 text-gold shrink-0" />
                     {checkIn ? format(checkIn, "PPP") : <span>Pick date</span>}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0 border-[#e6ded4] bg-white z-50 text-stone-950" align="start">
+                <PopoverContent className="w-auto p-0 border-alabaster bg-white z-50 text-stone-950" align="start">
                   <div className="bg-white text-stone-950 rounded-md">
                     <Calendar
                       mode="single"
@@ -196,23 +196,23 @@ export default function HomePage() {
             
             {/* Check-out Date */}
             <div className="space-y-2 flex flex-col">
-              <label className="text-xs font-semibold text-[#2a2418] flex items-center gap-1.5">
-                <CalendarIcon className="h-3.5 w-3.5 text-[#7f6d54]" /> Check-out
+              <label className="text-xs font-semibold text-charcoal/80 flex items-center gap-1.5">
+                <CalendarIcon className="h-3.5 w-3.5 text-gold" /> Check-out
               </label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full border-[#e6ded4] focus:ring-[#7f6d54] h-11 bg-white text-stone-900 justify-start text-left font-normal rounded-xl px-3 hover:bg-[#faf6f0] transition-colors",
-                      !checkOut && "text-stone-400"
+                      "w-full border-alabaster focus:ring-gold h-11 bg-white text-charcoal justify-start text-left font-normal rounded-xl px-3 hover:!bg-sand hover:!text-charcoal transition-colors",
+                      !checkOut && "text-stone-400 hover:!text-charcoal/70"
                     )}
                   >
-                    <CalendarIcon className="mr-2 h-4 w-4 text-[#7f6d54] shrink-0" />
+                    <CalendarIcon className="mr-2 h-4 w-4 text-gold shrink-0" />
                     {checkOut ? format(checkOut, "PPP") : <span>Pick date</span>}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0 border-[#e6ded4] bg-white z-50 text-stone-950" align="start">
+                <PopoverContent className="w-auto p-0 border-alabaster bg-white z-50 text-stone-950" align="start">
                   <div className="bg-white text-stone-950 rounded-md">
                     <Calendar
                       mode="single"
@@ -236,49 +236,49 @@ export default function HomePage() {
             
             {/* Guests Selection */}
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-[#2a2418] flex items-center gap-1.5">
-                <Users className="h-3.5 w-3.5 text-[#7f6d54]" /> Guests
+              <label className="text-xs font-semibold text-charcoal/80 flex items-center gap-1.5">
+                <Users className="h-3.5 w-3.5 text-gold" /> Guests
               </label>
               <Select value={guests} onValueChange={setGuests}>
-                <SelectTrigger className="border-[#e6ded4] focus:ring-[#7f6d54] h-11 bg-white text-stone-950 font-medium">
+                <SelectTrigger className="border-alabaster focus:ring-gold h-11 bg-white text-stone-955 font-medium rounded-xl">
                   <SelectValue placeholder="Select guests" />
                 </SelectTrigger>
-                <SelectContent className="border-[#e6ded4] bg-white text-stone-950">
-                  <SelectItem value="2 Adults" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">2 Adults</SelectItem>
-                  <SelectItem value="2 Adults + 1 Child" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">2 Adults + 1 Child</SelectItem>
-                  <SelectItem value="Family 4+" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Family 4+</SelectItem>
-                  <SelectItem value="Group / Event" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Group / Event</SelectItem>
+                <SelectContent className="border-alabaster bg-white text-stone-950">
+                  <SelectItem value="2 Adults" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">2 Adults</SelectItem>
+                  <SelectItem value="2 Adults + 1 Child" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">2 Adults + 1 Child</SelectItem>
+                  <SelectItem value="Family 4+" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Family 4+</SelectItem>
+                  <SelectItem value="Group / Event" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Group / Event</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             
             {/* Room Need Selection */}
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-[#2a2418] flex items-center gap-1.5">
-                <Building2 className="h-3.5 w-3.5 text-[#7f6d54]" /> Room Need
+              <label className="text-xs font-semibold text-charcoal/80 flex items-center gap-1.5">
+                <Building2 className="h-3.5 w-3.5 text-gold" /> Room Need
               </label>
               <Select value={roomNeed} onValueChange={setRoomNeed}>
-                <SelectTrigger className="border-[#e6ded4] focus:ring-[#7f6d54] h-11 bg-white text-stone-950 font-medium">
+                <SelectTrigger className="border-alabaster focus:ring-gold h-11 bg-white text-stone-955 font-medium rounded-xl">
                   <SelectValue placeholder="Select room need" />
                 </SelectTrigger>
-                <SelectContent className="border-[#e6ded4] bg-white text-stone-950">
-                  <SelectItem value="Family Room" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Family Room</SelectItem>
-                  <SelectItem value="Budget Room" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Budget Room</SelectItem>
-                  <SelectItem value="Premium Room" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Premium Room</SelectItem>
-                  <SelectItem value="Hall + Rooms" className="text-stone-950 focus:text-stone-950 hover:bg-[#faf6f0] focus:bg-[#faf6f0] cursor-pointer">Hall + Rooms</SelectItem>
+                <SelectContent className="border-alabaster bg-white text-stone-950">
+                  <SelectItem value="Family Room" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Family Room</SelectItem>
+                  <SelectItem value="Budget Room" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Budget Room</SelectItem>
+                  <SelectItem value="Premium Room" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Premium Room</SelectItem>
+                  <SelectItem value="Hall + Rooms" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Hall + Rooms</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
           
-          <div className="mt-6 pt-4 border-t border-[#e6ded4] flex flex-col sm:flex-row gap-4 items-center justify-between">
-            <p className="text-xs text-[#7f6d54] font-medium text-center sm:text-left">
+          <div className="mt-6 pt-4 border-t border-alabaster flex flex-col sm:flex-row gap-4 items-center justify-between">
+            <p className="text-xs text-gold font-medium text-center sm:text-left">
               ★ Direct support · Instant confirmation · Family-first services
             </p>
             <div className="flex gap-2 w-full sm:w-auto">
               <Button
                 asChild
-                className="flex-1 sm:flex-none bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+                className="flex-1 sm:flex-none bg-green-600 hover:bg-green-700 text-white font-medium px-8 h-12 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:scale-[1.02] hover:shadow-lg cursor-pointer"
               >
                 <a
                   href={`https://wa.me/${phoneNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(bookingMessage)}`}
@@ -297,14 +297,9 @@ export default function HomePage() {
       <Intro />
 
       {/* Personalization Service Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative py-16 px-4 sm:px-6 bg-white" // Changed to white background
-      >
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
             {/* Text Content */}
             <div className="lg:w-1/2 space-y-8 px-4">
               <motion.div
@@ -314,29 +309,29 @@ export default function HomePage() {
                 transition={{ duration: 0.8 }}
                 className="space-y-6"
               >
-                <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
-                  <span className="block text-lg font-sans font-semibold text-[#7f6d54] tracking-widest mb-4">
+                <h2 className="text-3xl md:text-4xl font-medium text-charcoal font-playfair">
+                  <span className="block text-base sm:text-lg font-sans font-semibold text-gold tracking-widest mb-4 uppercase">
                     Included in Every Stay 
                   </span>
                   Hyper-Personalized Service
                 </h2>
 
-                <p className="text-lg text-[#4a453d] font-light leading-relaxed">
+                <p className="text-lg text-charcoal/80 font-sans font-light leading-relaxed">
                   While others treat customization as luxury,
                   <br className="hidden sm:block" /> we consider it fundamental.
                 </p>
 
-                <div className="space-y-1">
-                  <p className="text-xl font-medium text-[#6b5d48]">
+                <div className="space-y-2">
+                  <p className="text-xl font-sans font-semibold text-gold">
                     Your Needs, Our Standard
                   </p>
-                  <div className="h-[2px] bg-[#e6ded4] w-24 mt-2" />
+                  <div className="h-[2px] bg-alabaster w-24 mt-2" />
                 </div>
               </motion.div>
             </div>
 
             {/* Features Grid */}
-            <div className="lg:w-1/2 space-y-6">
+            <div className="lg:w-1/2 space-y-6 w-full">
               <div className="grid gap-4 sm:gap-5">
                 {features.map((item, index) => (
                   <motion.div
@@ -345,15 +340,15 @@ export default function HomePage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 + 0.3 }}
-                    className="p-5 bg-[#faf6f0] rounded-xl border border-[#e6ded4] shadow-sm hover:shadow-md transition-shadow"
+                    className="p-5 bg-sand rounded-2xl border border-alabaster shadow-sm hover:shadow-md hover:border-gold/30 hover:scale-[1.01] transition-all duration-300"
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-6 h-6 rounded-full bg-[#ede8e0] flex items-center justify-center">
-                          <div className="w-2 h-2 rounded-full bg-[#7f6d54]" />
+                        <div className="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full bg-gold" />
                         </div>
                       </div>
-                      <p className="text-[#4a453d] leading-relaxed font-light font-sans">
+                      <p className="text-charcoal/80 leading-relaxed font-light font-sans text-sm sm:text-base">
                         {item}
                       </p>
                     </div>
@@ -367,16 +362,18 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 className="text-center space-y-6 mt-8"
               >
-                <p className="text-lg text-[#6b5d48] font-medium">
+                <p className="text-lg text-gold font-sans font-semibold">
                   Experience personalized hospitality
                   <br />
-                  <span className="text-[#4a453d] font-light">
+                  <span className="text-charcoal/70 font-light text-base sm:text-lg">
                     starting at just ₹849/night
                   </span>
                 </p>
                 <Button
                   asChild
-                  className="bg-[#6b5d48] hover:bg-[#5d5040] text-white px-8 py-6 rounded-xl font-medium text-lg transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl"
+                  variant="custom"
+                  size="custom"
+                  className="btn-primary"
                 >
                   <Link href="/hotels">Customize My Stay</Link>
                 </Button>
@@ -384,15 +381,10 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Services Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative py-16 px-4 sm:px-6 bg-[#faf6f0]" // Alternating background
-      >
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-sand">
         <div className="max-w-7xl mx-auto space-y-16">
           {/* Section Header */}
           <motion.div
@@ -401,13 +393,13 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center space-y-4"
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
-              <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+            <h2 className="text-3xl md:text-4xl font-medium text-charcoal font-playfair">
+              <span className="block text-base sm:text-lg font-sans font-semibold text-gold tracking-widest mb-3 uppercase">
                 Curated Experiences
               </span>
               Our Services
             </h2>
-            <p className="text-lg text-[#4a453d] font-light max-w-2xl mx-auto font-sans">
+            <p className="text-lg text-charcoal/80 font-sans font-light max-w-2xl mx-auto">
               Experience comfort and luxury tailored to your needs
             </p>
           </motion.div>
@@ -421,41 +413,33 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className="bg-white/70 group backdrop-blur-sm rounded-2xl border border-[#e6ded4] overflow-hidden hover:shadow-md transition-shadow group flex flex-col"
+                className="card-heritage bg-white/95 flex flex-col h-full hover:scale-[1.02]"
               >
                 <div className="aspect-[4/3] sm:aspect-video relative overflow-hidden">
                   <img
                     src={room.image}
                     alt={room.title}
                     className="object-cover group-hover:scale-110 transition-all duration-300 w-full h-full transform origin-center"
-                    // whileHover={{
-                    //   scale: 1.1,
-                    //   transition: { duration: 0.4, ease: "easeOut" },
-                    // }}
-                    // style={{ transition: "transform 0.4s ease-out" }}
-                    // initial={{ scale: 1 }}
-                    // animate={{ scale: 1 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/25" />
                 </div>
                 <div className="p-4 sm:p-6 space-y-4 flex flex-col flex-grow">
-                  <div className="space-y-4">
-                    <h2 className="text-lg sm:text-xl font-cinzel font-semibold text-[#2a2418]">
+                  <div className="space-y-3 flex-grow">
+                    <h3 className="text-lg sm:text-xl font-sans font-bold text-charcoal">
                       {room.title}
-                    </h2>
-                    <p className="text-[#7f6d54] font-sans font-medium">
+                    </h3>
+                    <p className="text-gold font-sans font-semibold">
                       {room.price}
                     </p>
-                    <p
-                      className="text-[#4a453d] font-sans font-light text-sm sm:text-base leading-relaxed min-h-[4rem]"
-                      style={{ flexGrow: 1 }}
-                    >
+                    <p className="text-charcoal/80 font-sans font-light text-sm sm:text-base leading-relaxed">
                       {room.description}
                     </p>
                   </div>
                   <Button
                     asChild
-                    className="w-full cursor-pointer bg-transparent hover:bg-[#7f6d54]/10 text-[#7f6d54] border-2 border-[#7f6d54] px-6 py-4 rounded-xl font-medium text-base transition-all duration-300 hover:scale-[1.02] shadow-none mt-auto"
+                    variant="custom"
+                    size="custom"
+                    className="w-full mt-4 btn-secondary"
                   >
                     <Link href="/hotels">Book Now</Link>
                   </Button>
@@ -471,7 +455,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1 }}
               className="text-center space-y-4"
             >
-              <h3 className="text-2xl font-medium text-[#2a2418] font-playfair">
+              <h3 className="text-2xl font-medium text-charcoal font-playfair mb-6">
                 Spiritual & Travel Services
               </h3>
               <div className="grid md:grid-cols-3 gap-5">
@@ -497,11 +481,11 @@ export default function HomePage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Card className="p-6 bg-white/70 backdrop-blur-sm border-[#e6ded4] hover:shadow-md transition-shadow h-full">
-                      <h4 className="text-lg font-cinzel font-semibold text-[#7f6d54] mb-3">
+                    <Card className="card-heritage p-6 bg-white/95 h-full hover:scale-[1.02] flex flex-col justify-center text-center">
+                      <h4 className="text-lg font-sans font-bold text-gold mb-3">
                         {service.title}
                       </h4>
-                      <p className="text-[#4a453d] font-light font-sans leading-relaxed">
+                      <p className="text-charcoal/80 font-light font-sans leading-relaxed text-sm sm:text-base">
                         {service.description}
                       </p>
                     </Card>
@@ -517,25 +501,20 @@ export default function HomePage() {
             >
               <Button
                 asChild
-                className="bg-[#6b5d48] hover:bg-[#5d5040] text-white px-8 py-6 rounded-xl font-medium text-lg transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl font-sans"
+                variant="custom"
+                size="custom"
+                className="btn-primary"
               >
                 <Link href="/services">View All Services</Link>
               </Button>
             </motion.div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Featured Hotels */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative py-16 px-4 sm:px-6 !bg-white"
-      >
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          {" "}
-          {/* Consistent max width with intro */}
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -543,11 +522,11 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center space-y-4 mb-14"
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
-              <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+            <h2 className="text-3xl md:text-4xl font-medium text-charcoal font-playfair">
+              <span className="block text-base sm:text-lg font-sans font-semibold text-gold tracking-widest mb-3 uppercase">
                 Exclusive Collection
               </span>
-              Our Luxury Properties
+                Our Luxury Properties
             </h2>
           </motion.div>
           {/* Hotels Grid */}
@@ -559,37 +538,35 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
+                className="h-full flex flex-col"
               >
-                <Card className="h-full overflow-hidden border-[#e6ded4] hover:shadow-lg transition-shadow group bg-white">
+                <Card className="card-heritage h-full hover:scale-[1.02] bg-white/95 flex flex-col justify-between">
                   {/* Image Container with Enhanced Hover */}
                   <div className="aspect-video relative overflow-hidden">
                     <motion.img
                       src={hotel.image}
                       alt={hotel.name}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-all duration-300  transform origin-center"
-                      // whileHover={{
-                      //   scale: 1.05,
-                      //   transition: { duration: 0.4, ease: "easeOut" },
-                      // }}
+                      className="object-cover w-full h-full group-hover:scale-105 transition-all duration-300 transform origin-center"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/20" />
                   </div>
 
                   {/* Content */}
-                  <div className="p-6 space-y-5">
-                    <div>
-                      <h3 className="text-xl font-semibold text-[#2a2418] font-playfair mb-2">
+                  <div className="p-6 flex flex-col flex-grow justify-between space-y-5">
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-sans font-bold text-charcoal">
                         {hotel.name}
                       </h3>
-                      <p className="text-[#4a453d] font-light font-sans leading-relaxed">
+                      <p className="text-charcoal/80 font-light font-sans leading-relaxed text-sm sm:text-base">
                         {hotel.description}
                       </p>
                     </div>
 
-                    {/* Updated Button Style */}
                     <Button
                       asChild
-                      className="w-full bg-transparent hover:bg-[#6b5d48]/10 text-[#6b5d48] border-2 border-[#6b5d48] px-8 py-5 rounded-xl font-medium text-base transition-all duration-300 hover:scale-[1.02] shadow-none font-sans"
+                      variant="custom"
+                      size="custom"
+                      className="w-full btn-secondary"
                     >
                       <Link
                         href={`/hotels?property=${encodeURIComponent(
@@ -605,23 +582,18 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Testimonials */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative py-16 px-4 sm:px-6 bg-[#faf6f0]"
-      >
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-sand">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-center space-y-4 mb-14"
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
-              <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+            <h2 className="text-3xl md:text-4xl font-medium text-charcoal font-playfair">
+              <span className="block text-base sm:text-lg font-sans font-semibold text-gold tracking-widest mb-3 uppercase">
                 Voices of Experience
               </span>
               What Our Guests Say
@@ -645,11 +617,11 @@ export default function HomePage() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                   >
-                    <Card className="border-[#e6ded4] bg-white/70 backdrop-blur-sm h-full overflow-hidden group hover:shadow-lg transition-shadow">
+                    <Card className="card-heritage bg-white/95 h-full hover:scale-[1.01]">
                       <div className="p-8 space-y-6">
                         <div className="relative">
-                          <div className="absolute -left-4 -top-4 w-16 h-16 bg-[#7f6d54] opacity-10 rounded-full" />
-                          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#e6ded4]">
+                          <div className="absolute -left-4 -top-4 w-16 h-16 bg-gold opacity-10 rounded-full" />
+                          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-alabaster">
                             <img
                               src={testimonial.image}
                               alt={testimonial.name}
@@ -658,15 +630,15 @@ export default function HomePage() {
                           </div>
                         </div>
 
-                        <blockquote className="text-[#4a453d] font-light font-sans leading-relaxed italic text-lg">
+                        <blockquote className="text-charcoal/80 font-light font-sans leading-relaxed italic text-lg">
                           "{testimonial.content}"
                         </blockquote>
 
                         <div className="space-y-1">
-                          <h3 className="font-cinzel font-semibold text-[#7f6d54]">
+                          <h3 className="font-sans font-bold text-gold">
                             {testimonial.name}
                           </h3>
-                          <p className="text-sm text-[#4a453d]/80 font-sans">
+                          <p className="text-sm text-charcoal/60 font-sans">
                             {testimonial.role}
                           </p>
                         </div>
@@ -679,23 +651,18 @@ export default function HomePage() {
 
             {/* Custom Navigation Arrows */}
             <div className="hidden md:flex justify-center gap-4 mt-8">
-              <CarouselPrevious className="static translate-x-0 translate-y-0 border-[#e6ded4] text-[#7f6d54] hover:bg-[#faf6f0] hover:text-[#5d5040]" />
-              <CarouselNext className="static translate-x-0 translate-y-0 border-[#e6ded4] text-[#7f6d54] hover:bg-[#faf6f0] hover:text-[#5d5040]" />
+              <CarouselPrevious className="static translate-x-0 translate-y-0 border-alabaster text-gold hover:bg-sand hover:text-gold/80" />
+              <CarouselNext className="static translate-x-0 translate-y-0 border-alabaster text-gold hover:bg-sand hover:text-gold/80" />
             </div>
           </Carousel>
         </div>
-      </motion.section>
+      </section>
 
       {/* Teaser Section for Explore Nathdwara */}
       <Explore />
 
       {/* Features */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative py-16 px-4 sm:px-6 bg-white"
-      >
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
@@ -721,16 +688,16 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className="group p-8 bg-[#faf6f0] rounded-2xl border border-[#e6ded4] hover:shadow-lg transition-shadow"
+                className="card-heritage group p-8 bg-sand hover:scale-[1.02]"
               >
                 <div className="text-center space-y-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#7f6d54] text-[#e6ded4] mb-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold text-white mb-4">
                     <feature.icon className="w-8 h-8" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-2xl font-medium text-[#2a2418] font-playfair">
+                  <h3 className="text-2xl font-sans font-bold text-charcoal">
                     {feature.title}
                   </h3>
-                  <p className="text-[#4a453d] font-light font-sans leading-relaxed">
+                  <p className="text-charcoal/80 font-light font-sans leading-relaxed text-sm sm:text-base">
                     {feature.text}
                   </p>
                 </div>
@@ -738,7 +705,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
     </div>
   );
 }
