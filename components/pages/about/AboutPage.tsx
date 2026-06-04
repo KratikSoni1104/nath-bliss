@@ -20,18 +20,18 @@ const Accordion = ({
       {items.map((item) => (
         <div
           key={item.id}
-          className="border border-[#e6ded4] rounded-lg bg-white/70 backdrop-blur-sm"
+          className="border border-alabaster rounded-lg bg-white/70 backdrop-blur-sm"
         >
           <button
             onClick={() => setOpenId(openId === item.id ? null : item.id)}
-            className="w-full flex justify-between items-center p-4 text-left font-cinzel text-lg text-[#2a2418]"
+            className="w-full flex justify-between items-center p-4 text-left font-cinzel text-lg text-charcoal"
             aria-expanded={openId === item.id}
             aria-controls={`accordion-content-${item.id}`}
           >
             <span>{item.title}</span>
             <ChevronDown
               className={cn(
-                "w-5 h-5 text-[#7f6d54] transition-transform",
+                "w-5 h-5 text-gold transition-transform",
                 openId === item.id && "rotate-180"
               )}
             />
@@ -66,20 +66,20 @@ const tabContent = [
         className="grid gap-6 md:grid-cols-2"
       >
         <div className="space-y-6">
-          <p className="text-[#4a453d] font-inter font-light leading-relaxed text-base sm:text-lg">
+          <p className="text-charcoal/80 font-inter font-light leading-relaxed text-base sm:text-lg">
             Founded in the spiritual heart of Nathdwara, NathBliss emerged from
             a simple vision: to create hospitality that remembers you. What
             began as a single 12-room guesthouse has blossomed into three
             distinct properties, each offering personalized comfort starting at
             just ₹849.
           </p>
-          <p className="text-[#4a453d] font-inter font-light leading-relaxed text-base sm:text-lg">
+          <p className="text-charcoal/80 font-inter font-light leading-relaxed text-base sm:text-lg">
             While chains focus on scale, we focus on soul. Our 83% repeat guest
             rate speaks to experiences crafted around you - from preferred tea
             blends to customized darshan schedules.
           </p>
         </div>
-        <div className="relative rounded-xl overflow-hidden border border-[#e6ded4]">
+        <div className="relative rounded-xl overflow-hidden border border-alabaster">
           <img
             src="/images/intro-img.jpeg"
             // src="https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg"
@@ -100,9 +100,9 @@ const tabContent = [
         transition={{ duration: 0.5 }}
         className="grid gap-6 md:grid-cols-2"
       >
-        <Card className="bg-white/70 backdrop-blur-sm border-[#e6ded4]">
+        <Card className="bg-white/70 backdrop-blur-sm border-alabaster">
           <CardContent className="p-6">
-            <h3 className="font-cinzel text-xl sm:text-2xl text-[#7f6d54] mb-6">
+            <h3 className="font-cinzel text-xl sm:text-2xl text-gold mb-6">
               Hyper-Personalization Framework
             </h3>
             <ul className="space-y-3">
@@ -119,16 +119,16 @@ const tabContent = [
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-start text-[#4a453d] font-inter font-light text-base sm:text-lg"
+                  className="flex items-start text-charcoal/80 font-inter font-light text-base sm:text-lg"
                 >
-                  <Sparkles className="w-5 h-5 text-[#7f6d54] mt-1 mr-3 flex-shrink-0" />
+                  <Sparkles className="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" />
                   {item}
                 </motion.li>
               ))}
             </ul>
           </CardContent>
         </Card>
-        <div className="relative rounded-xl overflow-hidden border border-[#e6ded4]">
+        <div className="relative rounded-xl overflow-hidden border border-alabaster">
           <img
             src="/images/s-in-family-bliss.jpeg"
             // "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
@@ -178,13 +178,13 @@ const tabContent = [
             transition={{ delay: index * 0.1 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-white/70 backdrop-blur-sm border-[#e6ded4] h-full">
+            <Card className="bg-white/70 backdrop-blur-sm border-alabaster h-full">
               <CardContent className="p-6 text-center">
-                <feature.icon className="w-10 h-10 mx-auto mb-4 text-[#7f6d54]" />
-                <h3 className="font-cinzel text-lg sm:text-xl text-[#2a2418] mb-2">
+                <feature.icon className="w-10 h-10 mx-auto mb-4 text-gold" />
+                <h3 className="font-cinzel text-lg sm:text-xl text-charcoal mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-[#4a453d] font-inter font-light text-sm sm:text-base">
+                <p className="text-charcoal/80 font-inter font-light text-sm sm:text-base">
                   {feature.description}
                 </p>
               </CardContent>
@@ -203,12 +203,12 @@ const MainContentSection = () => {
       {/* Desktop: Tabs */}
       <div className="hidden lg:block">
         <Tabs defaultValue="about" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-[#e6ded4] p-2 gap-2 rounded-lg">
+          <TabsList className="grid w-full grid-cols-3 bg-alabaster p-2 gap-2 rounded-lg">
             {tabContent.map((tab) => (
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="font-cinzel text-base tracking-wide py-3 data-[state=active]:bg-white data-[state=active]:text-[#2a2418] data-[state=active]:shadow-sm hover:bg-[#7f6d54]/10 transition-all rounded-md"
+                className="font-cinzel text-base tracking-wide py-3 data-[state=active]:bg-white data-[state=active]:text-charcoal data-[state=active]:shadow-sm hover:bg-gold/10 transition-all rounded-md"
               >
                 {tab.title}
               </TabsTrigger>
@@ -233,7 +233,7 @@ const MainContentSection = () => {
 // Integrate into AboutPage
 export default function AboutPage() {
   return (
-    <main className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 bg-[#faf6f0]">
+    <main className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 bg-sand">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -247,8 +247,8 @@ export default function AboutPage() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12 sm:mb-16"
         >
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#2a2418] font-playfair">
-            <span className="block text-base sm:text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-charcoal font-playfair">
+            <span className="block text-base sm:text-lg font-cinzel font-semibold text-gold tracking-widest mb-3">
               Redefining Hospitality
             </span>
             About NathBliss
@@ -260,7 +260,7 @@ export default function AboutPage() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="relative h-80 sm:h-[500px] rounded-2xl overflow-hidden mb-12 sm:mb-16 border border-[#e6ded4]"
+          className="relative h-80 sm:h-[500px] rounded-2xl overflow-hidden mb-12 sm:mb-16 border border-alabaster"
         >
           {/* <img
             src="https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg"
@@ -298,12 +298,12 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-[#e6ded4]"
+            className="bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-alabaster"
           >
-            <h2 className="font-playfair text-xl sm:text-2xl text-[#2a2418] mb-4">
+            <h2 className="font-playfair text-xl sm:text-2xl text-charcoal mb-4">
               Our Vision
             </h2>
-            <p className="text-[#4a453d] font-inter font-light leading-relaxed text-base sm:text-lg">
+            <p className="text-charcoal/80 font-inter font-light leading-relaxed text-base sm:text-lg">
               To become Rajasthan's most cherished hospitality brand by
               redefining personalized comfort, where technology enhances human
               connection rather than replacing it.
@@ -314,12 +314,12 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-[#e6ded4]"
+            className="bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-alabaster"
           >
-            <h2 className="font-playfair text-xl sm:text-2xl text-[#2a2418] mb-4">
+            <h2 className="font-playfair text-xl sm:text-2xl text-charcoal mb-4">
               Our Commitment
             </h2>
-            <p className="text-[#4a453d] font-inter font-light leading-relaxed text-base sm:text-lg">
+            <p className="text-charcoal/80 font-inter font-light leading-relaxed text-base sm:text-lg">
               Maintaining the sacred trust our guests place in us through
               immaculate spaces, discreet service, and ethical practices that
               honor Nathdwara's spiritual heritage.
@@ -332,9 +332,9 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-[#e6ded4]"
+          className="bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-alabaster"
         >
-          <h2 className="font-cinzel text-xl sm:text-2xl text-[#7f6d54] mb-6">
+          <h2 className="font-cinzel text-xl sm:text-2xl text-gold mb-6">
             Why NathBliss Stands Apart
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">
@@ -347,9 +347,9 @@ export default function AboutPage() {
               ].map((item, index) => (
                 <li
                   key={index}
-                  className="flex items-center text-[#4a453d] font-inter font-light text-base sm:text-lg"
+                  className="flex items-center text-charcoal/80 font-inter font-light text-base sm:text-lg"
                 >
-                  <Star className="w-5 h-5 text-[#7f6d54] mr-3" />
+                  <Star className="w-5 h-5 text-gold mr-3" />
                   {item}
                 </li>
               ))}
@@ -363,9 +363,9 @@ export default function AboutPage() {
               ].map((item, index) => (
                 <li
                   key={index}
-                  className="flex items-center text-[#4a453d] font-inter font-light text-base sm:text-lg"
+                  className="flex items-center text-charcoal/80 font-inter font-light text-base sm:text-lg"
                 >
-                  <Sparkles className="w-5 h-5 text-[#7f6d54] mr-3" />
+                  <Sparkles className="w-5 h-5 text-gold mr-3" />
                   {item}
                 </li>
               ))}

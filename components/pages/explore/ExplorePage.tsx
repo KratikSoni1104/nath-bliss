@@ -172,7 +172,7 @@ export default function ExploreNathdwara() {
     : attractions;
 
   return (
-    <main className="min-h-screen py-12 px-4 sm:px-6 md:px-8 bg-[#faf6f0]">
+    <main className="min-h-screen py-12 px-4 sm:px-6 md:px-8 bg-sand">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -184,13 +184,13 @@ export default function ExploreNathdwara() {
           animate={{ opacity: 1 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-medium text-[#2a2418] font-playfair">
-            <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+          <h1 className="text-4xl md:text-5xl font-medium text-charcoal font-playfair">
+            <span className="block text-lg font-cinzel font-semibold text-gold tracking-widest mb-3">
               Discover Divine Rajasthan
             </span>
             Explore Nathdwara & Beyond
           </h1>
-          <p className="text-[#4a453d] font-sans font-light max-w-3xl mx-auto text-lg">
+          <p className="text-charcoal/80 font-sans font-light max-w-3xl mx-auto text-lg">
             Discover spiritual, cultural, and natural wonders near Nath Bliss
             Hotels
           </p>
@@ -201,16 +201,16 @@ export default function ExploreNathdwara() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="sticky top-0 z-10 bg-white/80 backdrop-blur-md py-6 mb-8 border-b border-[#e6ded4] shadow-sm"
+          className="sticky top-0 z-10 bg-white/80 backdrop-blur-md py-6 mb-8 border-b border-alabaster shadow-sm"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <h2 className="font-playfair text-xl sm:text-2xl text-[#2a2418] font-semibold">
+            <h2 className="font-playfair text-xl sm:text-2xl text-charcoal font-semibold">
               Explore Nathdwara Attractions
             </h2>
             <div className="w-full sm:w-auto flex items-center gap-4">
               <label
                 htmlFor="category-filter"
-                className="text-sm sm:text-base text-[#4a453d] font-sans font-medium hidden sm:block"
+                className="text-sm sm:text-base text-charcoal/80 font-sans font-medium hidden sm:block"
               >
                 Filter by:
               </label>
@@ -222,15 +222,15 @@ export default function ExploreNathdwara() {
               >
                 <SelectTrigger
                   id="category-filter"
-                  className="w-full sm:w-72 bg-white border-[#e6ded4] focus:ring-[#7f6d54] rounded-xl text-[#2a2418] font-sans text-sm sm:text-base py-3 px-4 shadow-sm hover:bg-[#faf6f0] transition-colors duration-300"
+                  className="w-full sm:w-72 bg-white border-alabaster focus:ring-gold rounded-xl text-charcoal font-sans text-sm sm:text-base py-3 px-4 shadow-sm hover:bg-sand transition-colors duration-300"
                   aria-label="Filter attractions by category"
                 >
                   <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
-                <SelectContent className="bg-white border-[#e6ded4] rounded-xl shadow-lg">
+                <SelectContent className="bg-white border-alabaster rounded-xl shadow-lg">
                   <SelectItem
                     value="All"
-                    className="text-[#2a2418] font-sans text-sm sm:text-base focus:bg-[#faf6f0] focus:text-[#2a2418]"
+                    className="text-charcoal font-sans text-sm sm:text-base focus:bg-sand focus:text-charcoal"
                   >
                     All Attractions
                   </SelectItem>
@@ -238,7 +238,7 @@ export default function ExploreNathdwara() {
                     <SelectItem
                       key={cat.category}
                       value={cat.category}
-                      className="text-[#2a2418] font-sans text-sm sm:text-base focus:bg-[#faf6f0] focus:text-[#2a2418]"
+                      className="text-charcoal font-sans text-sm sm:text-base focus:bg-sand focus:text-charcoal"
                     >
                       {cat.category}
                     </SelectItem>
@@ -250,16 +250,12 @@ export default function ExploreNathdwara() {
         </motion.div>
 
         {/* Attractions */}
-        {filteredAttractions.map((category, catIndex) => (
-          <motion.section
+        {filteredAttractions.map((category) => (
+          <section
             key={category.category}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: catIndex * 0.15 }}
             className="mb-16"
           >
-            <h2 className="font-cinzel font-semibold text-2xl text-[#7f6d54] mb-8">
+            <h2 className="font-cinzel font-semibold text-2xl text-gold mb-8">
               {category.category}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -270,7 +266,7 @@ export default function ExploreNathdwara() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: placeIndex * 0.1 }}
-                  className="flex flex-col group bg-white/70 backdrop-blur-sm rounded-2xl border border-[#e6ded4] overflow-hidden hover:shadow-md transition-shadow"
+                  className="flex flex-col group bg-white/70 backdrop-blur-sm rounded-2xl border border-alabaster overflow-hidden hover:shadow-md transition-shadow"
                 >
                   <div className="relative aspect-[4/3] sm:aspect-[16/9] overflow-hidden">
                     <img
@@ -282,46 +278,31 @@ export default function ExploreNathdwara() {
                   </div>
                   <div className="p-4 sm:p-6 flex flex-col flex-grow space-y-4">
                     <div className="space-y-2">
-                      <h3 className="font-playfair text-lg sm:text-xl text-[#2a2418] font-semibold">
+                      <h3 className="font-playfair text-lg sm:text-xl text-charcoal font-semibold">
                         {place.name}
                       </h3>
-                      <p className="text-[#7f6d54] text-sm sm:text-base font-sans font-medium">
+                      <p className="text-gold text-sm sm:text-base font-sans font-medium">
                         {place.distance} from NathBliss
                       </p>
-                      <p className="text-[#4a453d] font-sans font-light text-sm sm:text-base leading-relaxed min-h-[4rem]">
+                      <p className="text-charcoal/80 font-sans font-light text-sm sm:text-base leading-relaxed min-h-[4rem]">
                         {place.description}
                       </p>
                     </div>
-                    {/* <Button
-                      asChild
-                      className="w-full bg-transparent hover:bg-[#7f6d54]/10 text-[#7f6d54] border-2 border-[#7f6d54] px-6 py-3 rounded-xl font-sans font-medium text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] shadow-none mt-auto"
-                      aria-label={`Learn more about ${place.name}`}
-                    >
-                      <Link
-                        href={`/nathdwara/${place.name
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")}`}
-                      >
-                        Learn More
-                      </Link>
-                    </Button> */}
                   </div>
                 </motion.div>
               ))}
             </div>
-          </motion.section>
+          </section>
         ))}
 
         {/* Map Embed */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        <section
           className="mb-16"
         >
-          <h2 className="font-cinzel font-semibold text-2xl text-[#7f6d54] text-center mb-8">
+          <h2 className="font-cinzel font-semibold text-2xl text-gold text-center mb-8">
             Locate These Wonders
           </h2>
-          <div className="relative aspect-[4/3] sm:aspect-video rounded-xl overflow-hidden border border-[#e6ded4]">
+          <div className="relative aspect-[4/3] sm:aspect-video rounded-xl overflow-hidden border border-alabaster">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d366.0429001482041!2d73.81710727038114!3d24.92824949165648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39680d15bd5e90af%3A0x83f460a09e37b91d!2sHotel%20Sudarshan!5e0!3m2!1sen!2sus!4v1746255087090!5m2!1sen!2sus"
               className="absolute inset-0 w-full h-full"
@@ -330,7 +311,7 @@ export default function ExploreNathdwara() {
               loading="lazy"
             />
           </div>
-        </motion.section>
+        </section>
 
         {/* CTA */}
         <motion.div
@@ -340,7 +321,9 @@ export default function ExploreNathdwara() {
         >
           <Button
             asChild
-            className="bg-[#6b5d48] hover:bg-[#5d5040] text-white px-12 py-6 rounded-xl font-cinzel text-lg"
+            variant="custom"
+            size="custom"
+            className="btn-primary px-12 py-6 font-cinzel text-lg"
           >
             <Link href="/hotels">Book Your Spiritual Retreat</Link>
           </Button>

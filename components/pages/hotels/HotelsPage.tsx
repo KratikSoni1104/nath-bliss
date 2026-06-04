@@ -152,7 +152,7 @@ export default function HotelsPage() {
     : hotels;
 
   return (
-    <main className="min-h-screen py-16 px-4 md:px-8 bg-[#faf6f0]">
+    <main className="min-h-screen py-16 px-4 md:px-8 bg-sand">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -162,9 +162,9 @@ export default function HotelsPage() {
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-4xl md:text-5xl font-medium text-[#2a2418] font-playfair mb-12"
+          className="text-4xl md:text-5xl font-medium text-charcoal font-playfair mb-12"
         >
-          <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+          <span className="block text-lg font-cinzel font-semibold text-gold tracking-widest mb-3">
             Curated Properties
           </span>
           Our Luxury Hotels
@@ -267,7 +267,7 @@ export default function HotelsPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="bg-white/70 backdrop-blur-sm rounded-2xl border border-[#e6ded4] overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white/70 backdrop-blur-sm rounded-2xl border border-alabaster overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="grid md:grid-cols-2 gap-6">
                 <motion.div
@@ -284,15 +284,15 @@ export default function HotelsPage() {
 
                 <div className="p-8 space-y-6">
                   <div>
-                    <h2 className="text-2xl font-medium text-[#2a2418] font-playfair">
+                    <h2 className="text-2xl font-medium text-charcoal font-playfair">
                       {hotel.name}
                     </h2>
-                    <p className="text-[#7f6d54] font-sans mt-2">
+                    <p className="text-gold font-sans mt-2">
                       <MapPin className="inline h-4 w-4 mr-2" />
                       {hotel.location}
                     </p>
                   </div>
-                  <p className="text-[#4a453d] font-sans leading-relaxed font-light">
+                  <p className="text-charcoal/80 font-sans leading-relaxed font-light">
                     {hotel.description}
                   </p>
                   <Button
@@ -313,10 +313,10 @@ export default function HotelsPage() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="border-t border-[#e6ded4]"
+                  className="border-t border-alabaster"
                 >
                   <div className="p-8 space-y-8">
-                    <h3 className="text-xl font-cinzel font-semibold text-[#7f6d54]">
+                    <h3 className="text-xl font-cinzel font-semibold text-gold">
                       Available Rooms & Suites
                     </h3>
                     <div className="grid md:grid-cols-2 gap-6">
@@ -326,7 +326,7 @@ export default function HotelsPage() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                         >
-                          <Card className="border-[#e6ded4] bg-white/50 backdrop-blur-sm overflow-hidden hover:shadow-md transition-shadow">
+                          <Card className="border-alabaster bg-white/50 backdrop-blur-sm overflow-hidden hover:shadow-md transition-shadow">
                             <div className="aspect-video relative overflow-hidden">
                               <img
                                 src={room.image}
@@ -335,28 +335,28 @@ export default function HotelsPage() {
                               />
                             </div>
                             <CardHeader>
-                              <CardTitle className="font-playfair text-[#2a2418]">
+                              <CardTitle className="font-playfair text-charcoal">
                                 {room.type}
                               </CardTitle>
-                              <CardDescription className="text-[#7f6d54]">
+                              <CardDescription className="text-gold">
                                 ₹{room.price}/night
                               </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
-                              <p className="text-[#4a453d] font-sans font-light leading-relaxed">
+                              <p className="text-charcoal/80 font-sans font-light leading-relaxed">
                                 {room.description}
                               </p>
                               <div className="space-y-2">
-                                <h4 className="font-cinzel font-semibold text-[#7f6d54]">
+                                <h4 className="font-cinzel font-semibold text-gold">
                                   Amenities
                                 </h4>
                                 <ul className="grid grid-cols-2 gap-2">
                                   {room.amenities.map((amenity) => (
                                     <li
                                       key={amenity}
-                                      className="flex items-center text-[#4a453d] font-sans font-light"
+                                      className="flex items-center text-charcoal/80 font-sans font-light"
                                     >
-                                      <span className="text-[#7f6d54] mr-2">
+                                      <span className="text-gold mr-2">
                                         •
                                       </span>
                                       {amenity}
