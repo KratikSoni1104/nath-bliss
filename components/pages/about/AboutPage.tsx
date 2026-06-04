@@ -1,57 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Users, Star, Clock, Sparkles, ChevronDown } from "lucide-react";
-import * as React from "react";
-import { cn } from "@/lib/utils";
-
-// Custom Accordion Component for Mobile
-const Accordion = ({
-  items,
-}: {
-  items: { id: string; title: string; content: React.ReactNode }[];
-}) => {
-  const [openId, setOpenId] = React.useState<string | null>(null);
-
-  return (
-    <div className="space-y-4">
-      {items.map((item) => (
-        <div
-          key={item.id}
-          className="border border-alabaster rounded-lg bg-white/70 backdrop-blur-sm"
-        >
-          <button
-            onClick={() => setOpenId(openId === item.id ? null : item.id)}
-            className="w-full flex justify-between items-center p-4 text-left font-cinzel text-lg text-charcoal"
-            aria-expanded={openId === item.id}
-            aria-controls={`accordion-content-${item.id}`}
-          >
-            <span>{item.title}</span>
-            <ChevronDown
-              className={cn(
-                "w-5 h-5 text-gold transition-transform",
-                openId === item.id && "rotate-180"
-              )}
-            />
-          </button>
-          <div
-            id={`accordion-content-${item.id}`}
-            className={cn(
-              "overflow-hidden transition-all duration-300",
-              openId === item.id ? "max-h-[1000px] p-4" : "max-h-0"
-            )}
-            role="region"
-            aria-labelledby={`accordion-button-${item.id}`}
-          >
-            {item.content}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
+import { Heart, Users, Star, Clock, Sparkles, ChevronDown, Award, Globe, Shield } from "lucide-react";
 
 // Define tab content to reuse in both Tabs and Accordion
 const tabContent = [
@@ -59,215 +11,152 @@ const tabContent = [
     id: "about",
     title: "Our Story",
     content: (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="grid gap-6 md:grid-cols-2"
-      >
+      <div className="grid gap-8 lg:grid-cols-2 items-center">
         <div className="space-y-6">
-          <p className="text-charcoal/80 font-inter font-light leading-relaxed text-base sm:text-lg">
-            Founded in the spiritual heart of Nathdwara, NathBliss emerged from
-            a simple vision: to create hospitality that remembers you. What
-            began as a single 12-room guesthouse has blossomed into three
-            distinct properties, each offering personalized comfort starting at
-            just ₹849.
+          <span className="text-xs font-cinzel font-semibold text-gold tracking-widest block">
+            HOW WE BEGAN
+          </span>
+          <h3 className="text-2xl sm:text-3xl font-playfair font-medium text-charcoal">
+            Built Around Human Connection
+          </h3>
+          <p className="text-charcoal/80 font-sans font-light leading-relaxed text-base sm:text-lg">
+            Founded in the spiritual heart of Nathdwara, NathBliss emerged from a simple vision: to create hospitality that remembers you. What began as a single 12-room guesthouse has blossomed into three distinct properties, each offering personalized comfort starting at just ₹849.
           </p>
-          <p className="text-charcoal/80 font-inter font-light leading-relaxed text-base sm:text-lg">
-            While chains focus on scale, we focus on soul. Our 83% repeat guest
-            rate speaks to experiences crafted around you - from preferred tea
-            blends to customized darshan schedules.
+          <p className="text-charcoal/80 font-sans font-light leading-relaxed text-base sm:text-lg">
+            While chains focus on scale, we focus on soul. Our 83% repeat guest rate speaks to experiences crafted around you - from preferred tea blends to customized darshan schedules.
           </p>
         </div>
-        <div className="relative rounded-xl overflow-hidden border border-alabaster">
-          <img
-            src="/images/intro-img.jpeg"
-            // src="https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg"
-            alt="Hotel Lobby"
-            className="w-full h-64 sm:h-80 object-cover"
-          />
+        
+        {/* Image with clean gold border */}
+        <div className="relative p-1 mt-4 lg:mt-0">
+          <div className="relative rounded-2xl overflow-hidden border border-alabaster aspect-[4/3] shadow-md ring-1 ring-gold/20">
+            <img
+              src="/images/intro-img.jpeg"
+              alt="Hotel Lobby"
+              className="w-full h-full object-cover transform hover:scale-105 transition-all duration-700"
+            />
+          </div>
         </div>
-      </motion.div>
+      </div>
     ),
   },
   {
     id: "difference",
     title: "Differentiators",
     content: (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="grid gap-6 md:grid-cols-2"
-      >
-        <Card className="bg-white/70 backdrop-blur-sm border-alabaster">
-          <CardContent className="p-6">
-            <h3 className="font-cinzel text-xl sm:text-2xl text-gold mb-6">
-              Hyper-Personalization Framework
-            </h3>
-            <ul className="space-y-3">
-              {[
-                "Pre-arrival preference surveys via WhatsApp",
-                "AI-powered guest memory system",
-                "Custom spiritual itinerary planning",
-                "Diet-specific kitchen protocols",
-                "Multilingual staff (Hindi, English, Gujarati)",
-                "Flexible check-in/out system",
-              ].map((item, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-start text-charcoal/80 font-inter font-light text-base sm:text-lg"
-                >
-                  <Sparkles className="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" />
-                  {item}
-                </motion.li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-        <div className="relative rounded-xl overflow-hidden border border-alabaster">
-          <img
-            src="/images/s-in-family-bliss.jpeg"
-            // "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
-            alt="Luxury Room"
-            className="w-full h-64 sm:h-80 object-cover"
-          />
+      <div className="grid gap-8 lg:grid-cols-2 items-center">
+        <div className="space-y-6">
+          <span className="text-xs font-cinzel font-semibold text-gold tracking-widest block">
+            THE NATHBLISS WAY
+          </span>
+          <h3 className="text-2xl sm:text-3xl font-playfair font-medium text-charcoal">
+            The Personalization Matrix
+          </h3>
+          <p className="text-charcoal/80 font-sans font-light leading-relaxed text-base sm:text-lg">
+            Standardization is convenient for hotels, but uncomfortable for guests. We structured our entire management framework around remembering your details.
+          </p>
+          
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            {[
+              "Preference surveys via WhatsApp",
+              "Guest memory logging system",
+              "Custom spiritual itineraries",
+              "Diet-specific kitchen protocols",
+              "Multilingual local hosts",
+              "Flexible 24h check-in",
+            ].map((item, index) => (
+              <li
+                key={index}
+                className="flex items-center text-charcoal/80 font-sans font-light text-sm sm:text-base"
+              >
+                <Sparkles className="w-4 h-4 text-gold mr-3 flex-shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
-      </motion.div>
+        
+        {/* Image with clean gold border */}
+        <div className="relative p-1 mt-4 lg:mt-0">
+          <div className="relative rounded-2xl overflow-hidden border border-alabaster aspect-[4/3] shadow-md ring-1 ring-gold/20">
+            <img
+              src="/images/s-in-family-bliss.jpeg"
+              alt="Luxury Room"
+              className="w-full h-full object-cover transform hover:scale-105 transition-all duration-700"
+            />
+          </div>
+        </div>
+      </div>
     ),
   },
   {
     id: "features",
-    title: "Features",
+    title: "Core Values",
     content: (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
-      >
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {[
           {
             icon: Heart,
-            title: "Guest-Centric Design",
-            description: "Spaces crafted around human needs",
+            title: "Guest-Centricity",
+            description: "Spaces and services designed solely around human comfort and ease.",
           },
           {
             icon: Users,
-            title: "Dedicated Concierge",
-            description: "24/7 personalized service",
+            title: "Local Stewards",
+            description: "24/7 personalized hosts trained to help you navigate local heritage.",
           },
           {
             icon: Star,
-            title: "Luxury Standards",
-            description: "Premium amenities at every tier",
+            title: "Inclusive Luxury",
+            description: "Providing premium linen, high-speed Wi-Fi, and top cleanliness at every tier.",
           },
           {
             icon: Clock,
-            title: "Flexible Experience",
-            description: "Your schedule, our priority",
+            title: "Complete Flexibility",
+            description: "A checkout schedule and dining timing prioritized to fit your plans.",
           },
         ].map((feature, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            viewport={{ once: true }}
-          >
-            <Card className="bg-white/70 backdrop-blur-sm border-alabaster h-full">
-              <CardContent className="p-6 text-center">
-                <feature.icon className="w-10 h-10 mx-auto mb-4 text-gold" />
-                <h3 className="font-cinzel text-lg sm:text-xl text-charcoal mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-charcoal/80 font-inter font-light text-sm sm:text-base">
-                  {feature.description}
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <Card key={index} className="bg-white/50 backdrop-blur-sm border-alabaster/60 hover:border-gold/30 hover:shadow-md transition-all duration-300 group h-full">
+            <CardContent className="p-6 text-center space-y-3 flex flex-col justify-center h-full">
+              <div className="w-12 h-12 rounded-full bg-sand border border-alabaster flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                <feature.icon className="w-5 h-5 text-gold" />
+              </div>
+              <h4 className="font-cinzel text-base text-charcoal font-semibold">
+                {feature.title}
+              </h4>
+              <p className="text-charcoal/80 font-sans font-light text-xs sm:text-sm leading-relaxed">
+                {feature.description}
+              </p>
+            </CardContent>
+          </Card>
         ))}
-      </motion.div>
+      </div>
     ),
   },
 ];
 
-// Updated Main Content Tabs Section
-const MainContentSection = () => {
-  return (
-    <section className="mb-16">
-      {/* Desktop: Tabs */}
-      <div className="hidden lg:block">
-        <Tabs defaultValue="about" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-alabaster p-2 gap-2 rounded-lg">
-            {tabContent.map((tab) => (
-              <TabsTrigger
-                key={tab.id}
-                value={tab.id}
-                className="font-cinzel text-base tracking-wide py-3 data-[state=active]:bg-white data-[state=active]:text-charcoal data-[state=active]:shadow-sm hover:bg-gold/10 transition-all rounded-md"
-              >
-                {tab.title}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          {tabContent.map((tab) => (
-            <TabsContent key={tab.id} value={tab.id} className="mt-8">
-              {tab.content}
-            </TabsContent>
-          ))}
-        </Tabs>
-      </div>
-
-      {/* Mobile: Accordion */}
-      <div className="lg:hidden">
-        <Accordion items={tabContent} />
-      </div>
-    </section>
-  );
-};
-
-// Integrate into AboutPage
 export default function AboutPage() {
+  const [selectedTabId, setSelectedTabId] = useState(tabContent[0].id);
+
+  const activeTab = tabContent.find((tab) => tab.id === selectedTabId) || tabContent[0];
+
   return (
     <main className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 bg-sand">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-7xl mx-auto"
-      >
+      <div className="max-w-7xl mx-auto space-y-16">
+        
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-charcoal font-playfair">
-            <span className="block text-base sm:text-lg font-cinzel font-semibold text-gold tracking-widest mb-3">
-              Redefining Hospitality
-            </span>
+        <div className="text-center space-y-4">
+          <span className="text-xs sm:text-sm font-cinzel font-semibold text-gold tracking-widest block">
+            REDEFINING HOSPITALITY
+          </span>
+          <h1 className="text-4xl md:text-5xl font-medium text-charcoal font-playfair tracking-wide">
             About NathBliss
           </h1>
-        </motion.div>
+          <div className="w-24 h-[1px] bg-gold/50 mx-auto mt-4" />
+        </div>
 
-        {/* Hero Section */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="relative h-80 sm:h-[500px] rounded-2xl overflow-hidden mb-12 sm:mb-16 border border-alabaster"
-        >
-          {/* <img
-            src="https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg"
-            alt="Luxury Hotel Interior"
-            className="w-full h-full object-cover"
-            loading="lazy"
-          /> */}
+        {/* Video Hero Block */}
+        <div className="relative h-80 sm:h-[500px] rounded-3xl overflow-hidden border border-alabaster shadow-sm">
           <video
             src="/videos/about-video.mp4"
             autoPlay
@@ -276,103 +165,160 @@ export default function AboutPage() {
             playsInline
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/20 flex items-end p-6 sm:p-8">
-            <div className="text-left text-white">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-playfair mb-4">
-                Our Philosophy: Personalization at Core
-              </h2>
-              <p className="text-base sm:text-xl font-inter font-light max-w-2xl">
-                Crafting experiences that resonate with your unique needs, not
-                just providing standardized rooms
-              </p>
-            </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end p-6 sm:p-12" />
+          <div className="absolute bottom-6 sm:bottom-12 left-6 sm:left-12 right-6 sm:right-12 text-white space-y-2 max-w-3xl">
+            <span className="text-xs font-cinzel font-semibold tracking-wider text-gold">
+              OUR PHILOSOPHY
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-playfair font-medium leading-tight">
+              Personalization at Core
+            </h2>
+            <p className="text-sm sm:text-lg font-sans font-light text-white/90 leading-relaxed">
+              Crafting experiences that resonate with your unique needs, not just providing standardized rooms.
+            </p>
           </div>
-        </motion.div>
-
-        {/* Main Content Section */}
-        <MainContentSection />
-
-        {/* Vision Section */}
-        <div className="grid gap-6 lg:grid-cols-2 mb-12 sm:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-alabaster"
-          >
-            <h2 className="font-playfair text-xl sm:text-2xl text-charcoal mb-4">
-              Our Vision
-            </h2>
-            <p className="text-charcoal/80 font-inter font-light leading-relaxed text-base sm:text-lg">
-              To become Rajasthan's most cherished hospitality brand by
-              redefining personalized comfort, where technology enhances human
-              connection rather than replacing it.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-alabaster"
-          >
-            <h2 className="font-playfair text-xl sm:text-2xl text-charcoal mb-4">
-              Our Commitment
-            </h2>
-            <p className="text-charcoal/80 font-inter font-light leading-relaxed text-base sm:text-lg">
-              Maintaining the sacred trust our guests place in us through
-              immaculate spaces, discreet service, and ethical practices that
-              honor Nathdwara's spiritual heritage.
-            </p>
-          </motion.div>
         </div>
 
-        {/* Why Choose Us */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-alabaster"
-        >
-          <h2 className="font-cinzel text-xl sm:text-2xl text-gold mb-6">
+        {/* Interactive Stats: NathBliss by the Numbers */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-white/40 backdrop-blur-sm p-8 rounded-3xl border border-alabaster/60 text-center">
+          {[
+            { value: "4.9/5", label: "GUEST RATING", icon: Award },
+            { value: "93%", label: "REPEAT RATE", icon: Star },
+            { value: "3", label: "BOUTIQUE STAYS", icon: Globe },
+            { value: "80+", label: "SANCTUARIES", icon: Shield },
+          ].map((stat, i) => (
+            <div key={i} className="space-y-2">
+              <div className="flex justify-center mb-1">
+                <stat.icon className="h-5 w-5 text-gold" />
+              </div>
+              <div className="text-3xl sm:text-4xl font-cinzel font-bold text-charcoal">
+                {stat.value}
+              </div>
+              <div className="text-[10px] sm:text-xs font-cinzel text-gold tracking-widest font-semibold">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Custom Tab Selector (Desktop & Mobile Unified Layout) */}
+        <div className="space-y-8">
+          {/* Tabs Navigation */}
+          <div className="flex justify-center border-b border-alabaster pb-2">
+            <div className="flex gap-4 md:gap-8 overflow-x-auto no-scrollbar scroll-smooth w-full md:w-auto justify-center">
+              {tabContent.map((tab) => {
+                const isActive = tab.id === selectedTabId;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setSelectedTabId(tab.id)}
+                    style={{ outline: "none", boxShadow: "none" }}
+                    className={`relative py-4 px-2 font-cinzel text-xs sm:text-sm tracking-widest transition-all focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 select-none ${
+                      isActive ? "text-gold font-semibold" : "text-charcoal/60 hover:text-charcoal"
+                    }`}
+                  >
+                    {tab.title.toUpperCase()}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeAboutTabUnderline"
+                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-gold"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Tab Content Display */}
+          <div className="bg-white/30 backdrop-blur-sm p-6 sm:p-8 rounded-3xl border border-alabaster/40 min-h-[300px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab.id}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                {activeTab.content}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Vision & Commitment Split */}
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-alabaster space-y-4 hover:shadow-sm transition-shadow">
+            <span className="text-xs font-cinzel font-semibold text-gold tracking-widest block">
+              FUTURE HORIZON
+            </span>
+            <h3 className="text-xl sm:text-2xl font-playfair font-semibold text-charcoal">
+              Our Vision
+            </h3>
+            <p className="text-charcoal/80 font-sans font-light leading-relaxed text-sm sm:text-base">
+              To become Rajasthan's most cherished hospitality brand by redefining personalized comfort, where technology enhances human connection rather than replacing it.
+            </p>
+          </div>
+
+          <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-alabaster space-y-4 hover:shadow-sm transition-shadow">
+            <span className="text-xs font-cinzel font-semibold text-gold tracking-widest block">
+              OUR TRUST
+            </span>
+            <h3 className="text-xl sm:text-2xl font-playfair font-semibold text-charcoal">
+              Our Commitment
+            </h3>
+            <p className="text-charcoal/80 font-sans font-light leading-relaxed text-sm sm:text-base">
+              Maintaining the sacred trust our guests place in us through immaculate spaces, discreet service, and ethical practices that honor Nathdwara's spiritual heritage.
+            </p>
+          </div>
+        </div>
+
+        {/* Why Choose Us List */}
+        <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-alabaster space-y-6">
+          <span className="text-xs font-cinzel font-semibold text-gold tracking-widest block text-center">
+            CORE METRICS
+          </span>
+          <h3 className="font-cinzel text-xl sm:text-2xl text-gold text-center">
             Why NathBliss Stands Apart
-          </h2>
-          <div className="grid gap-6 sm:grid-cols-2">
-            <ul className="space-y-3">
+          </h3>
+          <div className="grid gap-6 sm:grid-cols-2 border-t border-alabaster pt-6">
+            <ul className="space-y-4">
               {[
                 "Average 4.9/5 guest satisfaction score",
-                "93% repeat guest ratio",
-                "72-hour deep cleaning protocol",
-                "Local artisan partnerships",
+                "83% repeat guest ratio across properties",
+                "72-hour clinical deep cleaning protocol",
+                "Direct partnerships with local artisans",
               ].map((item, index) => (
                 <li
                   key={index}
-                  className="flex items-center text-charcoal/80 font-inter font-light text-base sm:text-lg"
+                  className="flex items-center text-charcoal/80 font-sans font-light text-sm sm:text-base"
                 >
-                  <Star className="w-5 h-5 text-gold mr-3" />
+                  <Star className="w-4 h-4 text-gold mr-3 flex-shrink-0" />
                   {item}
                 </li>
               ))}
             </ul>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {[
-                "15-minute emergency response",
-                "Ayurvedic toiletries standard",
-                "Solar-powered hot water",
-                "Zero single-use plastics",
+                "15-minute emergency concierge response",
+                "Organic Ayurvedic toiletries standard",
+                "Solar-powered hot water systems",
+                "Zero single-use plastics initiative",
               ].map((item, index) => (
                 <li
                   key={index}
-                  className="flex items-center text-charcoal/80 font-inter font-light text-base sm:text-lg"
+                  className="flex items-center text-charcoal/80 font-sans font-light text-sm sm:text-base"
                 >
-                  <Sparkles className="w-5 h-5 text-gold mr-3" />
+                  <Sparkles className="w-4 h-4 text-gold mr-3 flex-shrink-0" />
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+
+      </div>
     </main>
   );
 }
