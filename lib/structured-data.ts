@@ -170,7 +170,7 @@ export function getHotelSchema(hotelId: string) {
     image: hotel.image,
     url: `https://www.nathbliss.in/hotels/${hotelId}`,
     telephone: "+91-9352385552",
-    email: "info@nathbliss.in",
+    email: "shreenathbliss@gmail.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: hotel.address,
