@@ -32,6 +32,7 @@ import {
 import Explore from "@/components/Explore";
 import Intro from "@/components/Intro";
 import HeroSection from "@/components/Hero";
+import FAQ from "@/components/FAQ";
 
 const hotels = [
   {
@@ -660,6 +661,9 @@ export default function HomePage() {
 
       {/* Teaser Section for Explore Nathdwara */}
       <Explore />
+
+      {/* Frequently Asked Questions */}
+      <FAQ />
 
       {/* Features */}
       <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-white">

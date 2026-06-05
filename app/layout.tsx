@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
@@ -55,6 +56,7 @@ export default function RootLayout({
           <main className="overflow-x-hidden">{children}</main>
           <Footer />
           <Toaster />
+          <WhatsAppWidget />
         </ThemeProvider>
       </body>
     </html>
