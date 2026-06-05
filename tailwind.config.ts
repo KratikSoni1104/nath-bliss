@@ -58,6 +58,19 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        terracotta: {
+          DEFAULT: "#b2533e",
+          hover: "#933d2b",
+          foreground: "#ffffff",
+        },
+        gold: {
+          DEFAULT: "#c59d5f",
+          hover: "#ab8348",
+          foreground: "#2c241c",
+        },
+        charcoal: "#2c241c",
+        sand: "#fbfaf7",
+        alabaster: "#e6ded4",
         chart: {
           "1": "hsl(var(--chart-1))",
           "2": "hsl(var(--chart-2))",

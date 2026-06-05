@@ -3,95 +3,83 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { MapPin } from "lucide-react";
+import { Compass, MapPin } from "lucide-react";
 
-function Explore() {
+export default function Explore() {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden"
-    >
-      {/* Video Container with Parallax Effect */}
-      <motion.div
-        className="absolute inset-0 w-full h-full"
-        initial={{ scale: 1.1 }}
-        whileInView={{ scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-      >
-        <video
-          className="w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/explore-poster.jpg"
-        >
-          <source src="/videos/udaipur-explore.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2a2418]/80 to-[#7f6d54]/30" />
-      </motion.div>
-
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+    <section className="py-20 sm:py-24 px-4 sm:px-6 md:px-8 bg-white border-t border-alabaster">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {/* Left Column: Story & CTA */}
         <motion.div
-          className="space-y-8"
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { staggerChildren: 0.2 },
-            },
-          }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="lg:col-span-5 space-y-6 lg:space-y-8 text-left"
         >
-          <motion.h2
-            variants={{ hidden: { y: 30 }, visible: { y: 0 } }}
-            className="text-4xl sm:text-5xl md:text-6xl font-medium text-white font-playfair"
-          >
-            <span className="block text-lg font-cinzel font-semibold text-[#e6ded4] tracking-widest mb-4">
+          <div className="space-y-3">
+            <span className="text-xs sm:text-sm font-cinzel font-semibold text-gold tracking-widest block uppercase">
               Beyond Your Stay
             </span>
-            Explore Nathdwara's Wonders
-          </motion.h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight text-charcoal font-playfair tracking-wide">
+              Explore Nathdwara & Udaipur
+            </h2>
+          </div>
 
-          <motion.p
-            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-            className="text-lg md:text-xl text-[#e6ded4] max-w-2xl mx-auto font-sans leading-relaxed"
-          >
-            From the sacred Shreenathji Temple to the majestic Kumbhalgarh Fort,
-            discover unforgettable experiences curated by our local experts.
-          </motion.p>
+          <p className="text-base sm:text-lg text-charcoal/80 font-sans font-light leading-relaxed">
+            From the sacred steps of the Shreenathji Temple to the majestic ramparts of Kumbhalgarh Fort and the tranquil waters of Udaipur, immerse yourself in Rajasthan's divine heritage. Let our local guides curate your spiritual journey.
+          </p>
 
-          <motion.div
-            variants={{ hidden: { scale: 0.95 }, visible: { scale: 1 } }}
-            whileHover={{ scale: 1.05 }}
-            className="inline-block"
-          >
+          <div className="flex flex-col sm:flex-row gap-4">
             <Button
               asChild
-              className="bg-transparent hover:bg-[#7f6d54]/20 text-[#e6ded4] border-2 border-[#e6ded4] px-8 py-6 rounded-xl font-medium text-lg backdrop-blur-sm hover:shadow-lg transition-all"
+              variant="custom"
+              size="custom"
+              className="border border-gold text-gold hover:bg-gold hover:text-white rounded-xl px-6 h-12 flex items-center justify-center font-cinzel text-xs font-bold tracking-wider transition-all duration-300 cursor-pointer"
             >
               <Link href="/explore" className="flex items-center gap-2">
-                <MapPin className="h-5 w-5" />
-                Discover Attractions
+                <MapPin className="h-4 w-4" /> Discover Attractions
               </Link>
             </Button>
-          </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Right Column: Framed Cinematic Video */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="lg:col-span-7"
+        >
+          <div className="bg-white/80 p-4 sm:p-5 rounded-[2rem] border border-alabaster shadow-md relative overflow-hidden group">
+            {/* Aspect Ratio Video Container */}
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-[1.5rem] overflow-hidden shadow-inner bg-charcoal">
+              <video
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster="/explore-poster.jpg"
+              >
+                <source src="/videos/udaipur-explore.mp4" type="video/mp4" />
+              </video>
+
+              {/* Elegant Overlay Layer */}
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent pointer-events-none" />
+
+              {/* Floating Curated Guide Badge */}
+              <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-xl border border-alabaster flex items-center gap-2 shadow-sm">
+                <Compass className="h-4 w-4 text-gold" />
+                <span className="text-xs font-cinzel font-semibold text-charcoal tracking-wide">
+                  Curated local guide
+                </span>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <div className="animate-bounce w-8 h-14 rounded-3xl border-2 border-[#e6ded4] flex justify-center">
-          <div className="w-1 h-3 bg-[#e6ded4] rounded-full mt-2" />
-        </div>
-      </div>
-    </motion.section>
+    </section>
   );
 }
-
-export default Explore;

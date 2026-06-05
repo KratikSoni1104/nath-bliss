@@ -1,17 +1,12 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Calendar, Users, Building2, MapPin } from "lucide-react";
+import { Calendar as CalendarIcon, Users, Building2, MapPin, MessageCircle, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { phoneNumber } from "@/utils/data";
+import { Card } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -19,6 +14,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 import {
   Carousel,
   CarouselContent,
@@ -29,31 +32,32 @@ import {
 import Explore from "@/components/Explore";
 import Intro from "@/components/Intro";
 import HeroSection from "@/components/Hero";
+import FAQ from "@/components/FAQ";
 
 const hotels = [
   {
-    name: "Sudarshan Hotel",
+    name: "Shreeji Dhaam",
+    tier: "Nath Bliss Essentials",
+    idealFor: "Budget family stays",
     description:
-      "A boutique experience combining modern comfort with traditional hospitality, perfect for both business and leisure.",
-    image:
-      // "https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "/images/sudarshan-hotel.jpeg",
+      "Your sanctuary of peace and comfort on a budget, offering simple, clean, and reliable rooms with personalized care.",
+    image: "/images/shreejee-dham.jpeg",
+  },
+  {
+    name: "Sudarshan Hotel",
+    tier: "Nath Bliss Ascent",
+    idealFor: "Comfort-focused premium stays",
+    description:
+      "A heritage comfort experience combining upgraded interiors, dedicated local support, and elegant amenities.",
+    image: "/images/sudarshan-hotel.jpeg",
   },
   {
     name: "Sudarshan INN",
+    tier: "Nath Bliss Signature",
+    idealFor: "Elite boutique luxury stays",
     description:
-      "Experience luxury at its finest with our signature property featuring panoramic city views and world-class amenities.",
+      "Experience premium luxury right at Chaupati Chowk, featuring modern lift access and a 1-minute walk to the temple gates.",
     image: "/images/sudarshan-inn-hotel.jpeg",
-    // image:
-    //   "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  },
-  {
-    name: "Shreeji Dhaam",
-    description:
-      "Your sanctuary of peace and luxury in budget, offering an unforgettable stay with personalized service and elegant accommodations.",
-    image:
-      // "https://images.pexels.com/photos/2869215/pexels-photo-2869215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "/images/shreejee-dham.jpeg",
   },
 ];
 
@@ -116,71 +120,187 @@ const roomTypes = [
 ];
 
 export default function HomePage() {
+  const [checkIn, setCheckIn] = useState<Date | undefined>(undefined);
+  const [checkOut, setCheckOut] = useState<Date | undefined>(undefined);
+  const [guests, setGuests] = useState("2 Adults");
+  const [roomNeed, setRoomNeed] = useState("Family Room");
+
+  const bookingMessage = useMemo(() => {
+    const formattedCheckIn = checkIn ? `Check-in: ${format(checkIn, "yyyy-MM-dd")}.` : "";
+    const formattedCheckOut = checkOut ? `Check-out: ${format(checkOut, "yyyy-MM-dd")}.` : "";
+    return `Hi Nath Bliss, I want a stay in Nathdwara.${formattedCheckIn ? ` ${formattedCheckIn}` : ""}${formattedCheckOut ? ` ${formattedCheckOut}` : ""} Guests: ${guests}. Need: ${roomNeed}. Please share best rooms and today’s direct booking price.`;
+  }, [checkIn, checkOut, guests, roomNeed]);
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Quick Booking Form */}
-      {/* <motion.section
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="container mx-auto -mt-16 px-4 relative z-10"
+      {/* Quick Booking Form / Direct Booking Assistant Section */}
+      <section
+        id="booking-assistant"
+        className="py-12 px-4 sm:px-6 bg-sand border-b border-alabaster scroll-mt-20"
       >
-        <Card className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Check-in Date</label>
-              <div className="flex items-center space-x-2">
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-                <Input type="date" className="flex-1" />
-              </div>
+        <Card className="p-6 bg-white/95 border-alabaster shadow-lg rounded-3xl max-w-5xl mx-auto text-charcoal">
+          <div className="mb-6">
+            <h3 className="text-sm font-sans font-bold text-gold tracking-widest uppercase mb-1">
+              Direct Booking Assistant
+            </h3>
+            <p className="text-xs text-charcoal/70 font-sans">
+              Choose your dates and room details to get a custom recommendation on WhatsApp
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+            {/* Check-in Date */}
+            <div className="space-y-2 flex flex-col">
+              <label className="text-xs font-semibold text-charcoal/80 flex items-center gap-1.5">
+                <CalendarIcon className="h-3.5 w-3.5 text-gold" /> Check-in
+              </label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full border-alabaster focus:ring-gold h-11 bg-white text-charcoal justify-start text-left font-normal rounded-xl px-3 hover:!bg-sand hover:!text-charcoal transition-colors",
+                      !checkIn && "text-stone-400 hover:!text-charcoal/70"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4 text-gold shrink-0" />
+                    {checkIn ? format(checkIn, "PPP") : <span>Pick date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0 border-alabaster bg-white z-50 text-stone-950" align="start">
+                  <div className="bg-white text-stone-950 rounded-md">
+                    <Calendar
+                      mode="single"
+                      selected={checkIn}
+                      onSelect={(date) => {
+                        setCheckIn(date);
+                        // If check-out is selected and is before or equal to the new check-in date, reset check-out
+                        if (date && checkOut && checkOut <= date) {
+                          setCheckOut(undefined);
+                        }
+                      }}
+                      disabled={(date) => {
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        return date < today;
+                      }}
+                      initialFocus
+                      className="bg-white text-stone-950"
+                    />
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Check-out Date</label>
-              <div className="flex items-center space-x-2">
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-                <Input type="date" className="flex-1" />
-              </div>
+            
+            {/* Check-out Date */}
+            <div className="space-y-2 flex flex-col">
+              <label className="text-xs font-semibold text-charcoal/80 flex items-center gap-1.5">
+                <CalendarIcon className="h-3.5 w-3.5 text-gold" /> Check-out
+              </label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full border-alabaster focus:ring-gold h-11 bg-white text-charcoal justify-start text-left font-normal rounded-xl px-3 hover:!bg-sand hover:!text-charcoal transition-colors",
+                      !checkOut && "text-stone-400 hover:!text-charcoal/70"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4 text-gold shrink-0" />
+                    {checkOut ? format(checkOut, "PPP") : <span>Pick date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0 border-alabaster bg-white z-50 text-stone-950" align="start">
+                  <div className="bg-white text-stone-950 rounded-md">
+                    <Calendar
+                      mode="single"
+                      selected={checkOut}
+                      onSelect={setCheckOut}
+                      disabled={(date) => {
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        // Checkout must be at least the day after check-in, or today if check-in is not selected yet
+                        const minDate = checkIn ? new Date(checkIn.getTime() + 24 * 60 * 60 * 1000) : today;
+                        minDate.setHours(0, 0, 0, 0);
+                        return date < minDate;
+                      }}
+                      initialFocus
+                      className="bg-white text-stone-950"
+                    />
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
+            
+            {/* Guests Selection */}
             <div className="space-y-2">
-              <label className="text-sm font-medium">Guests</label>
-              <div className="flex items-center space-x-2">
-                <Users className="h-4 w-4 text-muted-foreground" />
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select guests" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {[1, 2, 3, 4].map((num) => (
-                      <SelectItem key={num} value={num.toString()}>
-                        {num} {num === 1 ? "Guest" : "Guests"}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              <label className="text-xs font-semibold text-charcoal/80 flex items-center gap-1.5">
+                <Users className="h-3.5 w-3.5 text-gold" /> Guests
+              </label>
+              <Select value={guests} onValueChange={setGuests}>
+                <SelectTrigger className="border-alabaster focus:ring-gold h-11 bg-white text-charcoal font-medium rounded-xl">
+                  <SelectValue placeholder="Select guests" />
+                </SelectTrigger>
+                <SelectContent className="border-alabaster bg-white text-stone-950">
+                  <SelectItem value="2 Adults" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">2 Adults</SelectItem>
+                  <SelectItem value="2 Adults + 1 Child" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">2 Adults + 1 Child</SelectItem>
+                  <SelectItem value="Family 4+" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Family 4+</SelectItem>
+                  <SelectItem value="Group / Event" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Group / Event</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-            <Button size="lg" asChild className="self-end">
-              <Link href="/hotels">Search Rooms</Link>
-            </Button>
+            
+            {/* Room Need Selection */}
+            <div className="space-y-2">
+              <label className="text-xs font-semibold text-charcoal/80 flex items-center gap-1.5">
+                <Building2 className="h-3.5 w-3.5 text-gold" /> Room Need
+              </label>
+              <Select value={roomNeed} onValueChange={setRoomNeed}>
+                <SelectTrigger className="border-alabaster focus:ring-gold h-11 bg-white text-charcoal font-medium rounded-xl">
+                  <SelectValue placeholder="Select room need" />
+                </SelectTrigger>
+                <SelectContent className="border-alabaster bg-white text-stone-950">
+                  <SelectItem value="Family Room" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Family Room</SelectItem>
+                  <SelectItem value="Budget Room" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Budget Room</SelectItem>
+                  <SelectItem value="Premium Room" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Premium Room</SelectItem>
+                  <SelectItem value="Hall + Rooms" className="text-stone-950 focus:text-stone-950 hover:bg-sand focus:bg-sand cursor-pointer">Hall + Rooms</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          
+          <div className="mt-6 pt-4 border-t border-alabaster flex flex-col sm:flex-row gap-4 items-center justify-between">
+            <p className="text-xs text-gold font-medium text-center sm:text-left">
+              ★ Direct support · Instant confirmation · Family-first services
+            </p>
+            <div className="flex gap-2 w-full sm:w-auto">
+              <Button
+                asChild
+                className="flex-1 sm:flex-none bg-green-600 hover:bg-green-700 text-white font-medium px-8 h-12 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:scale-[1.02] hover:shadow-lg cursor-pointer"
+              >
+                <a
+                  href={`https://wa.me/${phoneNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(bookingMessage)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="h-4 w-4" /> Get best room on WhatsApp
+                </a>
+              </Button>
+            </div>
           </div>
         </Card>
-      </motion.section> */}
+      </section>
 
       {/* Intro Section */}
       <Intro />
 
       {/* Personalization Service Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative py-16 px-4 sm:px-6 bg-white" // Changed to white background
-      >
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
             {/* Text Content */}
             <div className="lg:w-1/2 space-y-8 px-4">
               <motion.div
@@ -190,29 +310,29 @@ export default function HomePage() {
                 transition={{ duration: 0.8 }}
                 className="space-y-6"
               >
-                <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
-                  <span className="block text-lg font-sans font-semibold text-[#7f6d54] tracking-widest mb-4">
+                <h2 className="text-3xl md:text-4xl font-medium text-charcoal font-playfair">
+                  <span className="block text-base sm:text-lg font-sans font-semibold text-gold tracking-widest mb-4 uppercase">
                     Included in Every Stay 
                   </span>
                   Hyper-Personalized Service
                 </h2>
 
-                <p className="text-lg text-[#4a453d] font-light leading-relaxed">
+                <p className="text-lg text-charcoal/80 font-sans font-light leading-relaxed">
                   While others treat customization as luxury,
                   <br className="hidden sm:block" /> we consider it fundamental.
                 </p>
 
-                <div className="space-y-1">
-                  <p className="text-xl font-medium text-[#6b5d48]">
+                <div className="space-y-2">
+                  <p className="text-xl font-sans font-semibold text-gold">
                     Your Needs, Our Standard
                   </p>
-                  <div className="h-[2px] bg-[#e6ded4] w-24 mt-2" />
+                  <div className="h-[2px] bg-alabaster w-24 mt-2" />
                 </div>
               </motion.div>
             </div>
 
             {/* Features Grid */}
-            <div className="lg:w-1/2 space-y-6">
+            <div className="lg:w-1/2 space-y-6 w-full">
               <div className="grid gap-4 sm:gap-5">
                 {features.map((item, index) => (
                   <motion.div
@@ -221,15 +341,15 @@ export default function HomePage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 + 0.3 }}
-                    className="p-5 bg-[#faf6f0] rounded-xl border border-[#e6ded4] shadow-sm hover:shadow-md transition-shadow"
+                    className="p-5 bg-sand rounded-2xl border border-alabaster shadow-sm hover:shadow-md hover:border-gold/30 hover:scale-[1.01] transition-all duration-300"
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-6 h-6 rounded-full bg-[#ede8e0] flex items-center justify-center">
-                          <div className="w-2 h-2 rounded-full bg-[#7f6d54]" />
+                        <div className="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full bg-gold" />
                         </div>
                       </div>
-                      <p className="text-[#4a453d] leading-relaxed font-light font-sans">
+                      <p className="text-charcoal/80 leading-relaxed font-light font-sans text-sm sm:text-base">
                         {item}
                       </p>
                     </div>
@@ -243,16 +363,18 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 className="text-center space-y-6 mt-8"
               >
-                <p className="text-lg text-[#6b5d48] font-medium">
+                <p className="text-lg text-gold font-sans font-semibold">
                   Experience personalized hospitality
                   <br />
-                  <span className="text-[#4a453d] font-light">
+                  <span className="text-charcoal/70 font-light text-base sm:text-lg">
                     starting at just ₹849/night
                   </span>
                 </p>
                 <Button
                   asChild
-                  className="bg-[#6b5d48] hover:bg-[#5d5040] text-white px-8 py-6 rounded-xl font-medium text-lg transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl"
+                  variant="custom"
+                  size="custom"
+                  className="btn-primary"
                 >
                   <Link href="/hotels">Customize My Stay</Link>
                 </Button>
@@ -260,15 +382,10 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Services Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative py-16 px-4 sm:px-6 bg-[#faf6f0]" // Alternating background
-      >
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-sand">
         <div className="max-w-7xl mx-auto space-y-16">
           {/* Section Header */}
           <motion.div
@@ -277,13 +394,13 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center space-y-4"
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
-              <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+            <h2 className="text-3xl md:text-4xl font-medium text-charcoal font-playfair">
+              <span className="block text-base sm:text-lg font-sans font-semibold text-gold tracking-widest mb-3 uppercase">
                 Curated Experiences
               </span>
               Our Services
             </h2>
-            <p className="text-lg text-[#4a453d] font-light max-w-2xl mx-auto font-sans">
+            <p className="text-lg text-charcoal/80 font-sans font-light max-w-2xl mx-auto">
               Experience comfort and luxury tailored to your needs
             </p>
           </motion.div>
@@ -297,41 +414,33 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className="bg-white/70 group backdrop-blur-sm rounded-2xl border border-[#e6ded4] overflow-hidden hover:shadow-md transition-shadow group flex flex-col"
+                className="card-heritage bg-white/95 flex flex-col h-full hover:scale-[1.02]"
               >
                 <div className="aspect-[4/3] sm:aspect-video relative overflow-hidden">
                   <img
                     src={room.image}
                     alt={room.title}
                     className="object-cover group-hover:scale-110 transition-all duration-300 w-full h-full transform origin-center"
-                    // whileHover={{
-                    //   scale: 1.1,
-                    //   transition: { duration: 0.4, ease: "easeOut" },
-                    // }}
-                    // style={{ transition: "transform 0.4s ease-out" }}
-                    // initial={{ scale: 1 }}
-                    // animate={{ scale: 1 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/25" />
                 </div>
                 <div className="p-4 sm:p-6 space-y-4 flex flex-col flex-grow">
-                  <div className="space-y-4">
-                    <h2 className="text-lg sm:text-xl font-cinzel font-semibold text-[#2a2418]">
+                  <div className="space-y-3 flex-grow">
+                    <h3 className="text-lg sm:text-xl font-sans font-bold text-charcoal">
                       {room.title}
-                    </h2>
-                    <p className="text-[#7f6d54] font-sans font-medium">
+                    </h3>
+                    <p className="text-gold font-sans font-semibold">
                       {room.price}
                     </p>
-                    <p
-                      className="text-[#4a453d] font-sans font-light text-sm sm:text-base leading-relaxed min-h-[4rem]"
-                      style={{ flexGrow: 1 }}
-                    >
+                    <p className="text-charcoal/80 font-sans font-light text-sm sm:text-base leading-relaxed">
                       {room.description}
                     </p>
                   </div>
                   <Button
                     asChild
-                    className="w-full cursor-pointer bg-transparent hover:bg-[#7f6d54]/10 text-[#7f6d54] border-2 border-[#7f6d54] px-6 py-4 rounded-xl font-medium text-base transition-all duration-300 hover:scale-[1.02] shadow-none mt-auto"
+                    variant="custom"
+                    size="custom"
+                    className="w-full mt-4 btn-secondary"
                   >
                     <Link href="/hotels">Book Now</Link>
                   </Button>
@@ -347,7 +456,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1 }}
               className="text-center space-y-4"
             >
-              <h3 className="text-2xl font-medium text-[#2a2418] font-playfair">
+              <h3 className="text-2xl font-medium text-charcoal font-playfair mb-6">
                 Spiritual & Travel Services
               </h3>
               <div className="grid md:grid-cols-3 gap-5">
@@ -373,11 +482,11 @@ export default function HomePage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Card className="p-6 bg-white/70 backdrop-blur-sm border-[#e6ded4] hover:shadow-md transition-shadow h-full">
-                      <h4 className="text-lg font-cinzel font-semibold text-[#7f6d54] mb-3">
+                    <Card className="card-heritage p-6 bg-white/95 h-full hover:scale-[1.02] flex flex-col justify-center text-center">
+                      <h4 className="text-lg font-sans font-bold text-gold mb-3">
                         {service.title}
                       </h4>
-                      <p className="text-[#4a453d] font-light font-sans leading-relaxed">
+                      <p className="text-charcoal/80 font-light font-sans leading-relaxed text-sm sm:text-base">
                         {service.description}
                       </p>
                     </Card>
@@ -393,25 +502,20 @@ export default function HomePage() {
             >
               <Button
                 asChild
-                className="bg-[#6b5d48] hover:bg-[#5d5040] text-white px-8 py-6 rounded-xl font-medium text-lg transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl font-sans"
+                variant="custom"
+                size="custom"
+                className="btn-primary"
               >
                 <Link href="/services">View All Services</Link>
               </Button>
             </motion.div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Featured Hotels */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative py-16 px-4 sm:px-6 !bg-white"
-      >
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          {" "}
-          {/* Consistent max width with intro */}
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -419,11 +523,11 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center space-y-4 mb-14"
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
-              <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+            <h2 className="text-3xl md:text-4xl font-medium text-charcoal font-playfair">
+              <span className="block text-base sm:text-lg font-sans font-semibold text-gold tracking-widest mb-3 uppercase">
                 Exclusive Collection
               </span>
-              Our Luxury Properties
+                Our Luxury Properties
             </h2>
           </motion.div>
           {/* Hotels Grid */}
@@ -435,37 +539,43 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
+                className="h-full flex flex-col"
               >
-                <Card className="h-full overflow-hidden border-[#e6ded4] hover:shadow-lg transition-shadow group bg-white">
+                <Card className="card-heritage h-full hover:scale-[1.02] bg-white/95 flex flex-col justify-between">
                   {/* Image Container with Enhanced Hover */}
                   <div className="aspect-video relative overflow-hidden">
                     <motion.img
                       src={hotel.image}
                       alt={hotel.name}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-all duration-300  transform origin-center"
-                      // whileHover={{
-                      //   scale: 1.05,
-                      //   transition: { duration: 0.4, ease: "easeOut" },
-                      // }}
+                      className="object-cover w-full h-full group-hover:scale-105 transition-all duration-300 transform origin-center"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/20" />
                   </div>
 
                   {/* Content */}
-                  <div className="p-6 space-y-5">
-                    <div>
-                      <h3 className="text-xl font-semibold text-[#2a2418] font-playfair mb-2">
+                  <div className="p-6 flex flex-col flex-grow justify-between space-y-5">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-[9px] font-cinzel font-bold text-gold tracking-widest bg-sand/60 px-2.5 py-1 rounded-full uppercase border border-alabaster">
+                          {hotel.tier}
+                        </span>
+                        <span className="text-[10px] text-charcoal/60 font-sans italic font-light">
+                          {hotel.idealFor}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-sans font-bold text-charcoal pt-1">
                         {hotel.name}
                       </h3>
-                      <p className="text-[#4a453d] font-light font-sans leading-relaxed">
+                      <p className="text-charcoal/80 font-light font-sans leading-relaxed text-sm sm:text-base">
                         {hotel.description}
                       </p>
                     </div>
 
-                    {/* Updated Button Style */}
                     <Button
                       asChild
-                      className="w-full bg-transparent hover:bg-[#6b5d48]/10 text-[#6b5d48] border-2 border-[#6b5d48] px-8 py-5 rounded-xl font-medium text-base transition-all duration-300 hover:scale-[1.02] shadow-none font-sans"
+                      variant="custom"
+                      size="custom"
+                      className="w-full btn-secondary"
                     >
                       <Link
                         href={`/hotels?property=${encodeURIComponent(
@@ -481,23 +591,119 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Testimonials */}
-      {/* <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative py-16 px-4 sm:px-6 bg-[#faf6f0]"
-      >
+      {/* Pre-Arrival Bliss Form Section */}
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-sand border-t border-alabaster">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left Column: Visual Checklist */}
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-white rounded-3xl p-6 sm:p-8 border border-alabaster shadow-xl max-w-md mx-auto"
+              >
+                <div className="flex items-center justify-between pb-6 border-b border-alabaster">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-cinzel font-bold text-gold tracking-widest block uppercase">
+                      Guest Preferences
+                    </span>
+                    <h3 className="text-lg font-playfair font-bold text-charcoal">
+                      Pre-Arrival Preference Form
+                    </h3>
+                  </div>
+                  <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                </div>
+
+                <div className="mt-6 space-y-4">
+                  {[
+                    { title: "Elderly & Wheelchair Support", desc: "Request low floors, direct temple wheelchair coordination." },
+                    { title: "Darshan Schedule Coordination", desc: "Aligning arrival/checkout with critical temple timings." },
+                    { title: "Extra Mattress / Bedding", desc: "Arranged and styled in your room prior to check-in." },
+                    { title: "Dedicated Transit Arrangements", desc: "Clean private cabs pre-booked from Udaipur airport/station." },
+                    { title: "Dietary & Meal Preferences", desc: "100% pure vegetarian kitchen guidance and meal arrangements." }
+                  ].map((item, idx) => (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="flex items-start gap-4 p-3.5 rounded-2xl bg-sand/30 border border-alabaster/40"
+                    >
+                      <div className="h-5 w-5 rounded-full bg-emerald-50 flex items-center justify-center border border-emerald-200 text-emerald-600 shrink-0 mt-0.5">
+                        <CheckCircle2 className="h-3 w-3" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <p className="text-xs font-cinzel font-bold text-charcoal tracking-wide">
+                          {item.title}
+                        </p>
+                        <p className="text-[11px] font-sans font-light text-charcoal/80 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+                
+                <p className="text-[10px] font-sans text-center text-charcoal/50 mt-6 italic">
+                  Sent instantly via WhatsApp after booking confirmation
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Right Column: Copywriting & Pitch */}
+            <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
+              <div className="space-y-2">
+                <span className="text-xs sm:text-sm font-cinzel font-semibold text-gold tracking-widest block uppercase">
+                  Personalization Refined
+                </span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-charcoal font-playfair tracking-wide leading-tight">
+                  We prepare for your comfort before you step in
+                </h2>
+              </div>
+              
+              <p className="text-charcoal/80 font-sans font-light text-sm sm:text-base md:text-lg leading-relaxed">
+                A pilgrimage is a sacred journey. At NathBliss, we understand that families shouldn't worry about room details, physical steps for elderly parents, or temple timings.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-cinzel font-bold text-charcoal tracking-wider">
+                    Zero Booking Anxiety
+                  </h4>
+                  <p className="text-xs font-sans font-light text-charcoal/70 leading-relaxed">
+                    Instead of a generic stay, select your exact family and physical preferences directly with our host support.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-sm font-cinzel font-bold text-charcoal tracking-wider">
+                    100% Prepared Rooms
+                  </h4>
+                  <p className="text-xs font-sans font-light text-charcoal/70 leading-relaxed">
+                    Extra beds are made, wheelchair transits are coordinated, and temple updates are ready before you arrive.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials (Hidden for now until real reviews are loaded) */}
+      {/* 
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-sand">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-center space-y-4 mb-14"
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-[#2a2418] font-playfair">
-              <span className="block text-lg font-cinzel font-semibold text-[#7f6d54] tracking-widest mb-3">
+            <h2 className="text-3xl md:text-4xl font-medium text-charcoal font-playfair">
+              <span className="block text-base sm:text-lg font-sans font-semibold text-gold tracking-widest mb-3 uppercase">
                 Voices of Experience
               </span>
               What Our Guests Say
@@ -521,11 +727,11 @@ export default function HomePage() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                   >
-                    <Card className="border-[#e6ded4] bg-white/70 backdrop-blur-sm h-full overflow-hidden group hover:shadow-lg transition-shadow">
+                    <Card className="card-heritage bg-white/95 h-full hover:scale-[1.01]">
                       <div className="p-8 space-y-6">
                         <div className="relative">
-                          <div className="absolute -left-4 -top-4 w-16 h-16 bg-[#7f6d54] opacity-10 rounded-full" />
-                          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#e6ded4]">
+                          <div className="absolute -left-4 -top-4 w-16 h-16 bg-gold opacity-10 rounded-full" />
+                          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-alabaster">
                             <img
                               src={testimonial.image}
                               alt={testimonial.name}
@@ -534,15 +740,15 @@ export default function HomePage() {
                           </div>
                         </div>
 
-                        <blockquote className="text-[#4a453d] font-light font-sans leading-relaxed italic text-lg">
+                        <blockquote className="text-charcoal/80 font-light font-sans leading-relaxed italic text-lg">
                           "{testimonial.content}"
                         </blockquote>
 
                         <div className="space-y-1">
-                          <h3 className="font-cinzel font-semibold text-[#7f6d54]">
+                          <h3 className="font-sans font-bold text-gold">
                             {testimonial.name}
                           </h3>
-                          <p className="text-sm text-[#4a453d]/80 font-sans">
+                          <p className="text-sm text-charcoal/60 font-sans">
                             {testimonial.role}
                           </p>
                         </div>
@@ -553,25 +759,23 @@ export default function HomePage() {
               ))}
             </CarouselContent>
 
-
             <div className="hidden md:flex justify-center gap-4 mt-8">
-              <CarouselPrevious className="static translate-x-0 translate-y-0 border-[#e6ded4] text-[#7f6d54] hover:bg-[#faf6f0] hover:text-[#5d5040]" />
-              <CarouselNext className="static translate-x-0 translate-y-0 border-[#e6ded4] text-[#7f6d54] hover:bg-[#faf6f0] hover:text-[#5d5040]" />
+              <CarouselPrevious className="static translate-x-0 translate-y-0 border-alabaster text-gold hover:bg-sand hover:text-gold/80" />
+              <CarouselNext className="static translate-x-0 translate-y-0 border-alabaster text-gold hover:bg-sand hover:text-gold/80" />
             </div>
           </Carousel>
         </div>
-      </motion.section> */}
+      </section>
+      */}
 
       {/* Teaser Section for Explore Nathdwara */}
       <Explore />
 
+      {/* Frequently Asked Questions */}
+      <FAQ />
+
       {/* Features */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative py-16 px-4 sm:px-6 bg-white"
-      >
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
@@ -586,7 +790,7 @@ export default function HomePage() {
                 text: "Dedicated staff available 24/7 to ensure your comfort",
               },
               {
-                icon: Calendar,
+                icon: CalendarIcon,
                 title: "Easy Booking",
                 text: "Simple and secure reservation process at your fingertips",
               },
@@ -597,16 +801,16 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className="group p-8 bg-[#faf6f0] rounded-2xl border border-[#e6ded4] hover:shadow-lg transition-shadow"
+                className="card-heritage group p-8 bg-sand hover:scale-[1.02]"
               >
                 <div className="text-center space-y-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#7f6d54] text-[#e6ded4] mb-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold text-white mb-4">
                     <feature.icon className="w-8 h-8" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-2xl font-medium text-[#2a2418] font-playfair">
+                  <h3 className="text-2xl font-sans font-bold text-charcoal">
                     {feature.title}
                   </h3>
-                  <p className="text-[#4a453d] font-light font-sans leading-relaxed">
+                  <p className="text-charcoal/80 font-light font-sans leading-relaxed text-sm sm:text-base">
                     {feature.text}
                   </p>
                 </div>
@@ -614,7 +818,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
     </div>
   );
 }

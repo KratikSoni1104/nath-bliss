@@ -9,7 +9,7 @@ const hotels = {
   },
   inn: {
     name: "Sudarshan INN",
-    location: "Historic District",
+    location: "Near Shrinathji Temple",
   },
   shree: {
     name: "Shreeji Dhaam",
@@ -84,19 +84,19 @@ export default function HotelRooms({ params }: Props) {
   return (
     <>
       {/* Hotel Schema */}
-      {/* <script
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(hotelSchema),
         }}
-      /> */}
+      />
       {/* Breadcrumb Schema */}
-      {/* <script
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
-      /> */}
+      />
       <HotelDetailPage />
     </>
   );

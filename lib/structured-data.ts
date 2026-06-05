@@ -54,8 +54,8 @@ export const hotelsData = {
     address: "Downtown Business District, Nathdwara, Rajasthan 313301, India",
     priceRange: "₹₹",
     starRating: 4,
-    checkinTime: "14:00",
-    checkoutTime: "11:00",
+    checkinTime: "10:00",
+    checkoutTime: "09:00",
     image: "https://www.nathbliss.in/images/sudarshan-hotel.jpeg",
     rooms: [
       {
@@ -88,12 +88,12 @@ export const hotelsData = {
     name: "Sudarshan INN",
     description:
       "Experience luxury at its finest with our signature property featuring panoramic city views and world-class amenities in Nathdwara.",
-    location: "Historic District",
-    address: "Historic District, Nathdwara, Rajasthan 313301, India",
+    location: "Near Shrinathji Temple",
+    address: "Near Shrinathji Temple, Nathdwara, Rajasthan 313301, India",
     priceRange: "₹₹₹",
     starRating: 4.5,
-    checkinTime: "14:00",
-    checkoutTime: "11:00",
+    checkinTime: "10:00",
+    checkoutTime: "09:00",
     image: "https://www.nathbliss.in/images/sudarshan-inn-hotel.jpeg",
     rooms: [
       {
@@ -130,8 +130,8 @@ export const hotelsData = {
     address: "Riverside Area, Nathdwara, Rajasthan 313301, India",
     priceRange: "₹",
     starRating: 3.5,
-    checkinTime: "14:00",
-    checkoutTime: "11:00",
+    checkinTime: "10:00",
+    checkoutTime: "09:00",
     image: "https://www.nathbliss.in/images/shreejee-dham.jpeg",
     rooms: [
       {
@@ -170,7 +170,7 @@ export function getHotelSchema(hotelId: string) {
     image: hotel.image,
     url: `https://www.nathbliss.in/hotels/${hotelId}`,
     telephone: "+91-9352385552",
-    email: "info@nathbliss.in",
+    email: "shreenathbliss@gmail.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: hotel.address,

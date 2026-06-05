@@ -582,9 +582,9 @@ Each hotel has complete structured data:
 
 | Hotel           | Star Rating | Price Range | Rooms        | Check-in | Check-out |
 | --------------- | ----------- | ----------- | ------------ | -------- | --------- |
-| Sudarshan Hotel | 4.0 ⭐      | ₹₹          | 3 room types | 14:00    | 11:00     |
-| Sudarshan INN   | 4.5 ⭐      | ₹₹₹         | 3 room types | 14:00    | 11:00     |
-| Shreeji Dhaam   | 3.5 ⭐      | ₹           | 1 room type  | 14:00    | 11:00     |
+| Sudarshan Hotel | 4.0 ⭐      | ₹₹          | 3 room types | 10:00    | 09:00     |
+| Sudarshan INN   | 4.5 ⭐      | ₹₹₹         | 3 room types | 10:00    | 09:00     |
+| Shreeji Dhaam   | 3.5 ⭐      | ₹           | 1 room type  | 10:00    | 09:00     |
 
 **Room Pricing** (included in offers):
 

@@ -77,8 +77,27 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-sand text-charcoal;
   }
+}
+
+@layer utilities {
+  .btn-primary {
+    @apply inline-flex items-center justify-center h-12 sm:h-14 px-6 sm:px-8 rounded-xl font-sans font-medium text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] shadow-md hover:shadow-lg bg-terracotta text-white hover:bg-terracotta-hover focus:ring-2 focus:ring-gold focus:outline-none;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center h-12 sm:h-14 px-6 sm:px-8 rounded-xl font-sans font-medium text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] bg-transparent text-gold border-2 border-gold hover:bg-gold/10 shadow-none focus:ring-2 focus:ring-gold focus:outline-none;
+  }
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center h-12 sm:h-14 px-6 sm:px-8 rounded-xl font-sans font-medium text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] bg-transparent text-[#e6ded4] border-2 border-[#e6ded4] hover:bg-[#e6ded4]/10 backdrop-blur-sm shadow-none focus:ring-2 focus:ring-[#e6ded4] focus:outline-none;
+  }
+  .card-heritage {
+    @apply bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-alabaster overflow-hidden shadow-sm hover:shadow-xl hover:border-gold/50 transition-all duration-300;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 

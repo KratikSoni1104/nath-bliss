@@ -103,12 +103,12 @@ export default function HeroSection() {
               className="space-y-4 sm:space-y-6"
             >
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-cinzel font-semibold text-[#f8f1e9]">
-                <span className="block text-base sm:text-lg lg:text-xl font-inter font-normal text-[#7f6d54] tracking-widest mb-2 sm:mb-4">
+                <span className="block text-base sm:text-lg lg:text-xl font-sans font-normal text-gold tracking-widest mb-2 sm:mb-4">
                   {heroSlides[currentSlide].subheading}
                 </span>
                 {heroSlides[currentSlide].heading}
               </h1>
-              <p className="text-base sm:text-xl lg:text-2xl font-playfair text-[#e6ded4] max-w-xl sm:max-w-2xl mx-auto">
+              <p className="text-base sm:text-xl lg:text-2xl font-serif text-alabaster max-w-xl sm:max-w-2xl mx-auto font-light leading-relaxed">
                 {heroSlides[currentSlide].description}
               </p>
             </motion.div>
@@ -121,7 +121,9 @@ export default function HeroSection() {
           >
             <Button
               asChild
-              className="bg-transparent hover:bg-[#7f6d54]/20 text-[#e6ded4] border-2 border-[#e6ded4] px-8 sm:px-12 py-5 sm:py-6 rounded-xl text-base sm:text-lg font-inter font-medium backdrop-blur-sm hover:scale-105 transition-all focus:ring-2 focus:ring-[#7f6d54]"
+              variant="custom"
+              size="custom"
+              className="btn-outline-white hover:scale-105"
               aria-label="Explore NathBliss Hotels"
             >
               <Link href="/hotels">Explore Our Properties</Link>
@@ -134,7 +136,7 @@ export default function HeroSection() {
           <Button
             variant="ghost"
             size="icon"
-            className="bg-[#2a2418]/50 text-[#e6ded4] hover:bg-[#7f6d54]/50"
+            className="bg-charcoal/50 text-alabaster hover:bg-gold/50 rounded-full h-12 w-12 flex items-center justify-center transition-colors"
             onClick={handlePrev}
             aria-label="Previous slide"
           >
@@ -143,7 +145,7 @@ export default function HeroSection() {
           <Button
             variant="ghost"
             size="icon"
-            className="bg-[#2a2418]/50 text-[#e6ded4] hover:bg-[#7f6d54]/50"
+            className="bg-charcoal/50 text-alabaster hover:bg-gold/50 rounded-full h-12 w-12 flex items-center justify-center transition-colors"
             onClick={handleNext}
             aria-label="Next slide"
           >

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { motion } from "framer-motion";
-import { Calendar, Users, ArrowLeft, Check } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Calendar, Users, ArrowLeft, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -29,6 +29,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import { phoneNumber } from "@/utils/data";
 
 const hotels = {
   sudarshan: {
@@ -69,7 +70,7 @@ const hotels = {
   },
   inn: {
     name: "Sudarshan INN",
-    location: "Historic District",
+    location: "Near Shrinathji Temple",
     description:
       "A boutique experience combining modern comfort with traditional hospitality.",
     image:
@@ -136,6 +137,7 @@ export default function HotelRoomsPage() {
   const hotelId = params.id as string;
   const hotel = hotels[hotelId as keyof typeof hotels];
 
+  const [activeImage, setActiveImage] = useState<string | null>(null);
   const [bookingData, setBookingData] = useState({
     checkIn: "",
     checkOut: "",
@@ -148,8 +150,25 @@ export default function HotelRoomsPage() {
     return null;
   }
 
-  const handleBooking = () => {
-    toast.success("Booking confirmed! Check your email for details.");
+  const handleBooking = (roomType: string) => {
+    const formattedCheckIn = bookingData.checkIn ? `Check-in: ${bookingData.checkIn}` : "";
+    const formattedCheckOut = bookingData.checkOut ? `Check-out: ${bookingData.checkOut}` : "";
+    const formattedGuests = bookingData.guests ? `Guests: ${bookingData.guests}` : "";
+    
+    const parts = [
+      `Hi Nath Bliss, I want to book the ${roomType} at ${hotel.name}.`,
+      formattedCheckIn,
+      formattedCheckOut,
+      formattedGuests,
+      "Please share availability and today's direct booking price."
+    ].filter(Boolean);
+    
+    const message = encodeURIComponent(parts.join("\n"));
+    const cleanNumber = phoneNumber.replace(/[^0-9]/g, "");
+    const whatsappUrl = `https://wa.me/${cleanNumber}?text=${message}`;
+    
+    window.open(whatsappUrl, "_blank");
+    toast.success("Redirecting to WhatsApp to complete your booking!");
   };
 
   return (
@@ -198,11 +217,14 @@ export default function HotelRoomsPage() {
               viewport={{ once: true }}
             >
               <Card>
-                <div className="aspect-video">
+                <div
+                  onClick={() => setActiveImage(room.image)}
+                  className="aspect-video cursor-zoom-in overflow-hidden rounded-t-xl group"
+                >
                   <img
                     src={room.image}
                     alt={room.type}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full transform group-hover:scale-102 transition-transform duration-500"
                   />
                 </div>
                 <CardHeader>
@@ -287,7 +309,7 @@ export default function HotelRoomsPage() {
                             </SelectContent>
                           </Select>
                         </div>
-                        <Button className="w-full" onClick={handleBooking}>
+                        <Button className="w-full" onClick={() => handleBooking(room.type)}>
                           Confirm Booking
                         </Button>
                       </div>
@@ -299,6 +321,41 @@ export default function HotelRoomsPage() {
           ))}
         </div>
       </motion.div>
+
+      {/* Room Image Lightbox Modal */}
+      <AnimatePresence>
+        {activeImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveImage(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 cursor-zoom-out"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.4 }}
+              className="relative max-w-5xl max-h-[85vh] overflow-hidden rounded-2xl border border-white/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setActiveImage(null)}
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors"
+                aria-label="Close Lightbox"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <img
+                src={activeImage}
+                alt="Room Sanctuary Close-up View"
+                className="w-full h-full object-contain max-h-[85vh]"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

@@ -20,7 +20,7 @@ export default function Intro() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1.2, ease: "easeOut" }}
-      className="relative py-16 sm:py-20 px-4 sm:px-6 bg-[#faf6f0]"
+      className="relative py-16 sm:py-24 px-4 sm:px-6 bg-sand"
     >
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
         {/* Image Section */}
@@ -29,11 +29,10 @@ export default function Intro() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative aspect-[4/3] sm:aspect-[16/9] rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-lg"
+          className="relative aspect-[4/3] sm:aspect-[16/10] rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-lg border border-alabaster"
         >
           <img
             src="/images/intro-img.jpeg"
-            // src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
             alt="Nath Bliss Hotels"
             className="w-full h-full object-cover transform scale-[1.01]"
           />
@@ -54,9 +53,9 @@ export default function Intro() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={textVariants}
-            className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight text-[#2a2418] font-playfair"
+            className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight text-charcoal font-playfair"
           >
-            <span className="block mb-3 text-base sm:text-lg font-sans font-semibold text-[#7f6d54] tracking-widest">
+            <span className="block mb-3 text-base sm:text-lg font-sans font-semibold text-gold tracking-widest">
               Nath Bliss Hotels
             </span>
             India's First Hyper-Personalized Hotel Chain
@@ -69,16 +68,15 @@ export default function Intro() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={textVariants}
-              className="text-base sm:text-lg text-[#4a453d] leading-relaxed font-light font-sans"
+              className="text-base sm:text-lg text-charcoal/80 leading-relaxed font-light font-sans"
             >
               Starting at just{" "}
-              <span className="inline-block bg-[#ede8e0] text-[#7f6d54] px-2 sm:px-3 py-1 rounded-lg font-medium border border-[#d4ccc0]">
+              <span className="inline-block bg-gold/10 text-gold px-2.5 sm:px-3.5 py-1 rounded-xl font-semibold border border-gold/20">
                 ₹849
               </span>
               , we offer world-class hospitality tailored to you. Whether you're
               visiting Shrinathji for devotion or seeking comfort, every stay is
-              crafted for{" "}
-              <span className="font-medium text-[#7f6d54]">you</span>.
+              crafted for <span className="font-semibold text-gold">you</span>.
             </motion.p>
 
             <motion.p
@@ -87,10 +85,9 @@ export default function Intro() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={textVariants}
-              className="text-[#7f6d54] italic text-base sm:text-lg border-l-4 border-[#d4ccc0] pl-3 sm:pl-4 py-1 sm:py-2"
+              className="text-gold/90 italic text-base sm:text-lg border-l-4 border-gold/40 pl-3 sm:pl-4 py-1.5"
             >
-              We don’t just give you a room — we give you{" "}
-              <span className="font-medium">your</span> room.
+              We don’t just give you a room — we give you <span className="font-semibold">your</span> room.
             </motion.p>
 
             <motion.div
@@ -102,7 +99,9 @@ export default function Intro() {
             >
               <Button
                 asChild
-                className="bg-transparent hover:bg-[#7f6d54]/10 text-[#7f6d54] border-2 border-[#7f6d54] px-6 sm:px-8 py-4 sm:py-5 rounded-xl font-medium text-base sm:text-lg transition-all duration-300 hover:scale-[1.02] shadow-none"
+                variant="custom"
+                size="custom"
+                className="btn-secondary"
               >
                 <Link href="/hotels">
                   <span className="relative z-10">Book Now</span>
