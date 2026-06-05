@@ -181,9 +181,10 @@ export default function ContactPage() {
                     id="message-input"
                     placeholder="What can we help you with?"
                     value={formData.message}
+                    
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
-                    className="min-h-[120px] bg-white border border-alabaster focus:border-gold focus:ring-0 rounded-xl text-sm"
+                    className="min-h-[120px] resize-none bg-white border border-alabaster focus:border-gold focus:ring-0 rounded-xl text-sm"
                   />
                 </div>
 
