@@ -1,6 +1,20 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
+  // If we are on a preview branch, dev subdomain, or local machine, disallow search engine indexing.
+  const isProduction = 
+    process.env.NEXT_PUBLIC_SITE_URL === "https://www.nathbliss.in" || 
+    process.env.VERCEL_ENV === "production";
+
+  if (!isProduction) {
+    return {
+      rules: {
+        userAgent: "*",
+        disallow: "/",
+      },
+    };
+  }
+
   return {
     rules: [
       {
@@ -11,7 +25,7 @@ export default function robots(): MetadataRoute.Robots {
           "/_next/",
           "/admin/",
           "*.json",
-          "/*?*", // Disallow URLs with query parameters to avoid duplicate content
+          "/*?*", // Disallow query parameters to avoid duplicate content indexing
         ],
       },
       {
