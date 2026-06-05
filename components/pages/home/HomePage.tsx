@@ -240,7 +240,7 @@ export default function HomePage() {
                 <Users className="h-3.5 w-3.5 text-gold" /> Guests
               </label>
               <Select value={guests} onValueChange={setGuests}>
-                <SelectTrigger className="border-alabaster focus:ring-gold h-11 bg-white text-stone-955 font-medium rounded-xl">
+                <SelectTrigger className="border-alabaster focus:ring-gold h-11 bg-white text-charcoal font-medium rounded-xl">
                   <SelectValue placeholder="Select guests" />
                 </SelectTrigger>
                 <SelectContent className="border-alabaster bg-white text-stone-950">
@@ -258,7 +258,7 @@ export default function HomePage() {
                 <Building2 className="h-3.5 w-3.5 text-gold" /> Room Need
               </label>
               <Select value={roomNeed} onValueChange={setRoomNeed}>
-                <SelectTrigger className="border-alabaster focus:ring-gold h-11 bg-white text-stone-955 font-medium rounded-xl">
+                <SelectTrigger className="border-alabaster focus:ring-gold h-11 bg-white text-charcoal font-medium rounded-xl">
                   <SelectValue placeholder="Select room need" />
                 </SelectTrigger>
                 <SelectContent className="border-alabaster bg-white text-stone-950">
