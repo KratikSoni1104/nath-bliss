@@ -7,7 +7,7 @@ import { Compass, MapPin } from "lucide-react";
 
 export default function Explore() {
   return (
-    <section className="py-20 sm:py-24 px-4 sm:px-6 md:px-8 bg-sand border-t border-alabaster">
+    <section className="py-20 sm:py-24 px-4 sm:px-6 md:px-8 bg-white border-t border-alabaster">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         {/* Left Column: Story & CTA */}
         <motion.div

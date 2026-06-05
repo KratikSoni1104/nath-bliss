@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Calendar as CalendarIcon, Users, Building2, MapPin, MessageCircle } from "lucide-react";
+import { Calendar as CalendarIcon, Users, Building2, MapPin, MessageCircle, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { phoneNumber } from "@/utils/data";
@@ -36,28 +36,28 @@ import FAQ from "@/components/FAQ";
 
 const hotels = [
   {
-    name: "Sudarshan Hotel",
+    name: "Shreeji Dhaam",
+    tier: "Nath Bliss Essentials",
+    idealFor: "Budget family stays",
     description:
-      "A boutique experience combining modern comfort with traditional hospitality, perfect for both business and leisure.",
-    image:
-      // "https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "/images/sudarshan-hotel.jpeg",
+      "Your sanctuary of peace and comfort on a budget, offering simple, clean, and reliable rooms with personalized care.",
+    image: "/images/shreejee-dham.jpeg",
+  },
+  {
+    name: "Sudarshan Hotel",
+    tier: "Nath Bliss Ascent",
+    idealFor: "Comfort-focused premium stays",
+    description:
+      "A heritage comfort experience combining upgraded interiors, dedicated local support, and elegant amenities.",
+    image: "/images/sudarshan-hotel.jpeg",
   },
   {
     name: "Sudarshan INN",
+    tier: "Nath Bliss Signature",
+    idealFor: "Elite boutique luxury stays",
     description:
-      "Experience luxury at its finest with our signature property featuring panoramic city views and world-class amenities.",
+      "Experience premium luxury right at Chaupati Chowk, featuring modern lift access and a 1-minute walk to the temple gates.",
     image: "/images/sudarshan-inn-hotel.jpeg",
-    // image:
-    //   "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  },
-  {
-    name: "Shreeji Dhaam",
-    description:
-      "Your sanctuary of peace and luxury in budget, offering an unforgettable stay with personalized service and elegant accommodations.",
-    image:
-      // "https://images.pexels.com/photos/2869215/pexels-photo-2869215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "/images/shreejee-dham.jpeg",
   },
 ];
 
@@ -554,8 +554,16 @@ export default function HomePage() {
 
                   {/* Content */}
                   <div className="p-6 flex flex-col flex-grow justify-between space-y-5">
-                    <div className="space-y-2">
-                      <h3 className="text-xl font-sans font-bold text-charcoal">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-[9px] font-cinzel font-bold text-gold tracking-widest bg-sand/60 px-2.5 py-1 rounded-full uppercase border border-alabaster">
+                          {hotel.tier}
+                        </span>
+                        <span className="text-[10px] text-charcoal/60 font-sans italic font-light">
+                          {hotel.idealFor}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-sans font-bold text-charcoal pt-1">
                         {hotel.name}
                       </h3>
                       <p className="text-charcoal/80 font-light font-sans leading-relaxed text-sm sm:text-base">
@@ -581,6 +589,106 @@ export default function HomePage() {
                 </Card>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pre-Arrival Bliss Form Section */}
+      <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-sand border-t border-alabaster">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left Column: Visual Checklist */}
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-white rounded-3xl p-6 sm:p-8 border border-alabaster shadow-xl max-w-md mx-auto"
+              >
+                <div className="flex items-center justify-between pb-6 border-b border-alabaster">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-cinzel font-bold text-gold tracking-widest block uppercase">
+                      Guest Preferences
+                    </span>
+                    <h3 className="text-lg font-playfair font-bold text-charcoal">
+                      Pre-Arrival Preference Form
+                    </h3>
+                  </div>
+                  <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                </div>
+
+                <div className="mt-6 space-y-4">
+                  {[
+                    { title: "Elderly & Wheelchair Support", desc: "Request low floors, direct temple wheelchair coordination." },
+                    { title: "Darshan Schedule Coordination", desc: "Aligning arrival/checkout with critical temple timings." },
+                    { title: "Extra Mattress / Bedding", desc: "Arranged and styled in your room prior to check-in." },
+                    { title: "Dedicated Transit Arrangements", desc: "Clean private cabs pre-booked from Udaipur airport/station." },
+                    { title: "Dietary & Meal Preferences", desc: "100% pure vegetarian kitchen guidance and meal arrangements." }
+                  ].map((item, idx) => (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="flex items-start gap-4 p-3.5 rounded-2xl bg-sand/30 border border-alabaster/40"
+                    >
+                      <div className="h-5 w-5 rounded-full bg-emerald-50 flex items-center justify-center border border-emerald-200 text-emerald-600 shrink-0 mt-0.5">
+                        <CheckCircle2 className="h-3 w-3" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <p className="text-xs font-cinzel font-bold text-charcoal tracking-wide">
+                          {item.title}
+                        </p>
+                        <p className="text-[11px] font-sans font-light text-charcoal/80 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+                
+                <p className="text-[10px] font-sans text-center text-charcoal/50 mt-6 italic">
+                  Sent instantly via WhatsApp after booking confirmation
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Right Column: Copywriting & Pitch */}
+            <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
+              <div className="space-y-2">
+                <span className="text-xs sm:text-sm font-cinzel font-semibold text-gold tracking-widest block uppercase">
+                  Personalization Refined
+                </span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-charcoal font-playfair tracking-wide leading-tight">
+                  We prepare for your comfort before you step in
+                </h2>
+              </div>
+              
+              <p className="text-charcoal/80 font-sans font-light text-sm sm:text-base md:text-lg leading-relaxed">
+                A pilgrimage is a sacred journey. At NathBliss, we understand that families shouldn't worry about room details, physical steps for elderly parents, or temple timings.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-cinzel font-bold text-charcoal tracking-wider">
+                    Zero Booking Anxiety
+                  </h4>
+                  <p className="text-xs font-sans font-light text-charcoal/70 leading-relaxed">
+                    Instead of a generic stay, select your exact family and physical preferences directly with our host support.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-sm font-cinzel font-bold text-charcoal tracking-wider">
+                    100% Prepared Rooms
+                  </h4>
+                  <p className="text-xs font-sans font-light text-charcoal/70 leading-relaxed">
+                    Extra beds are made, wheelchair transits are coordinated, and temple updates are ready before you arrive.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
