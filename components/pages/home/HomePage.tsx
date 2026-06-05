@@ -585,7 +585,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Testimonials (Hidden for now until real reviews are loaded) */}
+      {/* 
       <section className="relative py-20 sm:py-24 px-4 sm:px-6 bg-sand">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -650,7 +651,6 @@ export default function HomePage() {
               ))}
             </CarouselContent>
 
-            {/* Custom Navigation Arrows */}
             <div className="hidden md:flex justify-center gap-4 mt-8">
               <CarouselPrevious className="static translate-x-0 translate-y-0 border-alabaster text-gold hover:bg-sand hover:text-gold/80" />
               <CarouselNext className="static translate-x-0 translate-y-0 border-alabaster text-gold hover:bg-sand hover:text-gold/80" />
@@ -658,6 +658,7 @@ export default function HomePage() {
           </Carousel>
         </div>
       </section>
+      */}
 
       {/* Teaser Section for Explore Nathdwara */}
       <Explore />
