@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { motion } from "framer-motion";
-import { Calendar, Users, ArrowLeft, Check } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Calendar, Users, ArrowLeft, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -137,6 +137,7 @@ export default function HotelRoomsPage() {
   const hotelId = params.id as string;
   const hotel = hotels[hotelId as keyof typeof hotels];
 
+  const [activeImage, setActiveImage] = useState<string | null>(null);
   const [bookingData, setBookingData] = useState({
     checkIn: "",
     checkOut: "",
@@ -216,11 +217,14 @@ export default function HotelRoomsPage() {
               viewport={{ once: true }}
             >
               <Card>
-                <div className="aspect-video">
+                <div
+                  onClick={() => setActiveImage(room.image)}
+                  className="aspect-video cursor-zoom-in overflow-hidden rounded-t-xl group"
+                >
                   <img
                     src={room.image}
                     alt={room.type}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full transform group-hover:scale-102 transition-transform duration-500"
                   />
                 </div>
                 <CardHeader>
@@ -317,6 +321,41 @@ export default function HotelRoomsPage() {
           ))}
         </div>
       </motion.div>
+
+      {/* Room Image Lightbox Modal */}
+      <AnimatePresence>
+        {activeImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveImage(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 cursor-zoom-out"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.4 }}
+              className="relative max-w-5xl max-h-[85vh] overflow-hidden rounded-2xl border border-white/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setActiveImage(null)}
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors"
+                aria-label="Close Lightbox"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <img
+                src={activeImage}
+                alt="Room Sanctuary Close-up View"
+                className="w-full h-full object-contain max-h-[85vh]"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

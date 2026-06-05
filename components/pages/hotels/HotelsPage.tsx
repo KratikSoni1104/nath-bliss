@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Wifi, Tv, Clock, Users, Wind, Utensils, ShieldCheck } from "lucide-react";
+import { MapPin, Wifi, Tv, Clock, Users, Wind, Utensils, ShieldCheck, X } from "lucide-react";
 import { phoneNumber } from "@/utils/data";
 
 const hotels = [
@@ -114,6 +114,7 @@ const hotels = [
 
 export default function HotelsPage() {
   const [selectedHotelId, setSelectedHotelId] = useState(hotels[0].id);
+  const [activeImage, setActiveImage] = useState<string | null>(null);
 
   const activeHotel = hotels.find((hotel) => hotel.id === selectedHotelId) || hotels[0];
 
@@ -265,7 +266,10 @@ export default function HotelsPage() {
                   className="flex flex-col h-full bg-white/80 backdrop-blur-sm rounded-2xl border border-alabaster overflow-hidden shadow-sm hover:shadow-md hover:border-gold/30 transition-all duration-300 group"
                 >
                   {/* Image container */}
-                  <div className="aspect-[16/10] relative overflow-hidden bg-alabaster">
+                  <div
+                    onClick={() => setActiveImage(room.image)}
+                    className="aspect-[16/10] relative overflow-hidden bg-alabaster cursor-zoom-in group"
+                  >
                     <img
                       src={room.image}
                       alt={room.type}
@@ -333,6 +337,41 @@ export default function HotelsPage() {
           </motion.div>
         </div>
       </div>
+
+      {/* Room Image Lightbox Modal */}
+      <AnimatePresence>
+        {activeImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveImage(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 cursor-zoom-out"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.4 }}
+              className="relative max-w-5xl max-h-[85vh] overflow-hidden rounded-2xl border border-white/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setActiveImage(null)}
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors"
+                aria-label="Close Lightbox"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <img
+                src={activeImage}
+                alt="Room Sanctuary Close-up View"
+                className="w-full h-full object-contain max-h-[85vh]"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
